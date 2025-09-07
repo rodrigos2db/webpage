@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Términos de Servicio - Speak2DB</title>
+</head>
+<body>
+  <h1>Términos de Servicio de Speak2DB</h1>
+  <p><strong>Última actualización:</strong> 1 de septiembre de 2025</p>
+
+  <h2>1. Descripción del servicio</h2>
+  <p>
+    Speak2DB es una aplicación que permite realizar consultas en lenguaje natural
+    sobre la <strong>estructura de bases de datos</strong>. La aplicación utiliza
+    inteligencia artificial para interpretar dichas consultas y generar resultados
+    basados únicamente en la información de la estructura de la base (tablas,
+    columnas, relaciones, etc.).
+  </p>
+
+  <h2>2. Uso del servicio</h2>
+  <ul>
+    <li>Usted es responsable del uso que haga de Speak2DB.</li>
+    <li>El servicio <strong>no accede ni procesa directamente los datos
+      contenidos en la base de datos</strong>, únicamente su estructura.</li>
+    <li>El usuario debe asegurarse de que el uso de Speak2DB cumpla con las leyes
+      y regulaciones aplicables.</li>
+  </ul>
+
+  <h2>3. Limitación de responsabilidad</h2>
+  <p>
+    Speak2DB se proporciona “tal cual”, sin garantías de ningún tipo, expresas o
+    implícitas. No garantizamos que el servicio esté libre de errores,
+    interrupciones o vulnerabilidades.
+  </p>
+  <p>
+    Speak2DB no será responsable por pérdidas de datos, daños indirectos,
+    incidentales o consecuentes derivados del uso del servicio.
+  </p>
+
+  <h2>4. Modificaciones</h2>
+  <p>
+    Nos reservamos el derecho de modificar, suspender o interrumpir el servicio,
+    así como de actualizar estos Términos de Servicio en cualquier momento. Los
+    cambios serán notificados a través de la aplicación o por correo electrónico.
+  </p>
+
+  <h2>5. Aceptación</h2>
+  <p>
+    Al usar Speak2DB, usted confirma que ha leído, comprendido y aceptado estos
+    Términos de Servicio. Si no está de acuerdo, no debe utilizar la aplicación.
+  </p>
+</body>
+</html>

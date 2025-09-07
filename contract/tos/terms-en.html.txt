@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terms of Service - Speak2DB</title>
+</head>
+<body>
+  <h1>Speak2DB Terms of Service</h1>
+  <p><strong>Last updated:</strong> September 1, 2025</p>
+
+  <h2>1. Service Description</h2>
+  <p>
+    Speak2DB is an application that allows users to perform natural language
+    queries over the <strong>structure of databases</strong>. The application
+    uses artificial intelligence to interpret these queries and generate results
+    based solely on database structure information (tables, columns,
+    relationships, etc.).
+  </p>
+
+  <h2>2. Use of the Service</h2>
+  <ul>
+    <li>You are responsible for how you use Speak2DB.</li>
+    <li>
+      The service <strong>does not access or process the actual data stored
+      inside your database</strong>, only its structure.
+    </li>
+    <li>
+      Users must ensure that their use of Speak2DB complies with all applicable
+      laws and regulations.
+    </li>
+  </ul>
+
+  <h2>3. Limitation of Liability</h2>
+  <p>
+    Speak2DB is provided “as is”, without warranties of any kind, either express
+    or implied. We do not guarantee that the service will be error-free,
+    uninterrupted, or secure.
+  </p>
+  <p>
+    Speak2DB shall not be held liable for any data loss, indirect damages,
+    incidental damages, or consequential damages arising from the use of the
+    service.
+  </p>
+
+  <h2>4. Modifications</h2>
+  <p>
+    We reserve the right to modify, suspend, or discontinue the service, as well
+    as update these Terms of Service at any time. Changes will be communicated
+    through the application or by email.
+  </p>
+
+  <h2>5. Acceptance</h2>
+  <p>
+    By using Speak2DB, you confirm that you have read, understood, and accepted
+    these Terms of Service. If you do not agree, you must not use the
+    application.
+  </p>
+</body>
+</html>

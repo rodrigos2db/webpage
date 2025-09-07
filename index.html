@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speak2DB - Próximamente</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://www.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Aplicamos la fuente base como en tu archivo App.css */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-8">
+
+    <div class="text-center">
+        <img src="speak2db-logo.png" alt="Logo de Speak2DB" class="mx-auto mb-12 max-w-sm w-full">
+
+        <h1 id="main-heading" class="text-5xl font-bold text-cyan-400 mb-4">
+            </h1>
+
+        <p id="sub-heading" class="text-2xl text-gray-300">
+            </p>
+    </div>
+
+    <script>
+        // 1. Almacenamos los textos en ambos idiomas
+        const translations = {
+            en: {
+                title: "Speak2DB - Coming Soon",
+                heading: "Coming Soon",
+                subheading: "The tool you need for data analysis using Artificial Intelligence."
+            },
+            es: {
+                title: "Speak2DB - Próximamente",
+                heading: "Próximamente",
+                subheading: "La herramienta que necesitas para análisis de datos usando Inteligencia Artificial."
+            }
+        };
+
+        // 2. Detectamos el idioma del navegador (ej: "en-US", "es-ES", "es")
+        const userLang = navigator.language || navigator.userLanguage;
+
+        // 3. Decidimos qué idioma usar. Si el idioma del navegador empieza con "es", usamos español.
+        //    Para todo lo demás (incluido el inglés), usamos inglés como idioma por defecto.
+        const langToUse = userLang.startsWith('es') ? 'es' : 'en';
+
+        // 4. Actualizamos el contenido de la página con los textos del idioma seleccionado
+        document.title = translations[langToUse].title;
+        document.getElementById('main-heading').textContent = translations[langToUse].heading;
+        document.getElementById('sub-heading').textContent = translations[langToUse].subheading;
+    </script>
+    </body>
+</html>

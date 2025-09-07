@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Política de Privacidad - Speak2DB</title>
+</head>
+<body>
+  <h1>Política de Privacidad de Speak2DB</h1>
+  <p><strong>Última actualización:</strong> 1 de septiembre de 2025</p>
+
+  <h2>1. Información que recopilamos</h2>
+  <p>
+    Speak2DB puede recopilar información mínima de contacto, como su correo
+    electrónico, al momento de registrarse o suscribirse al servicio.
+  </p>
+
+  <h2>2. Uso de la información</h2>
+  <p>
+    Su correo electrónico no será compartido con terceros y se utilizará
+    únicamente para:
+  </p>
+  <ul>
+    <li>Comunicaciones esenciales relacionadas con el servicio (ejemplo: fin de suscripción).</li>
+    <li>Envío de promociones, novedades o información relevante para el usuario.</li>
+  </ul>
+
+  <h2>3. Derechos del usuario</h2>
+  <p>
+    Usted puede solicitar dejar de recibir comunicaciones promocionales en
+    cualquier momento. Además, puede solicitar la eliminación de sus datos de
+    contacto de nuestros registros.
+  </p>
+
+  <h2>4. Seguridad</h2>
+  <p>
+    Implementamos medidas razonables para proteger la información de los usuarios,
+    aunque no podemos garantizar seguridad absoluta frente a accesos no
+    autorizados.
+  </p>
+
+  <h2>5. Cambios en la política</h2>
+  <p>
+    Esta Política de Privacidad puede actualizarse ocasionalmente. Los cambios se
+    notificarán dentro de la aplicación o por correo electrónico.
+  </p>
+</body>
+</html>
