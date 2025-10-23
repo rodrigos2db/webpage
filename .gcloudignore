@@ -12,7 +12,9 @@
 # below:
 .git
 .gitignore
-
+venv/
+deploy/
+releases/
 # Python pycache:
 __pycache__/
 # Ignored by the build system
