@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Speak2DB Open Beta</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Custom styles to ensure consistent font and background from App.css */
+    body {
+      font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+      background-color: #1a202c;
+      /* Equivalent to bg-gray-900 */
+      color: #f7fafc;
+      /* Equivalent to text-white */
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* Estilos para el selector de idioma (MODIFICADO) */
+    .lang-switcher {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      display: flex;
+      /* Añadido para alinear botones */
+    }
+
+    .lang-switcher button {
+      background-color: #4a5568;
+      /* bg-gray-700 */
+      border: none;
+      border-radius: 9999px;
+      /* rounded-full */
+      padding: 0.5rem;
+      /* p-2 */
+      margin-left: 0.5rem;
+      /* ml-2 */
+      cursor: pointer;
+      transition: background-color 0.3s;
+      /* Se quitó font-size, se usa w-6 h-6 en la img */
+      display: flex;
+      /* Para centrar la img */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #2d3748;
+      /* bg-gray-800 */
+    }
+  </style>
+</head>
+
+<body data-page="beta">
+  <div class="lang-switcher">
+    <button onclick="setLanguage('en')">
+      <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+    </button>
+    <button onclick="setLanguage('es')">
+      <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
+    </button>
+  </div>
+
+  <section class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12">
+    <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight text-blue-400" data-key="beta-heading">
+      Join the Speak2DB Open Beta
+    </h1>
+    <p class="text-lg sm:text-xl mb-8 leading-relaxed" data-key="beta-desc">
+      We're excited to invite you to try the first version of Speak2DB! This is an opportunity to experience the power
+      of querying your databases using natural language before the official launch.
+    </p>
+
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-8">
+      <h2 class="text-3xl font-bold text-blue-300 mb-4" data-key="beta-details-title">Important Beta Details:</h2>
+      <ul class="list-disc list-inside text-left text-gray-300 space-y-3 mx-auto max-w-md">
+        <li>
+          <span class="text-blue-200" data-key="beta-li1-label">Duration:</span> <span data-key="beta-li1-text">The beta
+            will be active for 10 days from your download.</span>
+        </li>
+        <li>
+          <span class="text-blue-200" data-key="beta-li2-label">Platform:</span> <span data-key="beta-li2-text">This
+            beta version is exclusively for Windows.</span>
+        </li>
+        <li>
+          <span class="text-blue-200" data-key="beta-li3-label">Connectivity:</span> <span
+            data-key="beta-li3-text">Initial support for MySQL, PostgreSQL, MongoDB, and Excel files.</span>
+        </li>
+        <li>
+          <span class="text-blue-200" data-key="beta-li4-label">Your Feedback Matters:</span> <span
+            data-key="beta-li4-text">Help us improve by reporting any bugs or suggesting new features.</span>
+        </li>
+      </ul>
+    </div>
+
+    <button
+      class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg mb-6"
+      onclick="handleDownloadClick()" data-key="beta-download-btn">
+      Download Speak2DB Beta for Windows
+    </button>
+
+    <a href="index.html"
+      class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
+      data-key="beta-back-btn">
+      Back to Home Page
+    </a>
+  </section>
+
+  <footer class="text-center text-gray-500 text-sm mt-12">
+    <p data-key="footer-copy">&copy; 2025 Speak2DB. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let currentLanguage = 'en'; // Default
+
+    const translations = {
+      'en': {
+        'page-title-index': 'Speak2DB - Ask. Analyze. Decide.',
+        'main-heading': 'Speak to Your Database.',
+        'slogan': 'Ask. Analyze. Decide.',
+        'description': 'Transform how you interact with your data. Speak2DB allows you to query your databases using natural language, making data analysis accessible to everyone.',
+        'cta-button': 'Join Open Beta',
+        'beta-tag': '(First version: Open Beta)',
+        'f1-title': 'Natural Language',
+        'f1-desc': 'Forget complex SQL. Simply ask your database questions in plain English (or Spanish!), and Speak2DB will retrieve the answers.',
+        'f2-title': 'Instant Analysis & Insights',
+        'f2-desc': 'Ask for sales projections, check your inventory, or analyze HR performance. Save your favorite queries to generate weekly reports in seconds.',
+        'f3-title': 'Total Connectivity',
+        'f3-desc': 'Connect effortlessly to popular databases like MySQL, PostgreSQL, MongoDB, and even your Excel files.',
+        'f4-title': 'Trust and Transparency',
+        'f4-desc': 'Understand *how* the AI got your answer. We show you the technical query and explain it in plain language. Need to validate it? Copy it and send it to your IT team.',
+        'f5-title': 'Security and Privacy',
+        'f5-desc': 'Not a single number or letter of your data is shared with the AI, only its structure. Any attempt to modify or delete your data is strictly blocked.',
+        'f6-title': 'Export Your Reports',
+        'f6-desc': 'Don\'t just get the answer. Easily export your results and analysis to the formats you already use, like Excel, CSV, or JSON, with a single click.',
+        'footer-copy': '© 2025 Speak2DB. All rights reserved.',
+
+        'page-title-beta': 'Join the Speak2DB Open Beta',
+        'beta-heading': 'Join the Speak2DB Open Beta',
+        'beta-desc': 'We\'re excited to invite you to try the first version of Speak2DB! This is an opportunity to experience the power of querying your databases using natural language before the official launch.',
+        'beta-details-title': 'Important Beta Details:',
+        'beta-li1-label': 'Duration:',
+        'beta-li1-text': 'The beta will be active for 10 days from your download.',
+        'beta-li2-label': 'Platform:',
+        'beta-li2-text': 'This beta version is exclusively for Windows.',
+        'beta-li3-label': 'Connectivity:',
+        'beta-li3-text': 'Initial support for MySQL, PostgreSQL, MongoDB, and Excel files.',
+        'beta-li4-label': 'Your Feedback Matters:',
+        'beta-li4-text': 'Help us improve by reporting any bugs or suggesting new features.',
+        'beta-download-btn': 'Download Speak2DB Beta for Windows',
+        'beta-download-alert': 'Download started! Thanks for joining the beta.',
+        'beta-back-btn': 'Back to Home Page'
+      },
+      'es': {
+        'page-title-index': 'Speak2DB - Pregunta. Analiza. Decide.',
+        'main-heading': 'Habla con tu Base de Datos.',
+        'slogan': 'Pregunta. Analiza. Decide.',
+        'description': 'Transforma cómo interactúas con tus datos. Speak2DB te permite consultar tus bases de datos usando lenguaje natural, haciendo el análisis de datos accesible para todos.',
+        'cta-button': 'Únete a la Beta Abierta',
+        'beta-tag': '(Primera versión: Beta Abierta)',
+        'f1-title': 'Lenguaje Natural',
+        'f1-desc': 'Olvida el SQL complejo. Simplemente haz preguntas a tu base de datos en español (¡o inglés!) y Speak2DB te traerá las respuestas.',
+        'f2-title': 'Análisis e Insights al Instante',
+        'f2-desc': 'Pide proyecciones de ventas, revisa tu inventario o analiza el rendimiento de RRHH. Guarda tus consultas favoritas para generar reportes semanales en segundos.',
+        'f3-title': 'Conectividad Total',
+        'f3-desc': 'Conéctate sin esfuerzo a bases de datos populares como MySQL, PostgreSQL, MongoDB e incluso a tus archivos de Excel.',
+        'f4-title': 'Confianza y Transparencia',
+        'f4-desc': 'Entiende *cómo* la IA obtuvo tu respuesta. Te mostramos la consulta técnica y te la explicamos en lenguaje sencillo. ¿Necesitas validarla? Cópiala y envíala a tu equipo de TI.',
+        'f5-title': 'Seguridad y Privacidad',
+        'f5-desc': 'Ni un solo número o letra de tus datos se comparte con la IA, solo su estructura. Cualquier intento de modificar o borrar tus datos está estrictamente bloqueado.',
+        'f6-title': 'Exporta tus Reportes',
+        'f6-desc': 'No te quedes solo con la respuesta. Exporta fácilmente tus resultados y análisis a los formatos que ya usas, como Excel, CSV o JSON, con un solo clic.',
+        'footer-copy': '© 2025 Speak2DB. Todos los derechos reservados.',
+
+        'page-title-beta': 'Únete a la Beta Abierta de Speak2DB',
+        'beta-heading': 'Únete a la Beta Abierta de Speak2DB',
+        'beta-desc': '¡Estamos emocionados de invitarte a probar la primera versión de Speak2DB! Esta es una oportunidad para experimentar el poder de consultar tus bases de datos usando lenguaje natural antes del lanzamiento oficial.',
+        'beta-details-title': 'Detalles Importantes de la Beta:',
+        'beta-li1-label': 'Duración:',
+        'beta-li1-text': 'La beta estará activa por 10 días a partir de tu descarga.',
+        'beta-li2-label': 'Plataforma:',
+        'beta-li2-text': 'Esta versión beta es exclusivamente para Windows.',
+        'beta-li3-label': 'Conectividad:',
+        'beta-li3-text': 'Soporte inicial para MySQL, PostgreSQL, MongoDB y archivos Excel.',
+        'beta-li4-label': 'Tu Feedback Importa:',
+        'beta-li4-text': 'Ayúdanos a mejorar reportando cualquier error o sugiriendo nuevas características.',
+        'beta-download-btn': 'Descargar Speak2DB Beta para Windows',
+        'beta-download-alert': '¡Descarga iniciada! Gracias por unirte a la beta.',
+        'beta-back-btn': 'Volver a la Página Principal'
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      localStorage.setItem('language', lang);
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
+
+      // Traducir todos los elementos con data-key
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+
+      // Traducir el título de la página
+      const pageKey = document.body.dataset.page || 'index';
+      document.title = translations[lang]['page-title-' + pageKey];
+    }
+
+    // Función para la alerta de descarga (solo se usa en beta.html)
+    function handleDownloadClick() {
+      alert(translations[currentLanguage]['beta-download-alert']);
+    }
+
+    // Al cargar la página, detectar idioma
+    document.addEventListener('DOMContentLoaded', () => {
+      const preferredLang = localStorage.getItem('language');
+      const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2);
+
+      let langToSet = 'en'; // Default
+
+      if (preferredLang) {
+        langToSet = preferredLang;
+      } else if (browserLang === 'es') {
+        langToSet = 'es';
+      }
+
+      setLanguage(langToSet);
+    });
+  </script>
+</body>
+
+</html>

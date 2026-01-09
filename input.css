@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+/* Tus estilos personalizados abajo */
+body {
+    font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+    background-color: #1a202c;
+    color: #f7fafc;
+}

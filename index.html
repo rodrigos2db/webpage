@@ -1,57 +1,287 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Speak2DB - Próximamente</title>
-
-  <!-- Tailwind compilado -->
+  <title>Speak2DB - Ask. Analyze. Decide.</title>
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Fuente Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="icono.ico">
-
   <style>
+    /* Custom styles to ensure consistent font and background from App.css */
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+      background-color: #1a202c;
+      /* Equivalent to bg-gray-900 */
+      color: #f7fafc;
+      /* Equivalent to text-white */
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* Estilos para el selector de idioma (MODIFICADO) */
+    .lang-switcher {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      display: flex;
+      /* Añadido para alinear botones */
+    }
+
+    .lang-switcher button {
+      background-color: #4a5568;
+      /* bg-gray-700 */
+      border: none;
+      border-radius: 9999px;
+      /* rounded-full */
+      padding: 0.5rem;
+      /* p-2 */
+      margin-left: 0.5rem;
+      /* ml-2 */
+      cursor: pointer;
+      transition: background-color 0.3s;
+      /* Se quitó font-size, se usa w-6 h-6 en la img */
+      display: flex;
+      /* Para centrar la img */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #2d3748;
+      /* bg-gray-800 */
     }
   </style>
 </head>
 
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-8">
-
-  <div class="text-center">
-    <img src="speak2db-logo.png" alt="Logo de Speak2DB" class="mx-auto mb-12 max-w-sm w-full">
-    <h1 id="main-heading" class="text-5xl font-bold text-cyan-400 mb-4"></h1>
-    <p id="sub-heading" class="text-2xl text-gray-300"></p>
+<body data-page="index">
+  <div class="lang-switcher">
+    <button onclick="setLanguage('en')">
+      <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+    </button>
+    <button onclick="setLanguage('es')">
+      <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
+    </button>
   </div>
 
+  <section class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12"> <img
+      src="https://www.speak2db.com/speak2db-logo.png" alt="Speak2DB Logo"
+      class="mx-auto mb-8 w-48 h-auto rounded-lg shadow-lg" />
+    <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight" data-key="main-heading">
+      Speak to Your Database.
+    </h1>
+    <p class="text-2xl sm:text-3xl text-blue-300 font-semibold mb-8" data-key="slogan">
+      Ask. Analyze. Decide.
+    </p>
+    <p class="text-lg sm:text-xl mb-10 leading-relaxed" data-key="description">
+      Transform how you interact with your data. <span class="font-bold">Speak2DB</span> allows you to query your
+      databases using natural language, making data analysis accessible to everyone.
+    </p>
+    <a href="beta.html"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg inline-block"
+      data-key="cta-button">
+      Join Open Beta
+    </a>
+    <p class="mt-4 text-sm text-blue-400" data-key="beta-tag">
+      (First version: Open Beta)
+    </p>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-7xl mx-auto px-4">
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f1-title">🧠 Inicio Inteligente</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f1-desc">La IA analiza tu base de datos y te sugiere
+        ejemplos de preguntas clave para que no tengas que empezar de cero.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-4" data-key="f2-title">📊 Centro de Análisis Avanzado</h3>
+      <div class="grid grid-cols-1 gap-4">
+        <div class="border-l-2 border-blue-500 pl-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">Insights Estratégicos</h4>
+          <p class="text-gray-400 text-xs">Identifica patrones y oportunidades ocultas.</p>
+        </div>
+        <div class="border-l-2 border-green-500 pl-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">Resúmenes Ejecutivos</h4>
+          <p class="text-gray-400 text-xs">Síntesis de alto nivel para decisiones rápidas.</p>
+        </div>
+        <div class="border-l-2 border-purple-500 pl-3">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">Consistencia de Datos</h4>
+          <p class="text-gray-400 text-xs">Detección de errores y anomalías en registros.</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f3-title">🔔 Alertas Automáticas</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f3-desc">Recibe avisos por email cuando se detecten
+        quiebres de stock futuros o anomalías en tus ventas.</p>
+    </div>
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f4-title">📊 Tableros de Control</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f4-desc">Crea y personaliza dashboards con tus métricas
+        favoritas para tener una visión global desde cualquier lugar.</p>
+    </div>
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f5-title">🔌 Conectividad</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f5-desc">Conéctate a MySQL, PostgreSQL, MongoDB o
+        simplemente selecciona tus archivos Excel.</p>
+    </div>
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f6-title">📔 Bitácora de Análisis</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f6-desc">Almacena tus reportes históricos y compáralos
+        mes a mes para entender la evolución de tu PYME.</p>
+    </div>
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f7-title">🔒 Solo Lectura</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f7-desc">Arquitectura protegida sin permisos de
+        escritura. Tus datos originales nunca se modifican.</p>
+    </div>
+
+    <div
+      class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+      <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f8-title">📄 Reportes Excel</h3>
+      <p class="text-gray-300 text-sm leading-relaxed" data-key="f8-desc">Exporta tus hallazgos a Excel o CSV con un
+        solo clic, incluyendo gráficos listos para presentar.</p>
+    </div>
+  </section>
+
+  <footer class="text-center text-gray-500 text-sm mt-12">
+    <p data-key="footer-copy">&copy; 2025 Speak2DB. All rights reserved.</p>
+  </footer>
+
   <script>
+    let currentLanguage = 'en'; // Default
+
     const translations = {
-      en: {
-        title: "Speak2DB - Coming Soon",
-        heading: "Coming Soon",
-        subheading: "The tool you need for data analysis using Artificial Intelligence."
+      'en': {
+        'page-title-index': 'Speak2DB - Intelligence for your SME',
+        'main-heading': 'Control your Business, Simply by Asking.',
+        'slogan': 'Predict. Visualize. Decide.',
+        'description': 'Speak2DB transforms your database into a strategic ally. Get smart alerts, dashboards, and executive insights using simple text or by selecting AI-guided options.',
+
+        // Feature Cards
+        'f1-title': '🧠 Smart Start',
+        'f1-desc': 'The AI analyzes your database and suggests key question examples so you don\'t have to start from scratch.',
+
+        "f2-title": "📊 Advanced Analytics Center",
+        "f2-insight-title": "Strategic Insights",
+        "f2-insight-desc": "Identify hidden patterns and opportunities.",
+        "f2-summary-title": "Executive Summaries",
+        "f2-summary-desc": "High-level synthesis for quick decision-making.",
+        "f2-data-title": "Data Consistency",
+        "f2-data-desc": "Detection of errors and record anomalies.",
+
+        'f3-title': '🔔 Smart Alerts',
+        'f3-desc': 'Stay ahead of issues. Get automatic email notifications about future stock-outs or sales anomalies.',
+        'f4-title': '📊 Cloud Dashboards',
+        'f4-desc': 'Build boards with your queries and access your key metrics from anywhere on any device.',
+        'f5-title': '🔌 Total Connectivity',
+        'f5-desc': 'Connect effortlessly to MySQL, PostgreSQL, MongoDB, or simply add your Excel files.',
+        'f6-title': '📔 Executive Log',
+        'f6-desc': 'Store and compare historical reports to understand your business evolution month by month.',
+        'f7-title': '🔒 Read-Only Access',
+        'f7-desc': 'Secure architecture with zero write permissions. Your original data is never at risk of modification.',
+        'f8-title': '📄 Excel Reports',
+        'f8-desc': 'Export results to Excel or CSV with one click, including professional charts ready to share.',
+
+        // Buttons & Links
+        'cta-button': 'Try the Beta Now',
+        'beta-title': 'Join the Beta',
+        'beta-desc': 'Speak2DB is currently in private beta. Join us to transform how you manage your SME.',
+        'beta-download-btn': 'Download Desktop Client',
+        'beta-download-alert': 'The download will be available soon for beta testers.',
+        'back-btn': 'Back to Home'
       },
-      es: {
-        title: "Speak2DB - Próximamente",
-        heading: "Próximamente",
-        subheading: "La herramienta que necesitas para análisis de datos usando Inteligencia Artificial."
+      'es': {
+        'page-title-index': 'Speak2DB - Inteligencia para tu PYME',
+        'main-heading': 'Controla tu Negocio, Solo con Preguntar.',
+        'slogan': 'Predice. Visualiza. Decide.',
+        'description': 'Speak2DB transforma tu base de datos en un aliado estratégico. Obtén alertas, dashboards y análisis ejecutivos usando texto simple o seleccionando opciones guiadas por IA.',
+
+        // Tarjetas de Características
+        'f1-title': '🧠 Inicio Inteligente',
+        'f1-desc': 'La IA analiza tu base de datos y te sugiere ejemplos de preguntas clave para que no tengas que empezar de cero.',
+        "f2-title": "📊 Centro de Análisis Avanzado",
+        "f2-insight-title": "Insights Estratégicos",
+        "f2-insight-desc": "Identifica patrones y oportunidades ocultas.",
+        "f2-summary-title": "Resúmenes Ejecutivos",
+        "f2-summary-desc": "Síntesis de alto nivel para decisiones rápidas.",
+        "f2-data-title": "Consistencia de Datos",
+        "f2-data-desc": "Detección de errores y anomalías en registros.",
+        'f3-title': '🔔 Alertas Inteligentes',
+        'f3-desc': 'Anticípate a los problemas. Recibe avisos por email sobre falta de stock o anomalías en tus ingresos.',
+        'f4-title': '📊 Dashboards en la Nube',
+        'f4-desc': 'Crea tableros con tus consultas y accede a tus métricas clave desde cualquier lugar y dispositivo.',
+        'f5-title': '🔌 Conectividad Total',
+        'f5-desc': 'Conéctate sin esfuerzo a MySQL, PostgreSQL, MongoDB o simplemente selecciona tus archivos Excel.',
+        'f6-title': '📔 Bitácora de Análisis',
+        'f6-desc': 'Almacena y compara reportes históricos para entender la evolución de tu negocio mes a mes.',
+        'f7-title': '🔒 Acceso de Solo Lectura',
+        'f7-desc': 'Arquitectura segura sin permisos de escritura. Tus datos originales nunca corren riesgo de modificación.',
+        'f8-title': '📄 Reportes Excel',
+        'f8-desc': 'Exporta a Excel o CSV con un clic, incluyendo gráficos profesionales listos para presentar.',
+
+        // Botones y Links
+        'cta-button': 'Probar la Beta Ahora',
+        'beta-title': 'Únete a la Beta',
+        'beta-desc': 'Speak2DB está actualmente en beta privada. Únete para transformar la gestión de tu PYME.',
+        'beta-download-btn': 'Descargar Cliente de Escritorio',
+        'beta-download-alert': 'La descarga estará disponible pronto para los usuarios de la beta.',
+        'back-btn': 'Volver a la Página Principal'
       }
     };
 
-    const userLang = navigator.language || navigator.userLanguage;
-    const langToUse = userLang.startsWith('es') ? 'es' : 'en';
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      localStorage.setItem('language', lang);
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
 
-    document.title = translations[langToUse].title;
-    document.getElementById('main-heading').textContent = translations[langToUse].heading;
-    document.getElementById('sub-heading').textContent = translations[langToUse].subheading;
+      // Traducir todos los elementos con data-key
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+
+      // Traducir el título de la página
+      const pageKey = document.body.dataset.page || 'index';
+      document.title = translations[lang]['page-title-' + pageKey];
+    }
+
+    // Función para la alerta de descarga (solo se usa en beta.html)
+    function handleDownloadClick() {
+      alert(translations[currentLanguage]['beta-download-alert']);
+    }
+
+    // Al cargar la página, detectar idioma
+    document.addEventListener('DOMContentLoaded', () => {
+      const preferredLang = localStorage.getItem('language');
+      const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2);
+
+      let langToSet = 'en'; // Default
+
+      if (preferredLang) {
+        langToSet = preferredLang;
+      } else if (browserLang === 'es') {
+        langToSet = 'es';
+      }
+
+      setLanguage(langToSet);
+    });
   </script>
 </body>
 
