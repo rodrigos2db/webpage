@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join the Speak2DB Open Beta</title>
+  <title>Join the Speak2DB Limited Beta</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
   <link rel="icon" type="image/png" href="speak2db-logo.png">
   <link rel="stylesheet" href="styles.css">
@@ -69,7 +69,7 @@
 
   <section class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12">
     <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight text-blue-400" data-key="beta-heading">
-      Join the Speak2DB Open Beta
+      Join the Speak2DB Limited Beta
     </h1>
     <p class="text-lg sm:text-xl mb-8 leading-relaxed" data-key="beta-desc">
       We're excited to invite you to try the first version of Speak2DB! This is an opportunity to experience the power
@@ -81,7 +81,7 @@
       <ul class="list-disc list-inside text-left text-gray-300 space-y-3 mx-auto max-w-md">
         <li>
           <span class="text-blue-200" data-key="beta-li1-label">Duration:</span> <span data-key="beta-li1-text">The beta
-            will be active for 10 days from your download.</span>
+            will be active for 10 days from first use.</span>
         </li>
         <li>
           <span class="text-blue-200" data-key="beta-li2-label">Platform:</span> <span data-key="beta-li2-text">This
@@ -98,17 +98,148 @@
       </ul>
     </div>
 
-    <button
-      class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg mb-6"
-      onclick="handleDownloadClick()" data-key="beta-download-btn">
-      Download Speak2DB Beta for Windows
-    </button>
+    <!-- SECTION 1 - Request Beta Access -->
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-blue-500 mb-16 max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold text-blue-300 mb-6 text-center" data-key="beta-request-title">Request Beta Access
+      </h2>
+      <p class="text-gray-300 mb-8 text-center" data-key="beta-request-desc">
+        Fill out the form below to request access to the Speak2DB Limited Beta. We'll review your request and contact
+        you by email if approved.
+      </p>
 
-    <a href="index.html"
-      class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
-      data-key="beta-back-btn">
-      Back to Home Page
-    </a>
+      <form id="beta-request-form" class="space-y-10">
+        <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-x-6 gap-y-6 items-center text-left">
+          <!-- Name -->
+          <label for="request-name" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-request-name-label">Name *</label>
+          <input type="text" id="request-name" name="name" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="John Doe" data-key="beta-request-name-placeholder">
+
+          <!-- Corporate Email -->
+          <label for="request-email" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-request-email-label">Corporate Email *</label>
+          <input type="email" id="request-email" name="email" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="john@company.com" data-key="beta-request-email-placeholder">
+
+          <!-- Company -->
+          <label for="request-company" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-request-company-label">Company *</label>
+          <input type="text" id="request-company" name="company" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Your Company" data-key="beta-request-company-placeholder">
+
+          <!-- Role -->
+          <label for="request-role" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-request-role-label">Role *</label>
+          <select id="request-role" name="role" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option value="" disabled selected data-key="beta-request-role-placeholder">Select your role</option>
+            <option value="Inventory Manager" data-key="beta-role-inventory">Inventory Manager</option>
+            <option value="Sales Manager" data-key="beta-role-sales">Sales Manager</option>
+            <option value="HR Manager" data-key="beta-role-hr">HR Manager</option>
+            <option value="Operations" data-key="beta-role-operations">Operations</option>
+            <option value="IT" data-key="beta-role-it">IT</option>
+            <option value="Other" data-key="beta-role-other">Other</option>
+          </select>
+
+          <!-- Country -->
+          <label for="request-country" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-request-country-label">Country *</label>
+          <input type="text" id="request-country" name="country" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="United States" data-key="beta-request-country-placeholder">
+
+          <!-- LinkedIn -->
+          <label for="request-linkedin" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-request-linkedin-label">LinkedIn Profile (Optional)</label>
+          <input type="url" id="request-linkedin" name="linkedin"
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="https://linkedin.com/in/yourprofile" data-key="beta-request-linkedin-placeholder">
+        </div>
+
+        <button type="submit" id="request-access-btn"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-[1.02] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+          data-key="beta-request-access-btn">
+          Request Beta Access
+        </button>
+      </form>
+
+      <!-- Loading spinner for request form -->
+      <div id="request-loading-spinner" class="hidden mt-8 text-center">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+        <p class="mt-4 text-gray-300" data-key="beta-request-loading-text">Submitting your request...</p>
+      </div>
+
+      <!-- Error message box for request form -->
+      <div id="request-error-message"
+        class="hidden mt-8 p-4 bg-red-900/30 border border-red-700 rounded-lg text-red-300">
+        <p id="request-error-text" data-key="beta-request-error-default">Something went wrong. Please try again later.
+        </p>
+      </div>
+
+      <!-- Success message box for request form -->
+      <div id="request-success-message"
+        class="hidden mt-8 p-4 bg-green-900/30 border border-green-700 rounded-lg text-green-300">
+        <p id="request-success-text" data-key="beta-request-success-default">Thank you. We will review your request and
+          contact you by email if approved.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 - Already Approved? -->
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-16 max-w-lg mx-auto">
+      <h3 class="text-2xl font-bold text-blue-300 mb-4 text-center" data-key="beta-form-title">Already Approved?
+      </h3>
+      <p class="text-gray-300 mb-6 text-center" data-key="beta-form-subtitle">If you already have a beta access token,
+        enter your email and token below to download the software.</p>
+      <form id="beta-download-form" class="space-y-8 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-4 gap-y-6 items-center">
+          <label for="email" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-email-label">Email Address</label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="you@example.com" data-key="beta-email-placeholder">
+
+          <label for="beta_token" class="block text-gray-300 font-medium md:text-right md:pr-4"
+            data-key="beta-token-label">Beta Access Token</label>
+          <input type="text" id="beta_token" name="beta_token" required
+            class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Enter your beta token" data-key="beta-token-placeholder">
+        </div>
+        <button type="submit" id="request-download-btn"
+          class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-[1.02] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+          data-key="beta-request-btn">
+          Request Download
+        </button>
+      </form>
+
+      <!-- Loading spinner (hidden by default) -->
+      <div id="loading-spinner" class="hidden mt-8 text-center">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+        <p class="mt-4 text-gray-300" data-key="beta-loading-text">Validating your token...</p>
+      </div>
+
+      <!-- Error message box (hidden by default) -->
+      <div id="error-message" class="hidden mt-8 p-4 bg-red-900/30 border border-red-700 rounded-lg text-red-300">
+        <p id="error-text" data-key="beta-error-default">Invalid token or email. Please check and try again.</p>
+      </div>
+
+      <!-- Success message box (hidden by default) -->
+      <div id="success-message"
+        class="hidden mt-8 p-4 bg-green-900/30 border border-green-700 rounded-lg text-green-300">
+        <p id="success-text" data-key="beta-success-default">Download starting... You have <span
+            id="remaining-downloads">0</span> downloads remaining.</p>
+      </div>
+    </div>
+
+    <div class="text-center mb-8">
+      <a href="index.html"
+        class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
+        data-key="beta-back-btn">
+        Back to Home Page
+      </a>
+    </div>
   </section>
 
   <footer class="text-center text-gray-500 text-sm mt-12">
@@ -117,6 +248,7 @@
 
   <script>
     let currentLanguage = 'en'; // Default
+    const API_BASE_URL = 'http://localhost:5000';
 
     const translations = {
       'en': {
@@ -140,12 +272,12 @@
         'f6-desc': 'Don\'t just get the answer. Easily export your results and analysis to the formats you already use, like Excel, CSV, or JSON, with a single click.',
         'footer-copy': '© 2026 Speak2DB. All rights reserved.',
 
-        'page-title-beta': 'Join the Speak2DB Open Beta',
-        'beta-heading': 'Join the Speak2DB Open Beta',
+        'page-title-beta': 'Join the Speak2DB Limited Beta',
+        'beta-heading': 'Join the Speak2DB Limited Beta',
         'beta-desc': 'We\'re excited to invite you to try the first version of Speak2DB! This is an opportunity to experience the power of querying your databases using natural language before the official launch.',
         'beta-details-title': 'Important Beta Details:',
         'beta-li1-label': 'Duration:',
-        'beta-li1-text': 'The beta will be active for 10 days from your download.',
+        'beta-li1-text': 'The beta will be active for 10 days from first use.',
         'beta-li2-label': 'Platform:',
         'beta-li2-text': 'This beta version is exclusively for Windows.',
         'beta-li3-label': 'Connectivity:',
@@ -154,7 +286,44 @@
         'beta-li4-text': 'Help us improve by reporting any bugs or suggesting new features.',
         'beta-download-btn': 'Download Speak2DB Beta for Windows',
         'beta-download-alert': 'Download started! Thanks for joining the beta.',
-        'beta-back-btn': 'Back to Home Page'
+        'beta-back-btn': 'Back to Home Page',
+        'beta-form-title': 'Already Approved?',
+        'beta-form-subtitle': 'If you already have a beta access token, enter your email and token below to download the software.',
+        'beta-email-label': 'Email Address',
+        'beta-email-placeholder': 'you@example.com',
+        'beta-token-label': 'Beta Access Token',
+        'beta-token-placeholder': 'Enter your beta token',
+        'beta-request-btn': 'Request Download',
+        'beta-loading-text': 'Validating your token...',
+        'beta-error-default': 'Invalid token or email. Please check and try again.',
+        'beta-success-default': 'Download starting... You have {count} downloads remaining.',
+
+        // New keys for beta request access form
+        'beta-request-title': 'Request Beta Access',
+        'beta-request-desc': 'Fill out the form below to request access to the Speak2DB Limited Beta. We\'ll review your request and contact you by email if approved.',
+        'beta-request-name-label': 'Name *',
+        'beta-request-name-placeholder': 'John Doe',
+        'beta-request-email-label': 'Corporate Email *',
+        'beta-request-email-placeholder': 'john@company.com',
+        'beta-request-company-label': 'Company *',
+        'beta-request-company-placeholder': 'Your Company',
+        'beta-request-role-label': 'Role *',
+        'beta-request-role-placeholder': 'Select your role',
+        'beta-role-inventory': 'Inventory Manager',
+        'beta-role-sales': 'Sales Manager',
+        'beta-role-hr': 'HR Manager',
+        'beta-role-operations': 'Operations',
+        'beta-role-it': 'IT',
+        'beta-role-other': 'Other',
+        'beta-request-country-label': 'Country *',
+        'beta-request-country-placeholder': 'United States',
+        'beta-request-linkedin-label': 'LinkedIn Profile (Optional)',
+        'beta-request-linkedin-placeholder': 'https://linkedin.com/in/yourprofile',
+        'beta-request-access-btn': 'Request Beta Access',
+        'beta-request-loading-text': 'Submitting your request...',
+        'beta-request-error-default': 'Something went wrong. Please try again later.',
+        'beta-request-error-email': 'Please enter a valid email address.',
+        'beta-request-success-default': 'Thank you. We will review your request and contact you by email if approved.'
       },
       'es': {
         'page-title-index': 'Speak2DB - Pregunta. Analiza. Decide.',
@@ -177,12 +346,12 @@
         'f6-desc': 'No te quedes solo con la respuesta. Exporta fácilmente tus resultados y análisis a los formatos que ya usas, como Excel, CSV o JSON, con un solo clic.',
         'footer-copy': '© 2026 Speak2DB. Todos los derechos reservados.',
 
-        'page-title-beta': 'Únete a la Beta Abierta de Speak2DB',
-        'beta-heading': 'Únete a la Beta Abierta de Speak2DB',
+        'page-title-beta': 'Únete a la Beta de Acceso Limitado de Speak2DB',
+        'beta-heading': 'Únete a la Beta de Acceso Limitado de Speak2DB',
         'beta-desc': '¡Estamos emocionados de invitarte a probar la primera versión de Speak2DB! Esta es una oportunidad para experimentar el poder de consultar tus bases de datos usando lenguaje natural antes del lanzamiento oficial.',
         'beta-details-title': 'Detalles Importantes de la Beta:',
         'beta-li1-label': 'Duración:',
-        'beta-li1-text': 'La beta estará activa por 10 días a partir de tu descarga.',
+        'beta-li1-text': 'La beta estará activa por 10 días a partir del primer uso.',
         'beta-li2-label': 'Plataforma:',
         'beta-li2-text': 'Esta versión beta es exclusivamente para Windows.',
         'beta-li3-label': 'Conectividad:',
@@ -191,7 +360,44 @@
         'beta-li4-text': 'Ayúdanos a mejorar reportando cualquier error o sugiriendo nuevas características.',
         'beta-download-btn': 'Descargar Speak2DB Beta para Windows',
         'beta-download-alert': '¡Descarga iniciada! Gracias por unirte a la beta.',
-        'beta-back-btn': 'Volver a la Página Principal'
+        'beta-back-btn': 'Volver a la Página Principal',
+        'beta-form-title': '¿Ya Aprobado?',
+        'beta-form-subtitle': 'Si ya tienes un token de acceso beta, ingresa tu correo y token a continuación para descargar el software.',
+        'beta-email-label': 'Correo Electrónico',
+        'beta-email-placeholder': 'tu@ejemplo.com',
+        'beta-token-label': 'Token de Acceso Beta',
+        'beta-token-placeholder': 'Ingresa tu token beta',
+        'beta-request-btn': 'Solicitar Descarga',
+        'beta-loading-text': 'Validando tu token...',
+        'beta-error-default': 'Token o correo inválido. Por favor verifica e intenta de nuevo.',
+        'beta-success-default': 'Descarga iniciada... Te quedan {count} descargas disponibles.',
+
+        // New keys for beta request access form (Spanish)
+        'beta-request-title': 'Solicitar Acceso a la Beta',
+        'beta-request-desc': 'Completa el formulario a continuación para solicitar acceso a la Beta de Acceso Limitado de Speak2DB. Revisaremos tu solicitud y te contactaremos por correo si eres aprobado.',
+        'beta-request-name-label': 'Nombre *',
+        'beta-request-name-placeholder': 'Juan Pérez',
+        'beta-request-email-label': 'Correo Corporativo *',
+        'beta-request-email-placeholder': 'juan@empresa.com',
+        'beta-request-company-label': 'Empresa *',
+        'beta-request-company-placeholder': 'Tu Empresa',
+        'beta-request-role-label': 'Rol *',
+        'beta-request-role-placeholder': 'Selecciona tu rol',
+        'beta-role-inventory': 'Gerente de Inventario',
+        'beta-role-sales': 'Gerente de Ventas',
+        'beta-role-hr': 'Gerente de RRHH',
+        'beta-role-operations': 'Operaciones',
+        'beta-role-it': 'TI',
+        'beta-role-other': 'Otro',
+        'beta-request-country-label': 'País *',
+        'beta-request-country-placeholder': 'Estados Unidos',
+        'beta-request-linkedin-label': 'Perfil de LinkedIn (Opcional)',
+        'beta-request-linkedin-placeholder': 'https://linkedin.com/in/tuperfil',
+        'beta-request-access-btn': 'Solicitar Acceso a la Beta',
+        'beta-request-loading-text': 'Enviando tu solicitud...',
+        'beta-request-error-default': 'Algo salió mal. Inténtalo nuevamente más tarde.',
+        'beta-request-error-email': 'Por favor ingresa un correo electrónico válido.',
+        'beta-request-success-default': 'Gracias. Revisaremos tu solicitud y te contactaremos por correo si eres aprobado.'
       }
     };
 
@@ -214,12 +420,153 @@
       document.title = translations[lang]['page-title-' + pageKey];
     }
 
-    // Función para la alerta de descarga (solo se usa en beta.html)
+    // Función para la alerta de descarga (solo se usa en beta.html) - mantiene compatibilidad
     function handleDownloadClick() {
       alert(translations[currentLanguage]['beta-download-alert']);
     }
 
-    // Al cargar la página, detectar idioma
+    // Nueva función para manejar la solicitud de descarga beta
+    async function handleBetaDownloadRequest(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const email = document.getElementById('email').value.trim();
+      const betaToken = document.getElementById('beta_token').value.trim();
+      const submitBtn = document.getElementById('request-download-btn');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      const errorBox = document.getElementById('error-message');
+      const successBox = document.getElementById('success-message');
+      const errorText = document.getElementById('error-text');
+      const successText = document.getElementById('success-text');
+      const remainingSpan = document.getElementById('remaining-downloads');
+
+      // Reset UI
+      if (errorBox) errorBox.classList.add('hidden');
+      if (successBox) successBox.classList.add('hidden');
+      if (submitBtn) submitBtn.disabled = true;
+      if (loadingSpinner) loadingSpinner.classList.remove('hidden');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/beta/request-download`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, beta_token: betaToken, lang: currentLanguage }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Request failed');
+        }
+
+        // Success
+        const remaining = data.remaining_downloads ?? 0;
+        if (remainingSpan) remainingSpan.textContent = remaining;
+        // Update success message with count
+        const successMsg = translations[currentLanguage]['beta-success-default'].replace('{count}', remaining);
+        if (successText) successText.textContent = successMsg;
+
+        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+        if (successBox) successBox.classList.remove('hidden');
+
+        // Start download automatically
+        if (data.download_url) {
+          window.location.href = data.download_url;
+        }
+
+        // Re-enable button after a short delay
+        setTimeout(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        }, 3000);
+
+      } catch (error) {
+        // Error handling
+        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+        if (errorText) errorText.textContent = error.message || translations[currentLanguage]['beta-error-default'];
+        if (errorBox) errorBox.classList.remove('hidden');
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    }
+
+    // Function to handle beta access request form submission
+    async function handleBetaAccessRequest(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const name = document.getElementById('request-name').value.trim();
+      const email = document.getElementById('request-email').value.trim();
+      const company = document.getElementById('request-company').value.trim();
+      const role = document.getElementById('request-role').value;
+      const country = document.getElementById('request-country').value.trim();
+      const linkedin = document.getElementById('request-linkedin').value.trim();
+      const submitBtn = document.getElementById('request-access-btn');
+      const loadingSpinner = document.getElementById('request-loading-spinner');
+      const errorBox = document.getElementById('request-error-message');
+      const successBox = document.getElementById('request-success-message');
+      const errorText = document.getElementById('request-error-text');
+      const successText = document.getElementById('request-success-text');
+
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        if (errorText) errorText.textContent = translations[currentLanguage]['beta-request-error-email'] || 'Please enter a valid email address.';
+        if (errorBox) errorBox.classList.remove('hidden');
+        return;
+      }
+
+      // Reset UI
+      if (errorBox) errorBox.classList.add('hidden');
+      if (successBox) successBox.classList.add('hidden');
+      if (submitBtn) submitBtn.disabled = true;
+      if (loadingSpinner) loadingSpinner.classList.remove('hidden');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/beta/request-access`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            company,
+            role,
+            country,
+            linkedin: linkedin || '',
+            lang: currentLanguage
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Request failed');
+        }
+
+        // Success
+        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+        if (successBox) successBox.classList.remove('hidden');
+
+        // Clear form
+        form.reset();
+
+        // Re-enable button after a short delay
+        setTimeout(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        }, 3000);
+
+      } catch (error) {
+        // Error handling
+        if (loadingSpinner) loadingSpinner.classList.add('hidden');
+        if (errorText) errorText.textContent = translations[currentLanguage]['beta-request-error-default'] || 'Something went wrong. Please try again later.';
+        if (errorBox) errorBox.classList.remove('hidden');
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    }
+
+    // Al cargar la página, detectar idioma y configurar el formulario
     document.addEventListener('DOMContentLoaded', () => {
       const preferredLang = localStorage.getItem('language');
       const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2);
@@ -233,6 +580,17 @@
       }
 
       setLanguage(langToSet);
+
+      // Attach form submission handlers
+      const downloadForm = document.getElementById('beta-download-form');
+      if (downloadForm) {
+        downloadForm.addEventListener('submit', handleBetaDownloadRequest);
+      }
+
+      const requestForm = document.getElementById('beta-request-form');
+      if (requestForm) {
+        requestForm.addEventListener('submit', handleBetaAccessRequest);
+      }
     });
   </script>
 </body>
