@@ -99,7 +99,7 @@
     </div>
 
     <!-- SECTION 1 - Request Beta Access -->
-    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-blue-500 mb-16 max-w-2xl mx-auto">
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-blue-500 mb-24 max-w-2xl mx-auto">
       <h2 class="text-3xl font-bold text-blue-300 mb-6 text-center" data-key="beta-request-title">Request Beta Access
       </h2>
       <p class="text-gray-300 mb-8 text-center" data-key="beta-request-desc">
@@ -188,7 +188,7 @@
     </div>
 
     <!-- SECTION 2 - Already Approved? -->
-    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-16 max-w-lg mx-auto">
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-24 max-w-lg mx-auto">
       <h3 class="text-2xl font-bold text-blue-300 mb-4 text-center" data-key="beta-form-title">Already Approved?
       </h3>
       <p class="text-gray-300 mb-6 text-center" data-key="beta-form-subtitle">If you already have a beta access token,
@@ -233,7 +233,7 @@
       </div>
     </div>
 
-    <div class="text-center mb-8">
+    <div class="text-center mt-12 mb-12">
       <a href="index.html"
         class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
         data-key="beta-back-btn">
@@ -248,7 +248,7 @@
 
   <script>
     let currentLanguage = 'en'; // Default
-    const API_BASE_URL = 'http://localhost:5000';
+    const API_BASE_URL = 'https://platformqa.speak2db.com/registro/api/auth'; //'http://localhost:5000';
 
     const translations = {
       'en': {
@@ -323,7 +323,16 @@
         'beta-request-loading-text': 'Submitting your request...',
         'beta-request-error-default': 'Something went wrong. Please try again later.',
         'beta-request-error-email': 'Please enter a valid email address.',
-        'beta-request-success-default': 'Thank you. We will review your request and contact you by email if approved.'
+        'beta-request-success-default': 'Thank you. We will review your request and contact you by email if approved.',
+        'ERR_MISSING_FIELDS': 'Required fields are missing.',
+        'ERR_INVALID_CREDENTIALS': 'Invalid credentials or token.',
+        'ERR_NOT_APPROVED': 'Your account has not been approved yet.',
+        'ERR_TOKEN_EXPIRED': 'Your beta token has expired.',
+        'ERR_DOWNLOAD_LIMIT': 'You have reached the maximum number of downloads.',
+        'ERR_URL_GENERATION': 'Error generating download link. Please try again.',
+        'ERR_INTERNAL': 'Internal server error. Please try again later.',
+        'ERR_EMAIL_INV': 'Invalid email address.',
+        'ERR_MISSING_DATA': 'Required data is missing.'
       },
       'es': {
         'page-title-index': 'Speak2DB - Pregunta. Analiza. Decide.',
@@ -397,7 +406,16 @@
         'beta-request-loading-text': 'Enviando tu solicitud...',
         'beta-request-error-default': 'Algo salió mal. Inténtalo nuevamente más tarde.',
         'beta-request-error-email': 'Por favor ingresa un correo electrónico válido.',
-        'beta-request-success-default': 'Gracias. Revisaremos tu solicitud y te contactaremos por correo si eres aprobado.'
+        'beta-request-success-default': 'Gracias. Revisaremos tu solicitud y te contactaremos por correo si eres aprobado.',
+        'ERR_MISSING_FIELDS': 'Faltan campos obligatorios.',
+        'ERR_INVALID_CREDENTIALS': 'Credenciales o token inválidos.',
+        'ERR_NOT_APPROVED': 'Tu cuenta aún no ha sido aprobada.',
+        'ERR_TOKEN_EXPIRED': 'Tu token de beta ha expirado.',
+        'ERR_DOWNLOAD_LIMIT': 'Has alcanzado el límite máximo de descargas.',
+        'ERR_URL_GENERATION': 'Error al generar el enlace de descarga. Inténtalo de nuevo.',
+        'ERR_INTERNAL': 'Error interno del servidor. Inténtalo más tarde.',
+        'ERR_EMAIL_INV': 'Dirección de correo electrónico inválida.',
+        'ERR_MISSING_DATA': 'Faltan datos requeridos.'
       }
     };
 
@@ -458,7 +476,7 @@
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || 'Request failed');
+          throw new Error(JSON.stringify(data));
         }
 
         // Success
@@ -484,7 +502,20 @@
       } catch (error) {
         // Error handling
         if (loadingSpinner) loadingSpinner.classList.add('hidden');
-        if (errorText) errorText.textContent = error.message || translations[currentLanguage]['beta-error-default'];
+
+        // Try to get translated error message if ERROR_CODE exists
+        let errorMessage = translations[currentLanguage]['beta-error-default'];
+        try {
+          const errorData = JSON.parse(error.message);
+          if (errorData.ERROR_CODE && translations[currentLanguage][errorData.ERROR_CODE]) {
+            errorMessage = translations[currentLanguage][errorData.ERROR_CODE];
+          }
+        } catch (e) {
+          // If error.message is not JSON, use it as is or default
+          errorMessage = error.message || translations[currentLanguage]['beta-error-default'];
+        }
+
+        if (errorText) errorText.textContent = errorMessage;
         if (errorBox) errorBox.classList.remove('hidden');
         if (submitBtn) submitBtn.disabled = false;
       }
@@ -542,7 +573,7 @@
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || 'Request failed');
+          throw new Error(JSON.stringify(data));
         }
 
         // Success
@@ -560,7 +591,19 @@
       } catch (error) {
         // Error handling
         if (loadingSpinner) loadingSpinner.classList.add('hidden');
-        if (errorText) errorText.textContent = translations[currentLanguage]['beta-request-error-default'] || 'Something went wrong. Please try again later.';
+
+        // Try to get translated error message if ERROR_CODE exists
+        let errorMessage = translations[currentLanguage]['beta-request-error-default'] || 'Something went wrong. Please try again later.';
+        try {
+          const errorData = JSON.parse(error.message);
+          if (errorData.ERROR_CODE && translations[currentLanguage][errorData.ERROR_CODE]) {
+            errorMessage = translations[currentLanguage][errorData.ERROR_CODE];
+          }
+        } catch (e) {
+          errorMessage = error.message || translations[currentLanguage]['beta-request-error-default'];
+        }
+
+        if (errorText) errorText.textContent = errorMessage;
         if (errorBox) errorBox.classList.remove('hidden');
         if (submitBtn) submitBtn.disabled = false;
       }
