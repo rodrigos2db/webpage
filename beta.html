@@ -8,6 +8,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
   <link rel="icon" type="image/png" href="speak2db-logo.png">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://www.google.com/recaptcha/api.js?render=6LekEpEsAAAAAEIfTGKLpjRH8zyKMQ6HiPS6Z8f7"></script>
   <style>
     /* Custom styles to ensure consistent font and background from App.css */
     body {
@@ -258,6 +259,7 @@
   <script>
     let currentLanguage = 'en'; // Default
     const API_BASE_URL = 'https://platformqa.speak2db.com/registro/api/auth'; //'http://localhost:5000';
+    const RECAPTCHA_SITE_KEY = '6LekEpEsAAAAAEIfTGKLpjRH8zyKMQ6HiPS6Z8f7';
 
     const translations = {
       'en': {
@@ -347,7 +349,8 @@
         'ERR_URL_GENERATION': 'Error generating download link. Please try again.',
         'ERR_INTERNAL': 'Internal server error. Please try again later.',
         'ERR_EMAIL_INV': 'Invalid email address.',
-        'ERR_MISSING_DATA': 'Required data is missing.'
+        'ERR_MISSING_DATA': 'Required data is missing.',
+        'ERR_CAPTCHA': 'Security verification failed. Please try again.'
       },
       'es': {
         'page-title-index': 'Speak2DB - Pregunta. Analiza. Decide.',
@@ -436,7 +439,8 @@
         'ERR_URL_GENERATION': 'Error al generar el enlace de descarga. Inténtalo de nuevo.',
         'ERR_INTERNAL': 'Error interno del servidor. Inténtalo más tarde.',
         'ERR_EMAIL_INV': 'Dirección de correo electrónico inválida.',
-        'ERR_MISSING_DATA': 'Faltan datos requeridos.'
+        'ERR_MISSING_DATA': 'Faltan datos requeridos.',
+        'ERR_CAPTCHA': 'Verificación de seguridad fallida. Por favor intenta de nuevo.'
       }
     };
 
@@ -486,12 +490,14 @@
       if (loadingSpinner) loadingSpinner.classList.remove('hidden');
 
       try {
+        const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'request_download' });
+
         const response = await fetch(`${API_BASE_URL}/beta/request-download`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email, beta_token: betaToken, lang: currentLanguage }),
+          body: JSON.stringify({ email, beta_token: betaToken, lang: currentLanguage, recaptcha_token: recaptchaToken }),
         });
 
         const data = await response.json();
@@ -575,6 +581,8 @@
       if (loadingSpinner) loadingSpinner.classList.remove('hidden');
 
       try {
+        const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'request_access' });
+
         const response = await fetch(`${API_BASE_URL}/beta/request-access`, {
           method: 'POST',
           headers: {
@@ -587,7 +595,8 @@
             role,
             country,
             linkedin: linkedin || '',
-            lang: currentLanguage
+            lang: currentLanguage,
+            recaptcha_token: recaptchaToken
           }),
         });
 
