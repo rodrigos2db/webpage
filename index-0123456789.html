@@ -9,67 +9,159 @@
   <link rel="icon" type="image/png" href="speak2db-logo.png">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Custom styles to ensure consistent font and background from App.css */
     body {
       font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
       background-color: #1a202c;
-      /* Equivalent to bg-gray-900 */
       color: #f7fafc;
-      /* Equivalent to text-white */
       margin: 0;
       padding: 0;
       position: relative;
     }
 
-    /* Estilos para el selector de idioma (MODIFICADO) */
-    .lang-switcher {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 10;
+    /* Navbar */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(26, 32, 44, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #2d3748;
+      padding: 0.75rem 1.5rem;
       display: flex;
-      /* Añadido para alinear botones */
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-nav .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .site-nav .nav-brand img {
+      height: 28px;
+      width: auto;
+      border-radius: 4px;
+    }
+
+    .site-nav .nav-brand span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f7fafc;
+    }
+
+    .site-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .site-nav .nav-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .site-nav .nav-links a:hover {
+      color: #63b3ed;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
     }
 
     .lang-switcher button {
       background-color: #4a5568;
-      /* bg-gray-700 */
       border: none;
       border-radius: 9999px;
-      /* rounded-full */
-      padding: 0.5rem;
-      /* p-2 */
-      margin-left: 0.5rem;
-      /* ml-2 */
+      padding: 0.4rem;
       cursor: pointer;
       transition: background-color 0.3s;
-      /* Se quitó font-size, se usa w-6 h-6 en la img */
       display: flex;
-      /* Para centrar la img */
       align-items: center;
       justify-content: center;
     }
 
     .lang-switcher button:hover {
       background-color: #2d3748;
-      /* bg-gray-800 */
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #a0aec0;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .site-nav .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(26, 32, 44, 0.98);
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #2d3748;
+        gap: 1rem;
+      }
+
+      .site-nav .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Offset for sticky nav on anchor links */
+    section[id] {
+      scroll-margin-top: 4rem;
     }
   </style>
 </head>
 
 <body data-page="index">
-  <div class="lang-switcher">
-    <button onclick="setLanguage('en')">
-      <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
-    </button>
-    <button onclick="setLanguage('es')">
-      <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
-    </button>
-  </div>
 
-  <section class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12"> <img
-      src="https://www.speak2db.com/speak2db-logo.png" alt="Speak2DB Logo"
-      class="mx-auto mb-8 w-48 h-auto rounded-lg shadow-lg" />
+  <!-- ========== NAVBAR ========== -->
+  <nav class="site-nav">
+    <a href="#hero" class="nav-brand">
+      <img src="speak2db-logo.png" alt="Speak2DB">
+    </a>
+
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+
+    <div class="nav-links">
+      <a href="#features" data-key="nav-features">Features</a>
+      <a href="#audience" data-key="nav-audience">Who is it for?</a>
+      <a href="beta.html" data-key="nav-beta">Beta</a>
+      <div class="lang-switcher">
+        <button onclick="setLanguage('en')">
+          <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+        </button>
+        <button onclick="setLanguage('es')">
+          <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12 px-4">
     <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight" data-key="main-heading">
       Your AI-Powered Senior Data Consultant.
     </h1>
@@ -90,7 +182,8 @@
     </p>
   </section>
 
-  <section class="text-center mb-12 max-w-7xl mx-auto px-4">
+  <!-- ========== AUDIENCE ========== -->
+  <section id="audience" class="text-center mb-12 max-w-7xl mx-auto px-4">
     <h2 class="text-4xl sm:text-5xl font-extrabold mb-4" data-key="who-title">Who is Speak2DB for?</h2>
     <p class="text-xl text-blue-300 font-semibold mb-10" data-key="who-subtitle">Built for the people who actually run
       the business day to day.</p>
@@ -102,8 +195,7 @@
         <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card1-title">🏭 Inventory & Operations
           Administrators</h3>
         <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card1-profile">You are responsible for stock
-          availability
-          and operational continuity, but your data lives in spreadsheets or disconnected systems.</p>
+          availability and operational continuity, but your data lives in spreadsheets or disconnected systems.</p>
         <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card1-pain-title">Daily
           pain</h4>
         <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
@@ -124,12 +216,11 @@
         class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
         <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card2-title">🧾 Sales & Commercial Leads</h3>
         <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card2-profile">You are accountable for
-          results, but much of
-          your time is spent preparing reports instead of acting on them.</p>
+          results, but much of your time is spent preparing reports instead of acting on them.</p>
         <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card2-pain-title">Daily
           pain</h4>
         <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
-          <li data-key="who-card2-pain1">Sales data doesn’t always match finance</li>
+          <li data-key="who-card2-pain1">Sales data doesn't always match finance</li>
           <li data-key="who-card2-pain2">Excel-based reporting takes too long</li>
           <li data-key="who-card2-pain3">Insights arrive late</li>
         </ul>
@@ -146,8 +237,7 @@
         class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
         <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card3-title">🧠 SMEs Without a Data Team</h3>
         <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card3-profile">Your company needs
-          data-driven decisions, but
-          hiring analysts or implementing complex BI platforms is not realistic.</p>
+          data-driven decisions, but hiring analysts or implementing complex BI platforms is not realistic.</p>
         <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card3-pain-title">Daily
           pain</h4>
         <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
@@ -164,11 +254,12 @@
         </ul>
       </div>
     </div>
-    <p class="mt-12 text-lg text-gray-300 italic" data-key="who-closing-line">Speak2DB is not a BI platform.<br>It’s the
+    <p class="mt-12 text-lg text-gray-300 italic" data-key="who-closing-line">Speak2DB is not a BI platform.<br>It's the
       data consultant your team can actually afford — and use.</p>
   </section>
 
-  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-7xl mx-auto px-4">
+  <!-- ========== FEATURES ========== -->
+  <section id="features" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-7xl mx-auto px-4">
 
     <div
       class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
@@ -248,203 +339,62 @@
     </div>
   </section>
 
-  <footer class="text-center text-gray-500 text-sm mt-12">
+  <!-- ========== FOOTER ========== -->
+  <footer id="footer" class="text-center text-gray-500 text-sm mt-12 pb-8">
     <p data-key="footer-copy">&copy; 2026 Speak2DB. All rights reserved.</p>
   </footer>
 
+  <!-- ========== I18N ENGINE ========== -->
   <script>
-    let currentLanguage = 'en'; // Default
+    let currentLanguage = 'en';
+    let translations = {};
 
-    const translations = {
-      'en': {
-        'page-title-index': 'Speak2DB - Your AI Senior Data Consultant',
-        'main-heading': 'Your AI-Powered Senior Data Consultant.',
-        'slogan': 'Ask. Analyze. Decide. Repeat.',
-        'description': 'The Senior Data Consultant your SME needs. Get decision-grade insights without the steep learning curve, expensive implementations, or the complexity of traditional data platforms.',
-
-        // Feature Cards
-        'f1-title': '🧠 Forget SQL, fragile formulas, filters, and manual work.',
-        'f1-desc': 'Speak2DB builds the queries for you — across databases and Excel files — and, if a query fails, automatically adjusts it without modifying your data. You get the right answer, clearly explained, with full technical details.',
-        "f2-title": "📊 Advanced Analytics Center",
-        "f2-insight-title": "Strategic Insights",
-        "f2-insight-desc": "Identify hidden patterns and opportunities.",
-        "f2-summary-title": "Executive Summaries",
-        "f2-summary-desc": "High-level synthesis for quick decision-making. Strategic reports created in seconds, saving you hours of manual spreadsheet analysis.",
-        "f2-data-title": "Data Consistency",
-        "f2-data-desc": "Detection of errors and record anomalies.",
-        "f2-integrity-title": "🛡️ Decision-Grade Auditing",
-        "f2-integrity-desc": "We don't just generate charts and KPIs; we audit them. Professional validation of visual and data integrity to ensure your insights are never misleading.",
-
-        'f3-title': '🔔 Smart Alerts',
-        'f3-desc': 'Stay ahead of issues. Get automatic email notifications about future stock-outs or sales anomalies.',
-        'f4-title': '📊 Focused Cloud Dashboards',
-        'f4-desc': 'Zero-friction monitoring. Instead of fighting with complex design canvases, get straight to the point. Select your key queries, pick a professional template, and build a high-impact dashboard instantly accessible from any location and any device.',
-        'f5-title': '🔌 Total Connectivity',
-        'f5-desc': 'Connect effortlessly to MySQL, PostgreSQL, MongoDB, or simply add your Excel files.',
-        'f6-title': '📔 Executive Log',
-        'f6-desc': 'Store and compare historical reports to understand your business evolution month by month.',
-        'f7-title': '🔒 Read-Only Access',
-        'f7-desc': 'Secure architecture with zero write permissions. Your original data is never at risk of modification.',
-        'f8-title': '📄 Excel Reports',
-        'f8-desc': 'Export results to Excel or CSV with one click, including professional charts ready to share.',
-
-        // Buttons & Links
-        'cta-button': 'Join Open Beta',
-        'beta-tag': '(First version: Open Beta)',
-        'beta-title': 'Join the Beta',
-        'beta-desc': 'Speak2DB is currently in private beta. Join us to democratize data intelligence in your SME.',
-        'beta-download-btn': 'Download Desktop Client',
-        'beta-download-alert': 'The download will be available soon for beta testers.',
-        'back-btn': 'Back to Home',
-        'footer-copy': '© 2026 Speak2DB. All rights reserved.',
-        'who-title': 'Who is Speak2DB for?',
-        'who-subtitle': 'Built for the people who actually run the business day to day.',
-        'who-card1-title': '🏭 Inventory & Operations Administrators',
-        'who-card1-profile': 'You are responsible for stock availability and operational continuity, but your data lives in spreadsheets or disconnected systems.',
-        'who-card1-pain-title': 'Daily pain',
-        'who-card1-pain1': 'Hours spent checking numbers manually',
-        'who-card1-pain2': 'Inconsistent or outdated inventory data',
-        'who-card1-pain3': 'Problems are discovered too late',
-        'who-card1-help-title': 'How Speak2DB helps',
-        'who-card1-help1': 'Detects stock issues and anomalies automatically',
-        'who-card1-help2': 'Flags data inconsistencies before they become operational problems',
-        'who-card1-help3': 'Delivers clear summaries without building reports',
-        'who-card2-title': '🧾 Sales & Commercial Leads',
-        'who-card2-profile': 'You are accountable for results, but much of your time is spent preparing reports instead of acting on them.',
-        'who-card2-pain-title': 'Daily pain',
-        'who-card2-pain1': 'Sales data doesn’t always match finance',
-        'who-card2-pain2': 'Excel-based reporting takes too long',
-        'who-card2-pain3': 'Insights arrive late',
-        'who-card2-help-title': 'How Speak2DB helps',
-        'who-card2-help1': 'Generates instant executive summaries',
-        'who-card2-help2': 'Detects sales anomalies and trends automatically',
-        'who-card2-help3': 'Answers business questions in seconds',
-        'who-card3-title': '🧠 SMEs Without a Data Team',
-        'who-card3-profile': 'Your company needs data-driven decisions, but hiring analysts or implementing complex BI platforms is not realistic.',
-        'who-card3-pain-title': 'Daily pain',
-        'who-card3-pain1': 'Traditional BI tools are too complex',
-        'who-card3-pain2': 'Consultants are expensive and slow',
-        'who-card3-pain3': 'Administrative staff ends up doing manual data work',
-        'who-card3-help-title': 'How Speak2DB helps',
-        'who-card3-help1': 'Provides decision-grade insights without analysts',
-        'who-card3-help2': 'Replaces manual reporting with automated analysis',
-        'who-card3-help3': 'Turns operational data into clear business decisions',
-        'who-closing-line': 'Speak2DB is not a BI platform.\nIt’s the data consultant your team can actually afford — and use.'
-      },
-      'es': {
-        'page-title-index': 'Speak2DB - Tu Consultor de Datos Senior con IA',
-        'main-heading': 'Tu Consultor de Datos Senior con IA.',
-        'slogan': 'Pregunta. Analiza. Decide. Repite.',
-        'description': 'El Consultor de Datos Senior que tu PYME necesita. Obtén análisis de nivel ejecutivo sin curvas de aprendizaje agotadoras, implementaciones costosas ni la complejidad de las plataformas tradicionales.',
-
-        // Tarjetas de Características
-        'f1-title': '🧠 Olvídate de SQL, fórmulas frágiles, filtros y trabajo manual.',
-        'f1-desc': 'Speak2DB escribe las consultas por ti — tanto sobre bases de datos como archivos Excel — y, si una consulta falla, la ajusta automáticamente sin modificar tus datos. Obtienes la respuesta correcta junto con una explicación clara y el detalle técnico completo.',
-        "f2-title": "📊 Centro de Análisis Avanzado",
-        "f2-insight-title": "Insights Estratégicos",
-        "f2-insight-desc": "Identifica patrones y oportunidades ocultas.",
-        "f2-summary-title": "Resúmenes Ejecutivos",
-        "f2-summary-desc": "Síntesis de alto nivel para decisiones rápidas. Reportes estratégicos creados en segundos, ahorrándote horas de análisis manual.",
-        "f2-data-title": "Consistencia de Datos",
-        "f2-data-desc": "Detección de errores y anomalías en registros.",
-        "f2-integrity-title": "🛡️ Auditoría de Decisiones",
-        "f2-integrity-desc": "No solo generamos gráficos y KPIs; los auditamos. Validación profesional para asegurar que tus datos y visualizaciones nunca te lleven a una decisión equivocada.",
-        'f3-title': '🔔 Alertas Inteligentes',
-        'f3-desc': 'Anticípate a los problemas. Recibe avisos por email sobre falta de stock o anomalías en tus ingresos.',
-        'f4-title': '📊 Dashboards de Enfoque Directo',
-        'f4-desc': 'Monitoreo sin fricciones. En lugar de pelear con lienzos de diseño complicados, ve directo al grano. Selecciona tus consultas, elige un template profesional y construye un tablero de alto impacto al instante, disponible desde cualquier lugar y en cualquier dispositivo.',
-        'f5-title': '🔌 Conectividad Total',
-        'f5-desc': 'Conéctate sin esfuerzo a MySQL, PostgreSQL, MongoDB o simplemente selecciona tus archivos Excel.',
-        'f6-title': '📔 Bitácora de Análisis',
-        'f6-desc': 'Almacena y compara reportes históricos para entender la evolución de tu negocio mes a mes.',
-        'f7-title': '🔒 Acceso de Solo Lectura',
-        'f7-desc': 'Arquitectura segura sin permisos de escritura. Tus datos originales nunca corren riesgo de modificación.',
-        'f8-title': '📄 Reportes Excel',
-        'f8-desc': 'Exporta a Excel o CSV con un clic, incluyendo gráficos profesionales listos para presentar.',
-
-        // Botones y Links
-        'cta-button': 'Probar la Beta Ahora',
-        'beta-tag': '(Primera versión: Beta Abierta)',
-        'beta-title': 'Únete a la Beta',
-        'beta-desc': 'Speak2DB está actualmente en beta privada. Únete para democratizar la inteligencia de datos en tu PYME.',
-        'beta-download-btn': 'Descargar Cliente de Escritorio',
-        'beta-download-alert': 'La descarga estará disponible pronto para los usuarios de la beta.',
-        'back-btn': 'Volver a la Página Principal',
-        'footer-copy': '© 2026 Speak2DB. Todos los derechos reservados.',
-        'who-title': '¿Para quién es Speak2DB?',
-        'who-subtitle': 'Diseñado para quienes hacen funcionar la empresa todos los días.',
-        'who-card1-title': '🏭 Administrativos de Bodega y Operaciones',
-        'who-card1-profile': 'Eres responsable del stock y la continuidad operativa, pero los datos viven en planillas o sistemas desconectados.',
-        'who-card1-pain-title': 'Dolores diarios',
-        'who-card1-pain1': 'Horas revisando números manualmente',
-        'who-card1-pain2': 'Datos inconsistentes o desactualizados',
-        'who-card1-pain3': 'Los problemas se detectan demasiado tarde',
-        'who-card1-help-title': 'Cómo ayuda Speak2DB',
-        'who-card1-help1': 'Detecta quiebres y anomalías automáticamente',
-        'who-card1-help2': 'Identifica inconsistencias antes de que generen problemas',
-        'who-card1-help3': 'Entrega resúmenes claros sin armar reportes',
-        'who-card2-title': '🧾 Jefes de Venta y Encargados Comerciales',
-        'who-card2-profile': 'Eres responsable de los resultados, pero gran parte del tiempo se va en preparar informes.',
-        'who-card2-pain-title': 'Dolores diarios',
-        'who-card2-pain1': 'Ventas y finanzas no siempre cuadran',
-        'who-card2-pain2': 'Excel se vuelve inmanejable',
-        'who-card2-pain3': 'Los insights llegan tarde',
-        'who-card2-help-title': 'Cómo ayuda Speak2DB',
-        'who-card2-help1': 'Genera resúmenes ejecutivos al instante',
-        'who-card2-help2': 'Detecta anomalías y tendencias de ventas',
-        'who-card2-help3': 'Responde preguntas en segundos',
-        'who-card3-title': '🧠 PYMEs sin Analistas de Datos',
-        'who-card3-profile': 'Tu empresa necesita mejores decisiones, pero no puede contratar analistas ni implementar plataformas complejas.',
-        'who-card3-pain-title': 'Dolores diarios',
-        'who-card3-pain1': 'Las herramientas BI tradicionales son complejas',
-        'who-card3-pain2': 'Los consultores son costosos',
-        'who-card3-pain3': 'Los administrativos terminan haciendo trabajo de analista',
-        'who-card3-help-title': 'Cómo ayuda Speak2DB',
-        'who-card3-help1': 'Entrega análisis de nivel ejecutivo sin especialistas',
-        'who-card3-help2': 'Automatiza reportes y validaciones',
-        'who-card3-help3': 'Convierte datos operativos en decisiones claras',
-        'who-closing-line': 'Speak2DB no es una herramienta de BI.\nEs el consultor de datos que tu PYME sí puede usar.'
+    async function loadTranslations(lang) {
+      if (translations[lang]) return translations[lang];
+      try {
+        const response = await fetch(`i18n/${lang}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        translations[lang] = await response.json();
+        return translations[lang];
+      } catch (err) {
+        console.error(`Failed to load translations for "${lang}":`, err);
+        return null;
       }
-    };
+    }
 
-    function setLanguage(lang) {
-      if (!translations[lang]) return;
+    async function setLanguage(lang) {
+      const dict = await loadTranslations(lang);
+      if (!dict) return;
+
       localStorage.setItem('language', lang);
       currentLanguage = lang;
       document.documentElement.lang = lang;
 
-      // Traducir todos los elementos con data-key
       document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
-        if (translations[lang][key]) {
-          el.innerText = translations[lang][key];
+        if (dict[key]) {
+          el.innerText = dict[key];
         }
       });
 
-      // Traducir el título de la página
       const pageKey = document.body.dataset.page || 'index';
-      document.title = translations[lang]['page-title-' + pageKey];
+      if (dict['page-title-' + pageKey]) {
+        document.title = dict['page-title-' + pageKey];
+      }
     }
 
-    // Función para la alerta de descarga (solo se usa en beta.html)
-    function handleDownloadClick() {
-      alert(translations[currentLanguage]['beta-download-alert']);
-    }
-
-    // Al cargar la página, detectar idioma
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const preferredLang = localStorage.getItem('language');
       const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2);
 
-      let langToSet = 'en'; // Default
-
-      if (preferredLang) {
+      let langToSet = 'en';
+      if (preferredLang && (preferredLang === 'en' || preferredLang === 'es')) {
         langToSet = preferredLang;
       } else if (browserLang === 'es') {
         langToSet = 'es';
       }
 
-      setLanguage(langToSet);
+      await setLanguage(langToSet);
     });
   </script>
 </body>
