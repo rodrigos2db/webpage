@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Declaración de IA - Speak2DB</title>
+</head>
+<body data-version="3.0" data-last-updated="2026-06-27">
+  <h1>Declaración de IA — Cómo Speak2DB Utiliza la Inteligencia Artificial</h1>
+  <p><strong>Última actualización:</strong> 27 de junio de 2026</p>
+  <p><strong>Versión:</strong> 3.0</p>
+
+  <h2>1. Este Servicio Utiliza Inteligencia Artificial</h2>
+  <p>
+    Speak2DB utiliza modelos de lenguaje de gran escala (LLM) para interpretar consultas
+    en lenguaje natural y traducirlas en información accionable sobre su base de datos.
+    El sistema de IA genera respuestas automáticamente basándose en el esquema de su
+    base de datos, metadatos estadísticos y muestras limitadas de datos. Todos los
+    proveedores utilizados por Speak2DB cumplen con <strong>Retención Cero de Datos (ZDR)</strong>.
+  </p>
+
+  <h2>2. Modelos Utilizados y Cómo se Enrutan</h2>
+  <p>
+    Speak2DB utiliza dos rutas para las consultas a modelos de IA:
+  </p>
+
+  <h3>2.1. Ruta Directa (Proxy LLM de Speak2DB, cumple ZDR)</h3>
+  <p>
+    Las consultas se envían directamente desde el backend de Speak2DB a:
+  </p>
+  <ul>
+    <li><strong>DeepSeek</strong> — deepseek-v4-pro, deepseek-v4-flash (API directa)</li>
+    <li><strong>Google Vertex AI</strong> — gemini-2.5-flash, gemini-2.5-pro (API enterprise)</li>
+  </ul>
+  <p>
+    Estos proveedores están sujetos a acuerdos directos de tratamiento de datos con
+    Speak2DB y tienen términos contractuales de retención cero y no-entrenamiento.
+    Todos cumplen con ZDR.
+  </p>
+
+  <h3>2.2. Ruta OpenRouter (ZDR)</h3>
+  <p>
+    Las consultas se enrutan a través de <strong>OpenRouter</strong> (un agregador de LLM,
+    EE.UU.) hacia proveedores downstream seleccionados automáticamente según disponibilidad,
+    costo, latencia y complejidad de la consulta. OpenRouter está configurado con
+    <strong>Retención Cero de Datos (ZDR)</strong>, lo que impide que todos los proveedores
+    downstream retengan o entrenen con sus datos. Los proveedores incluyen:
+  </p>
+  <ul>
+    <li><strong>z-ai</strong> — z-ai/glm-5.2</li>
+    <li><strong>DeepSeek</strong> — deepseek/deepseek-v4-flash</li>
+    <li>Se pueden agregar más proveedores según precio y disponibilidad</li>
+  </ul>
+
+  <h3>2.3. Modo de Proveedor Directo (BYOK)</h3>
+  <p>
+    También puede elegir el Modo de Proveedor Directo, donde se conecta usando sus propias
+    credenciales de API a OpenAI (GPT-5.4) o DeepSeek (v4 Pro). En ese modo, Speak2DB
+    no procesa sus consultas (ver Sección 6).
+  </p>
+
+  <h2>3. Retención Cero de Datos (ZDR)</h2>
+  <p>
+    <strong>Todos los proveedores de IA utilizados por Speak2DB cumplen con Retención Cero
+    de Datos (ZDR).</strong> Esto significa que sus datos nunca se almacenan, retienen ni
+    se usan para entrenamiento por ningún proveedor.
+  </p>
+  <p>
+    Para la ruta OpenRouter, ZDR se aplica mediante la configuración de OpenRouter,
+    que bloquea cualquier endpoint que retenga o entrene con datos de solicitudes.
+    Para los proveedores directos (DeepSeek API, Google Vertex AI), las mismas garantías
+    de retención cero y no-entrenamiento están aseguradas mediante DPA contractuales directos.
+  </p>
+  <p>
+    Los datos se procesan en tiempo real y se descartan inmediatamente después de generar la
+    respuesta. No se persisten en ninguna base de datos, sistema de archivos ni registro.
+  </p>
+
+  <h2>4. Limitaciones de las Respuestas Generadas por IA</h2>
+  <p>
+    Las respuestas generadas por IA pueden contener errores, omisiones o resultados no
+    deseados. Al usar Speak2DB usted reconoce:
+  </p>
+  <ul>
+    <li>Las respuestas <strong>no son revisadas por humanos</strong> a menos que se indique explícitamente.</li>
+    <li>Usted es <strong>responsable de verificar los resultados</strong> antes de actuar sobre ellos.</li>
+    <li>Speak2DB no es responsable por decisiones comerciales basadas únicamente en resultados generados por IA.</li>
+    <li>La calidad de las respuestas depende del esquema de su base de datos, la calidad de los datos y las limitaciones inherentes del modelo seleccionado.</li>
+  </ul>
+
+  <h2>5. Toma de Decisiones y Procesamiento Automatizado</h2>
+  <p>
+    Speak2DB no toma decisiones automatizadas con efectos legales o significativos
+    únicamente mediante IA. Todas las consultas requieren iniciación del usuario, y
+    todas las operaciones SQL requieren confirmación explícita del usuario antes de
+    ejecutarse. No se realiza perfilado ni puntuación automatizada.
+  </p>
+
+  <h2>6. Modo de Proveedor Directo (BYOK)</h2>
+  <p>
+    En el Modo de Proveedor Directo, usted se conecta usando sus propias credenciales
+    de API. En este modo:
+  </p>
+  <ul>
+    <li>Speak2DB no procesa, almacena ni transmite sus consultas o datos.</li>
+    <li>Los términos y la política de privacidad del proveedor externo rigen sus datos.</li>
+    <li>Usted es el responsable del tratamiento de datos y debe asegurar el cumplimiento de las leyes aplicables.</li>
+    <li>Proveedores directos actualmente soportados: OpenAI (GPT-5.4) y DeepSeek (v4 Pro).</li>
+  </ul>
+
+  <h2>7. Transparencia por Consulta</h2>
+  <p>
+    Cada respuesta generada por IA en la aplicación Speak2DB muestra:
+  </p>
+  <ul>
+    <li>Una notificación de que el contenido fue <strong>generado por IA</strong>.</li>
+    <li>El <strong>nombre del modelo específico</strong> que procesó la consulta (ej.: "gemini-2.5-flash", "deepseek-v4-pro", "z-ai/glm-5.2").</li>
+    <li>Una indicación de la ruta: <strong>directo (ZDR)</strong> o <strong>vía OpenRouter (ZDR)</strong>.</li>
+  </ul>
+
+  <h2>8. Sus Derechos Respecto al Procesamiento de IA</h2>
+  <ul>
+    <li><strong>Derecho a ser informado</strong>: Tiene derecho a saber qué sistema de IA procesa sus datos, qué datos se utilizan y qué salvaguardas aplican.</li>
+    <li><strong>Derecho de oposición</strong>: Puede oponerse al procesamiento de IA dejando de usar el servicio.</li>
+    <li><strong>Derecho a revisión humana</strong>: Si bien los resultados no se revisan por defecto, puede solicitar una revisión humana de resultados específicos contactándonos.</li>
+    <li><strong>Derecho a explicación</strong>: Puede solicitar una explicación de cómo la IA llegó a un resultado particular.</li>
+  </ul>
+
+  <h2>9. Declaraciones de Cumplimiento</h2>
+  <p><strong>EU AI Act (Reglamento 2024/1689) — Artículo 50</strong></p>
+  <p>
+    Speak2DB cumple con las obligaciones de transparencia del EU AI Act. Los usuarios
+    son informados de que están interactuando con un sistema de IA. Esta declaración
+    se proporciona antes del primer uso y se reitera con cada respuesta generada por IA.
+  </p>
+
+  <p><strong>Colorado AI Act (SB 24-205)</strong></p>
+  <p>
+    Speak2DB proporciona una declaración conspicua del contenido generado por IA e
+    informa a los usuarios sobre los modelos y proveedores involucrados en el
+    procesamiento de sus consultas.
+  </p>
+
+  <p><strong>Chile — Ley 21.759 (Regulación de Inteligencia Artificial)</strong></p>
+  <p>
+    Speak2DB aplica el principio de transparencia algorítmica, informando a los usuarios
+    sobre el sistema de IA, su propósito, los datos procesados y las salvaguardas
+    implementadas.
+  </p>
+
+  <p><strong>Chile — Ley 21.719 (Protección de Datos Personales)</strong></p>
+  <p>
+    Speak2DB procesa datos técnicos para consultas de IA bajo la base legal de ejecución
+    de contrato, con estrictas medidas de privacidad por diseño y por defecto.
+  </p>
+
+  <p><strong>RGPD (Artículos 13, 14, 22)</strong></p>
+  <p>
+    Speak2DB informa a los usuarios sobre el procesamiento automatizado, proporciona
+    información significativa sobre la lógica involucrada y no toma decisiones
+    automatizadas con efectos legales o significativos.
+  </p>
+
+  <h2>10. Cambios en Esta Declaración</h2>
+  <p>
+    Esta Declaración de IA puede actualizarse para reflejar cambios en la tecnología,
+    proveedores de modelos o requisitos legales. Los cambios sustanciales serán
+    comunicados con al menos 30 días de anticipación mediante correo electrónico o
+    a través de un aviso destacado en la aplicación.
+  </p>
+
+  <h2>11. Contacto</h2>
+  <ul>
+    <li>Email: <a href="mailto:info@speak2db.com">info@speak2db.com</a></li>
+    <li>Dirección: Santiago, Chile</li>
+  </ul>
+</body>
+</html>

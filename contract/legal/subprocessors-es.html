@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Sub-procesadores - Speak2DB</title>
+</head>
+<body data-version="3.0" data-last-updated="2026-06-27">
+  <h1>Lista de Sub-procesadores de Speak2DB</h1>
+  <p><strong>Última actualización:</strong> 27 de junio de 2026</p>
+  <p><strong>Versión:</strong> 3.0</p>
+
+  <h2>1. ¿Qué es un Sub-procesador?</h2>
+  <p>
+    Un sub-procesador es un proveedor de servicios externo contratado por Speak2DB
+    para procesar datos personales o datos técnicos en nuestro nombre. Speak2DB sigue
+    siendo el responsable del tratamiento de sus datos. Los sub-procesadores están
+    sujetos a acuerdos de tratamiento de datos (DPA) que restringen el uso de sus datos
+    a los fines especificados por Speak2DB.
+  </p>
+
+  <h2>2. Sub-procesadores Actuales</h2>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Sub-procesador</th>
+        <th>Entidad / Ubicación</th>
+        <th>Servicio</th>
+        <th>Modelos</th>
+        <th>Política de Retención</th>
+        <th>Salvaguardas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Google Cloud Platform</strong></td>
+        <td>Google LLC<br/>EE.UU.</td>
+        <td>Hosting, enrutamiento, procesamiento backend</td>
+        <td>—</td>
+        <td>Sin persistencia de consultas; métricas agregadas hasta 90 días</td>
+        <td>DPA, ISO 27001, SOC 2, cifrado en tránsito y reposo</td>
+      </tr>
+
+      <tr>
+        <td><strong>DeepSeek (directo)</strong></td>
+        <td>DeepSeek AI<br/>China / endpoints internacionales</td>
+        <td>Inferencia LLM — API directa</td>
+        <td>deepseek-v4-pro<br/>deepseek-v4-flash</td>
+        <td>Retención cero (ZDR verificado)</td>
+        <td>DPA, retención cero, sin entrenamiento</td>
+      </tr>
+
+      <tr>
+        <td><strong>Google Vertex AI</strong></td>
+        <td>Google LLC<br/>EE.UU. / UE</td>
+        <td>Inferencia LLM — API enterprise directa</td>
+        <td>gemini-2.5-flash<br/>gemini-2.5-pro</td>
+        <td>Retención cero (API Vertex AI)</td>
+        <td>DPA, retención cero, sin entrenamiento</td>
+      </tr>
+
+      <tr>
+        <td><strong>OpenRouter</strong></td>
+        <td>OpenRouter, Inc.<br/>EE.UU.</td>
+        <td>Agregador y enrutador de LLM (ZDR activado)</td>
+        <td>Múltiples proveedores incluyendo z-ai/glm-5.2, deepseek-v4-flash (ver abajo)</td>
+        <td>Retención cero según DPA; logs transitorios para facturación/abuso</td>
+        <td>DPA, configuración ZDR, cláusula de no-entrenamiento</td>
+      </tr>
+
+      <tr>
+        <td><strong>DeepSeek (vía OpenRouter)</strong></td>
+        <td>DeepSeek AI<br/>China / endpoints internacionales</td>
+        <td>Inferencia LLM vía OpenRouter</td>
+        <td>deepseek/deepseek-v4-flash</td>
+        <td>Retención cero según DPA de OpenRouter</td>
+        <td>ZDR vía OpenRouter, cláusula de no-entrenamiento</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. Arquitectura de Enrutamiento de Modelos</h2>
+  <p>
+    Speak2DB utiliza dos rutas para las consultas a modelos de IA:
+  </p>
+  <ul>
+    <li><strong>Ruta directa (cumple ZDR):</strong> Las consultas se envían directamente desde
+      el backend de Speak2DB a DeepSeek API y Google Vertex AI. Todos los proveedores directos
+      cumplen ZDR y están sujetos a acuerdos de tratamiento de datos con términos contractuales
+      de retención cero y no-entrenamiento.</li>
+    <li><strong>Ruta OpenRouter (ZDR):</strong> Las consultas para z-ai/glm-5.2 y proveedores
+      adicionales de deepseek se enrutan a través de OpenRouter (EE.UU.). OpenRouter está
+      configurado con <strong>Retención Cero de Datos (ZDR)</strong>, lo que impide que los
+      proveedores downstream retengan o entrenen con sus datos. Se pueden agregar más proveedores
+      a través de OpenRouter según disponibilidad y precio; todos estarán sujetos a la misma
+      configuración ZDR.</li>
+  </ul>
+  <p>
+    El modelo y proveedor específico utilizados para una consulta pueden variar según
+    disponibilidad, costo, latencia y complejidad de la consulta.
+  </p>
+
+  <h2>4. Transferencias Internacionales y Salvaguardas</h2>
+  <p>Los sub-procesadores pueden procesar datos en las siguientes jurisdicciones:</p>
+  <ul>
+    <li><strong>Estados Unidos</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter (agregador).</li>
+    <li><strong>Unión Europea</strong> — endpoints de Google Vertex AI en la UE, bajo adecuación del RGPD.</li>
+    <li><strong>China / Internacional</strong> — DeepSeek API (directo) y proveedores enrutados
+      a través de OpenRouter (z-ai/glm-5.2, deepseek vía OpenRouter). Todos están protegidos por:
+      <ul>
+        <li>Salvaguardas contractuales (DPA con proveedores directos; DPA de OpenRouter para proveedores enrutados).</li>
+        <li>Retención Cero de Datos (ZDR) verificada para todos los endpoints de inferencia.</li>
+        <li>Garantías contractuales de no-entrenamiento.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>5. Sus Derechos Respecto a los Sub-procesadores</h2>
+  <ul>
+    <li><strong>Derecho a ser informado:</strong> Tiene derecho a saber qué entidades
+      procesan sus datos y en qué países.</li>
+    <li><strong>Derecho de oposición:</strong> Puede oponerse a un cambio de sub-procesador
+      contactando a <a href="mailto:info@speak2db.com">info@speak2db.com</a> dentro
+      de los 30 días posteriores a la notificación.</li>
+    <li><strong>Derecho de exclusión (cuando sea técnicamente factible):</strong> Speak2DB
+      ofrece un nivel enterprise donde el enrutamiento puede restringirse a proveedores
+      directos con términos DPA estrictos (Google Vertex AI). Contáctenos para más detalles.</li>
+  </ul>
+
+  <h2>6. Suscríbase a Cambios</h2>
+  <p>
+    Para recibir notificaciones por correo electrónico cuando esta lista se actualice,
+    contacte a <a href="mailto:info@speak2db.com">info@speak2db.com</a> con el asunto
+    "Suscribir: Actualizaciones de sub-procesadores". Se le notificará con al menos
+    <strong>30 días</strong> de anticipación antes de que un nuevo sub-procesador comience
+    a procesar sus datos.
+  </p>
+
+  <h2>7. Cambios en Esta Lista</h2>
+  <p>
+    Speak2DB puede actualizar esta lista periódicamente. Las adiciones sustanciales se
+    comunicarán con al menos 30 días de anticipación a los suscriptores activos y se
+    reflejarán en nuestra Política de Privacidad y Declaración de IA.
+  </p>
+
+  <h2>8. Documentos Relacionados</h2>
+  <ul>
+    <li><a href="publicprivacy-es.html">Política de Privacidad</a></li>
+    <li><a href="ai-disclosure-es.html">Declaración de IA</a></li>
+    <li><a href="../tos/terms-es.html">Términos de Servicio</a></li>
+  </ul>
+
+  <h2>9. Contacto</h2>
+  <ul>
+    <li>Email: <a href="mailto:info@speak2db.com">info@speak2db.com</a></li>
+    <li>Dirección: Santiago, Chile</li>
+  </ul>
+</body>
+</html>

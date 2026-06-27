@@ -6,9 +6,9 @@
   <title>Política de Privacidad - Speak2DB</title>
 </head>
 
-<body>
+<body data-version="2.0" data-last-updated="2026-06-22">
   <h1>Política de Privacidad de Speak2DB</h1>
-  <p><strong>Última actualización:</strong> 1 de septiembre de 2026</p>
+  <p><strong>Última actualización:</strong> 27 de junio de 2026</p>
 
   <h2>1. Responsable del Tratamiento</h2>
   <p>
@@ -43,7 +43,12 @@
   </ul>
 
   <h3>2.3. Datos Técnicos Procesados por el Servicio de IA</h3>
-  <p>Como se describe en nuestros <a href="../tos/terms-es.html">Términos de Servicio</a>, Speak2DB también procesa:</p>
+  <p>
+    Como se describe en nuestros <a href="../tos/terms-es.html">Términos de Servicio</a> y
+    <a href="ai-disclosure-es.html">Declaración de IA</a>,
+    Speak2DB utiliza modelos de inteligencia artificial para interpretar consultas en
+    lenguaje natural. Cuando utiliza el servicio, procesamos:
+  </p>
   <ul>
     <li>Estructura de la base de datos (tablas, columnas, tipos de datos, relaciones).</li>
     <li>Muestras limitadas de datos para identificar patrones de contenido.</li>
@@ -53,6 +58,36 @@
     Estos datos técnicos se procesan únicamente con el fin de prestar el servicio y no se utilizan
     para perfilado ni con fines de marketing.
   </p>
+
+  <h3>2.4. Retención Cero de Datos (ZDR)</h3>
+  <p>
+    <strong>Todos los proveedores de IA utilizados por Speak2DB cumplen con Retención Cero de Datos (ZDR).</strong>
+    Esto significa que sus datos nunca se almacenan, retienen ni se usan para entrenamiento por ningún proveedor.
+  </p>
+  <p>
+    Para consultas enrutadas a través de OpenRouter, ZDR se aplica mediante configuración que
+    bloquea cualquier endpoint que retenga o entrene con datos de solicitudes. Para proveedores
+    directos (DeepSeek API, Google Vertex AI), las mismas garantías de retención cero y
+    no-entrenamiento están aseguradas mediante DPA contractuales directos.
+  </p>
+  <p>
+    Los datos se procesan en tiempo real y se descartan inmediatamente después de generar la
+    respuesta. No se persisten en ninguna base de datos, sistema de archivos ni registro.
+    Para más detalles, consulte nuestra <a href="subprocessors-es.html">Lista de Sub-procesadores</a>.
+  </p>
+
+  <h3>2.5. Modo de Proveedor Directo (BYOK)</h3>
+  <p>
+    Speak2DB ofrece un <strong>Modo de Proveedor Directo</strong> opcional que le permite
+    conectarse usando sus propias credenciales de API de terceros (actualmente OpenAI y DeepSeek).
+    En este modo:
+  </p>
+  <ul>
+    <li>Speak2DB no procesa, almacena ni transmite sus consultas o datos.</li>
+    <li>Los términos y la política de privacidad del proveedor externo rigen sus datos.</li>
+    <li>Usted es el responsable del tratamiento de datos y debe asegurar el cumplimiento de las
+      leyes aplicables (Ley 21.719, RGPD, CCPA, PIPL, etc.).</li>
+  </ul>
 
   <h2>3. Base Legal del Tratamiento</h2>
   <p>
@@ -122,17 +157,43 @@
     </thead>
     <tbody>
       <tr>
-        <td>Proveedores de LLM (ej.: OpenAI, Anthropic)</td>
-        <td>Procesamiento de consultas en lenguaje natural sobre metadatos de BD</td>
+        <td>DeepSeek API</td>
+        <td>Inferencia LLM (v4-pro, v4-flash) — directo vía proxy de Speak2DB (cumple ZDR)</td>
+        <td>China / endpoints internacionales</td>
+      </tr>
+      <tr>
+        <td>Google Vertex AI</td>
+        <td>Inferencia LLM (gemini-2.5-flash, gemini-2.5-pro) — directo vía proxy de Speak2DB (cumple ZDR)</td>
+        <td>Estados Unidos / Unión Europea</td>
+      </tr>
+      <tr>
+        <td>OpenRouter (Agregador de LLM)</td>
+        <td>Enrutamiento de consultas a z-ai/glm-5.2, deepseek y otros (ZDR activado)</td>
         <td>Estados Unidos</td>
       </tr>
       <tr>
+        <td>z-ai (GLM)</td>
+        <td>Inferencia LLM (z-ai/glm-5.2) vía OpenRouter</td>
+        <td>China / endpoints internacionales</td>
+      </tr>
+      <tr>
+        <td>DeepSeek (vía OpenRouter)</td>
+        <td>Inferencia LLM (deepseek-v4-flash) vía OpenRouter</td>
+        <td>China / endpoints internacionales</td>
+      </tr>
+      <tr>
         <td>Infraestructura en la nube (Google Cloud)</td>
-        <td>Procesamiento backend y enrutamiento de solicitudes (no se almacenan datos del usuario)</td>
+        <td>Hosting, procesamiento backend y enrutamiento de solicitudes</td>
         <td>Estados Unidos</td>
       </tr>
     </tbody>
   </table>
+  <p>
+    Los proveedores LLM directos (DeepSeek API, Google Vertex AI) están sujetos a DPA directos
+    con Speak2DB. Los proveedores enrutados a través de OpenRouter están configurados con
+    Retención Cero de Datos (ZDR). Todos tienen prohibición contractual de entrenar con sus datos.
+    Para la lista completa, consulte nuestra <a href="subprocessors-es.html">Lista de Sub-procesadores</a>.
+  </p>
   <p>
     No vendemos sus datos personales a terceros. Los datos se comparten únicamente cuando es necesario
     para prestar el servicio o cuando lo exige la ley.
@@ -140,17 +201,31 @@
 
   <h2>6. Transferencias Internacionales de Datos</h2>
   <p>
-    Sus datos pueden ser transferidos y procesados en países fuera de Chile, particularmente en
-    Estados Unidos, donde operan nuestra infraestructura y proveedores de LLM.
-  </p>
-  <p>
-    De acuerdo con la Ley 21.719 (Artículos 27 y 28), dichas transferencias están protegidas por:
+    Sus datos pueden ser transferidos y procesados en países fuera de Chile, incluyendo:
   </p>
   <ul>
-    <li>Cláusulas contractuales que aseguran un nivel adecuado de protección de datos.</li>
+    <li><strong>Estados Unidos</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter.</li>
+    <li><strong>Unión Europea</strong> — endpoints de Google Vertex AI en la UE.</li>
+    <li><strong>China / Internacional</strong> — DeepSeek API (directo) y proveedores vía OpenRouter (z-ai/glm-5.2, deepseek). Todos cumplen ZDR.</li>
+  </ul>
+  <p>
+    De acuerdo con la Ley 21.719 (Artículos 27 y 28) y, cuando sea aplicable, el RGPD
+    (Artículos 45-49), dichas transferencias están protegidas por:
+  </p>
+  <ul>
+    <li>Cláusulas Contractuales Tipo (SCC) con las entidades receptoras.</li>
     <li>Acuerdos de Tratamiento de Datos con todos los proveedores terceros.</li>
+    <li>Cumplimiento verificado de Retención Cero de Datos (ZDR) para todos los endpoints de inferencia LLM (directos y enrutados por OpenRouter).</li>
+    <li>Garantías contractuales de no-entrenamiento.</li>
     <li>Medidas técnicas incluyendo cifrado en tránsito y en reposo.</li>
   </ul>
+  <p>
+    Al usar Speak2DB, usted reconoce que algunos de sus datos técnicos (esquema, muestras,
+    estadísticas) pueden ser procesados en jurisdicciones sin una decisión de adecuación de la
+    Comisión Europea. Para más detalles sobre proveedores
+    específicos y sus salvaguardas, consulte nuestra
+    <a href="subprocessors-es.html">Lista de Sub-procesadores</a>.
+  </p>
 
   <h2>7. Retención de Datos</h2>
   <p>Conservamos sus datos durante los siguientes períodos:</p>

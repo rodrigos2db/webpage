@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Disclosure - Speak2DB</title>
+</head>
+<body data-version="3.0" data-last-updated="2026-06-27">
+  <h1>AI Disclosure — How Speak2DB Uses Artificial Intelligence</h1>
+  <p><strong>Last updated:</strong> June 27, 2026</p>
+  <p><strong>Version:</strong> 3.0</p>
+
+  <h2>1. This Service Uses Artificial Intelligence</h2>
+  <p>
+    Speak2DB uses large language models (LLMs) to interpret natural language queries
+    and translate them into actionable database insights. The AI system generates
+    responses automatically based on your database schema, statistical metadata, and
+    limited data samples. All providers used by Speak2DB comply with
+    <strong>Zero Data Retention (ZDR)</strong>.
+  </p>
+
+  <h2>2. What Models Are Used and How They Are Routed</h2>
+  <p>
+    Speak2DB uses two routing paths for AI model queries:
+  </p>
+
+  <h3>2.1. Direct Route (Speak2DB LLM Proxy, ZDR-compliant)</h3>
+  <p>
+    Queries are sent directly from Speak2DB's backend to:
+  </p>
+  <ul>
+    <li><strong>DeepSeek</strong> — deepseek-v4-pro, deepseek-v4-flash (direct API)</li>
+    <li><strong>Google Vertex AI</strong> — gemini-2.5-flash, gemini-2.5-pro (enterprise API)</li>
+  </ul>
+  <p>
+    These providers are bound by direct data processing agreements with Speak2DB
+    and have contractual zero-retention and no-training terms. All are ZDR-compliant.
+  </p>
+
+  <h3>2.2. OpenRouter Route (ZDR)</h3>
+  <p>
+    Queries are routed through <strong>OpenRouter</strong> (an LLM aggregator, USA)
+    to downstream providers selected automatically based on availability, cost, latency,
+    and query complexity. OpenRouter is configured with <strong>Zero Data Retention (ZDR)</strong>,
+    which prevents all downstream providers from retaining or training on your data.
+    Providers include:
+  </p>
+  <ul>
+    <li><strong>z-ai</strong> — z-ai/glm-5.2</li>
+    <li><strong>DeepSeek</strong> — deepseek/deepseek-v4-flash</li>
+    <li>Additional providers may be added based on pricing and availability</li>
+  </ul>
+
+  <h3>2.3. Direct Provider Mode (BYOK)</h3>
+  <p>
+    You may also choose Direct Provider Mode, where you connect using your own API
+    credentials to OpenAI (GPT-5.4) or DeepSeek (v4 Pro). In that mode, Speak2DB
+    does not process your queries (see Section 6).
+  </p>
+
+  <h2>3. Zero Data Retention (ZDR)</h2>
+  <p>
+    <strong>All AI providers used by Speak2DB comply with Zero Data Retention (ZDR).</strong>
+    This means your data is never stored, retained, or used for training by any provider.
+  </p>
+  <p>
+    For the OpenRouter route, ZDR is enforced through OpenRouter's configuration settings,
+    which block any endpoint that retains or trains on request data. For direct providers
+    (DeepSeek API, Google Vertex AI), the same zero-retention and no-training protections
+    are guaranteed through direct contractual DPAs.
+  </p>
+  <p>
+    Data is processed in real time and discarded immediately after the response is
+    generated. It is not persisted in any database, file system, or log.
+  </p>
+
+  <h2>4. Limitations of AI-Generated Responses</h2>
+  <p>
+    AI-generated responses may contain errors, omissions, or unintended outputs.
+    By using Speak2DB you acknowledge:
+  </p>
+  <ul>
+    <li>Responses are <strong>not human-reviewed</strong> unless explicitly stated.</li>
+    <li>You are <strong>responsible for verifying outputs</strong> before acting on them.</li>
+    <li>Speak2DB is not liable for business decisions based solely on AI-generated outputs.</li>
+    <li>The quality of responses depends on your database schema, data quality, and the inherent limitations of the selected model.</li>
+  </ul>
+
+  <h2>5. Decision-Making and Automated Processing</h2>
+  <p>
+    Speak2DB does not make automated decisions with legal or significant effects solely
+    by AI. All queries require user initiation, and all SQL operations require explicit
+    user confirmation before execution. No profiling or automated scoring is performed.
+  </p>
+
+  <h2>6. Direct Provider Mode (BYOK)</h2>
+  <p>
+    In Direct Provider Mode, you connect using your own API credentials. In this mode:
+  </p>
+  <ul>
+    <li>Speak2DB does not process, store, or transmit your queries or data.</li>
+    <li>The third-party provider's terms and privacy policy govern your data.</li>
+    <li>You are the data controller and must ensure compliance with applicable laws.</li>
+    <li>Currently supported direct providers: OpenAI (GPT-5.4) and DeepSeek (v4 Pro).</li>
+  </ul>
+
+  <h2>7. Transparency Per Query</h2>
+  <p>
+    Each AI-generated response in the Speak2DB application displays:
+  </p>
+  <ul>
+    <li>A notification that the content is <strong>AI-generated</strong>.</li>
+    <li>The specific <strong>model name</strong> that processed the query (e.g., "gemini-2.5-flash", "deepseek-v4-pro", "z-ai/glm-5.2").</li>
+    <li>An indication of the routing path: <strong>direct (ZDR)</strong> or <strong>via OpenRouter (ZDR)</strong>.</li>
+  </ul>
+
+  <h2>8. Your Rights Regarding AI Processing</h2>
+  <ul>
+    <li><strong>Right to be informed</strong>: You have the right to know which AI system processes your data, what data is used, and which safeguards apply.</li>
+    <li><strong>Right to object</strong>: You may object to AI processing by discontinuing use of the service.</li>
+    <li><strong>Right to human review</strong>: While outputs are not reviewed by default, you may request a human review of specific results by contacting us.</li>
+    <li><strong>Right to explanation</strong>: You may request an explanation of how the AI arrived at a particular output.</li>
+  </ul>
+
+  <h2>9. Compliance Statements</h2>
+  <p><strong>EU AI Act (Regulation 2024/1689) — Article 50</strong></p>
+  <p>
+    Speak2DB complies with the transparency obligations of the EU AI Act. Users are
+    informed that they are interacting with an AI system. This disclosure is provided
+    before first use and is reiterated with each AI-generated response.
+  </p>
+
+  <p><strong>Colorado AI Act (SB 24-205)</strong></p>
+  <p>
+    Speak2DB provides conspicuous disclosure of AI-generated content and informs
+    users of the models and providers involved in processing their queries.
+  </p>
+
+  <p><strong>Chile — Law 21.759 (Artificial Intelligence Regulation)</strong></p>
+  <p>
+    Speak2DB applies the principle of algorithmic transparency, informing users about
+    the AI system, its purpose, the data processed, and the safeguards in place.
+  </p>
+
+  <p><strong>Chile — Law 21.719 (Personal Data Protection)</strong></p>
+  <p>
+    Speak2DB processes technical data for AI queries under the legal basis of
+    contract performance, with strict privacy-by-design and privacy-by-default measures.
+  </p>
+
+  <p><strong>GDPR (Articles 13, 14, 22)</strong></p>
+  <p>
+    Speak2DB informs users of automated processing, provides meaningful information
+    about the logic involved, and does not make solely automated decisions with
+    legal or significant effects.
+  </p>
+
+  <h2>10. Changes to This Disclosure</h2>
+  <p>
+    This AI Disclosure may be updated to reflect changes in technology, model providers,
+    or legal requirements. Material changes will be communicated at least 30 days in
+    advance via email or through a prominent notice in the application.
+  </p>
+
+  <h2>11. Contact</h2>
+  <ul>
+    <li>Email: <a href="mailto:info@speak2db.com">info@speak2db.com</a></li>
+    <li>Address: Santiago, Chile</li>
+  </ul>
+</body>
+</html>
