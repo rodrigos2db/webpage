@@ -157,7 +157,7 @@
             data-key="beta-request-linkedin-label">LinkedIn Profile (Optional)</label>
           <input type="url" id="request-linkedin" name="linkedin"
             class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="https://linkedin.com/in/yourprofile" data-key="beta-request-linkedin-placeholder">
+            placeholder="https://www.linkedin.com/in/tu-usuario" data-key="beta-request-linkedin-placeholder">
         </div>
 
         <button type="submit" id="request-access-btn"
@@ -335,11 +335,13 @@
         'beta-request-country-label': 'Country *',
         'beta-request-country-placeholder': 'United States',
         'beta-request-linkedin-label': 'LinkedIn Profile (Optional)',
-        'beta-request-linkedin-placeholder': 'https://linkedin.com/in/yourprofile',
+        'beta-request-linkedin-placeholder': 'https://www.linkedin.com/in/your-handle',
         'beta-request-access-btn': 'Request Beta Access',
         'beta-request-loading-text': 'Submitting your request...',
         'beta-request-error-default': 'Something went wrong. Please try again later.',
         'beta-request-error-email': 'Please enter a valid email address.',
+        'beta-request-error-linkedin': 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/your-handle). Leave it empty if you prefer not to share it.',
+        'ERR_INVALID_LINKEDIN': 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/your-handle). Leave it empty if you prefer not to share it.',
         'beta-request-success-default': 'Thank you. We will review your request and contact you by email if approved.',
         'ERR_MISSING_FIELDS': 'Required fields are missing.',
         'ERR_INVALID_CREDENTIALS': 'Invalid credentials or token.',
@@ -426,11 +428,13 @@
         'beta-request-country-label': 'País *',
         'beta-request-country-placeholder': 'Estados Unidos',
         'beta-request-linkedin-label': 'Perfil de LinkedIn (Opcional)',
-        'beta-request-linkedin-placeholder': 'https://linkedin.com/in/tuperfil',
+        'beta-request-linkedin-placeholder': 'https://www.linkedin.com/in/tu-usuario',
         'beta-request-access-btn': 'Solicitar Acceso a la Beta',
         'beta-request-loading-text': 'Enviando tu solicitud...',
         'beta-request-error-default': 'Algo salió mal. Inténtalo nuevamente más tarde.',
         'beta-request-error-email': 'Por favor ingresa un correo electrónico válido.',
+        'beta-request-error-linkedin': 'Ingresá una URL de perfil de LinkedIn válida (ej: https://www.linkedin.com/in/tu-usuario). Si no querés compartirla, dejala vacía.',
+        'ERR_INVALID_LINKEDIN': 'Ingresá una URL de perfil de LinkedIn válida (ej: https://www.linkedin.com/in/tu-usuario). Si no querés compartirla, dejala vacía.',
         'beta-request-success-default': 'Gracias. Revisaremos tu solicitud y te contactaremos por correo si eres aprobado.',
         'ERR_MISSING_FIELDS': 'Faltan campos obligatorios.',
         'ERR_INVALID_CREDENTIALS': 'Credenciales o token inválidos.',
@@ -550,6 +554,14 @@
       }
     }
 
+    // LinkedIn URL validation (server uses same regex as fallback)
+    const LINKEDIN_RE = /^https:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9_-]{3,100}\/?$/;
+    function validateLinkedin(value) {
+      const v = (value || '').trim();
+      if (!v) return true;
+      return LINKEDIN_RE.test(v);
+    }
+
     // Function to handle beta access request form submission
     async function handleBetaAccessRequest(event) {
       event.preventDefault();
@@ -572,6 +584,13 @@
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         if (errorText) errorText.textContent = translations[currentLanguage]['beta-request-error-email'] || 'Please enter a valid email address.';
+        if (errorBox) errorBox.classList.remove('hidden');
+        return;
+      }
+
+      // LinkedIn validation (optional field, but if filled must be valid)
+      if (!validateLinkedin(linkedin)) {
+        if (errorText) errorText.textContent = translations[currentLanguage]['beta-request-error-linkedin'] || 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/your-handle). Leave it empty if you prefer not to share it.';
         if (errorBox) errorBox.classList.remove('hidden');
         return;
       }
