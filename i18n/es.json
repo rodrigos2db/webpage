@@ -6,6 +6,7 @@
 
   "nav-features": "Características",
   "nav-audience": "¿Para quién?",
+  "nav-tutorials": "Tutoriales",
   "nav-beta": "Beta",
 
   "f1-title": "🧠 Olvídate de SQL, fórmulas frágiles, filtros y trabajo manual.",
@@ -68,5 +69,25 @@
   "who-card3-help1": "Entrega análisis de nivel ejecutivo sin especialistas",
   "who-card3-help2": "Automatiza reportes y validaciones",
   "who-card3-help3": "Convierte datos operativos en decisiones claras",
-  "who-closing-line": "Speak2DB no es una herramienta de BI.\nEs el consultor de datos que tu PYME sí puede usar."
+  "who-closing-line": "Speak2DB no es una herramienta de BI.\nEs el consultor de datos que tu PYME sí puede usar.",
+
+  "teaser-title": "Mira los tutoriales",
+  "teaser-desc": "Aprende a sacar el máximo provecho de Speak2DB.",
+  "teaser-cta": "Ver todos los tutoriales",
+  "tut-hero-title": "Tutoriales",
+  "tut-hero-desc": "Guías paso a paso para aprovechar al máximo Speak2DB.",
+  "tut-1-title": "Análisis y Consultas",
+  "tut-1-desc": "Haz preguntas en lenguaje natural y obtén respuestas al instante.",
+  "tut-2-title": "Alertas Inteligentes",
+  "tut-2-desc": "Configura notificaciones automáticas sobre quiebres de stock y anomalías.",
+  "tut-3-title": "Dashboard y Bitácora",
+  "tut-3-desc": "Construye dashboards enfocados y sigue la evolución de tu negocio.",
+  "tut-4-title": "Configuración y Conectividad",
+  "tut-4-desc": "Conecta tus bases de datos y configura Speak2DB.",
+  "tut-back-btn": "Volver a la Página Principal",
+  "page-title-tutorials": "Speak2DB - Tutoriales",
+
+  "sample-title": "Descargar archivo de ejemplo",
+  "sample-desc": "⚠️ Este archivo de ejemplo incluye intencionalmente algunos problemas de datos (hojas en blanco, encabezados de columnas faltantes y registros con fechas futuras) para demostrar cómo Speak2DB detecta anomalías y se autocorrige. Úsalo para seguir los tutoriales.",
+  "sample-cta": "Descargar archivo de ejemplo"
 }

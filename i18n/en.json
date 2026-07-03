@@ -6,6 +6,7 @@
 
   "nav-features": "Features",
   "nav-audience": "Who is it for?",
+  "nav-tutorials": "Tutorials",
   "nav-beta": "Beta",
 
   "f1-title": "🧠 Forget SQL, fragile formulas, filters, and manual work.",
@@ -68,5 +69,25 @@
   "who-card3-help1": "Provides decision-grade insights without analysts",
   "who-card3-help2": "Replaces manual reporting with automated analysis",
   "who-card3-help3": "Turns operational data into clear business decisions",
-  "who-closing-line": "Speak2DB is not a BI platform.\nIt's the data consultant your team can actually afford — and use."
+  "who-closing-line": "Speak2DB is not a BI platform.\nIt's the data consultant your team can actually afford — and use.",
+
+  "teaser-title": "Watch the tutorials",
+  "teaser-desc": "Learn how to get the most out of Speak2DB.",
+  "teaser-cta": "View all tutorials",
+  "tut-hero-title": "Tutorials",
+  "tut-hero-desc": "Step-by-step guides to help you make the most of Speak2DB.",
+  "tut-1-title": "Analysis & Query",
+  "tut-1-desc": "Ask questions in plain English and get instant insights.",
+  "tut-2-title": "Smart Alerts",
+  "tut-2-desc": "Set up automatic notifications for stock-outs and anomalies.",
+  "tut-3-title": "Dashboard & Journal",
+  "tut-3-desc": "Build focused dashboards and track your business evolution.",
+  "tut-4-title": "Configuration & Connectivity",
+  "tut-4-desc": "Connect your databases and configure Speak2DB.",
+  "tut-back-btn": "Back to Home Page",
+  "page-title-tutorials": "Speak2DB - Tutorials",
+
+  "sample-title": "Download the sample file",
+  "sample-desc": "⚠️ This sample file intentionally includes some data issues (blank sheets, missing column headers, and future-dated records) to demonstrate how Speak2DB detects anomalies and self-heals. Use it to follow along with the tutorials.",
+  "sample-cta": "Download sample file"
 }

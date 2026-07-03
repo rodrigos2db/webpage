@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speak2DB - Tutorials</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+  <link rel="icon" type="image/png" href="speak2db-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+      background-color: #1a202c;
+      color: #f7fafc;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(26, 32, 44, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #2d3748;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-nav .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .site-nav .nav-brand img {
+      height: 28px;
+      width: auto;
+      border-radius: 4px;
+    }
+
+    .site-nav .nav-brand span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f7fafc;
+    }
+
+    .site-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .site-nav .nav-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .site-nav .nav-links a:hover {
+      color: #63b3ed;
+    }
+
+    .site-nav .nav-links a.active {
+      color: #63b3ed;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-switcher button {
+      background-color: #4a5568;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.4rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #2d3748;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #a0aec0;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .site-nav .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(26, 32, 44, 0.98);
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #2d3748;
+        gap: 1rem;
+      }
+
+      .site-nav .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="tutorials">
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+      <img src="speak2db-logo.png" alt="Speak2DB">
+    </a>
+
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+
+    <div class="nav-links">
+      <a href="index.html#features" data-key="nav-features">Features</a>
+      <a href="index.html#audience" data-key="nav-audience">Who is it for?</a>
+      <a href="tutorials.html" class="active" data-key="nav-tutorials">Tutorials</a>
+      <a href="beta.html" data-key="nav-beta">Beta</a>
+      <div class="lang-switcher">
+        <button onclick="setLanguage('en')">
+          <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+        </button>
+        <button onclick="setLanguage('es')">
+          <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12 px-4">
+    <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight text-blue-400" data-key="tut-hero-title">
+      Tutorials
+    </h1>
+    <p class="text-lg sm:text-xl mb-10 leading-relaxed text-gray-300" data-key="tut-hero-desc">
+      Step-by-step guides to help you make the most of Speak2DB.
+    </p>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+        <video controls preload="none" poster="https://www.speak2db.com/media/tutorials/beta/analsys_and_query.jpg" class="w-full aspect-video object-contain">
+          <source src="https://www.speak2db.com/media/tutorials/beta/analsys_and_query.mp4" type="video/mp4">
+        </video>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-blue-400 mb-1" data-key="tut-1-title">Analysis & Query</h3>
+          <p class="text-gray-400 text-sm" data-key="tut-1-desc">Ask questions in plain English and get instant insights.</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+        <video controls preload="none" poster="https://www.speak2db.com/media/tutorials/beta/alerts.jpg" class="w-full aspect-video object-contain">
+          <source src="https://www.speak2db.com/media/tutorials/beta/alerts.mp4" type="video/mp4">
+        </video>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-blue-400 mb-1" data-key="tut-2-title">Smart Alerts</h3>
+          <p class="text-gray-400 text-sm" data-key="tut-2-desc">Set up automatic notifications for stock-outs and anomalies.</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+        <video controls preload="none" poster="https://www.speak2db.com/media/tutorials/beta/dashboard_and_journal.jpg" class="w-full aspect-video object-contain">
+          <source src="https://www.speak2db.com/media/tutorials/beta/dashboard_and_journal.mp4" type="video/mp4">
+        </video>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-blue-400 mb-1" data-key="tut-3-title">Dashboard & Journal</h3>
+          <p class="text-gray-400 text-sm" data-key="tut-3-desc">Build focused dashboards and track your business evolution.</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+        <video controls preload="none" poster="https://www.speak2db.com/media/tutorials/beta/configuration.jpg" class="w-full aspect-video object-contain">
+          <source src="https://www.speak2db.com/media/tutorials/beta/configuration.mp4" type="video/mp4">
+        </video>
+        <div class="p-5">
+          <h3 class="text-xl font-bold text-blue-400 mb-1" data-key="tut-4-title">Configuration & Connectivity</h3>
+          <p class="text-gray-400 text-sm" data-key="tut-4-desc">Connect your databases and configure Speak2DB.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-4 mb-12 text-center">
+    <h2 class="text-2xl font-bold text-blue-400 mb-3" data-key="sample-title">Download the sample file</h2>
+    <p class="text-gray-400 text-sm mb-6 leading-relaxed" data-key="sample-desc">
+      This sample file intentionally includes some data issues (blank sheets, missing column headers, and future-dated records) to demonstrate how Speak2DB detects anomalies and self-heals. Use it to follow along with the tutorials.
+    </p>
+    <a href="https://www.speak2db.com/media/tutorials/beta/commerce.xlsx"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg inline-block"
+      data-key="sample-cta">
+      Download sample file
+    </a>
+  </section>
+
+  <div class="text-center mt-8 mb-12">
+    <a href="index.html"
+      class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
+      data-key="tut-back-btn">
+      Back to Home Page
+    </a>
+  </div>
+
+  <footer class="text-center text-gray-500 text-sm mt-12 pb-8">
+    <p data-key="footer-copy">&copy; 2026 Speak2DB. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let currentLanguage = 'en';
+    let translations = {};
+
+    async function loadTranslations(lang) {
+      if (translations[lang]) return translations[lang];
+      try {
+        const response = await fetch(`i18n/${lang}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        translations[lang] = await response.json();
+        return translations[lang];
+      } catch (err) {
+        console.error(`Failed to load translations for "${lang}":`, err);
+        return null;
+      }
+    }
+
+    async function setLanguage(lang) {
+      const dict = await loadTranslations(lang);
+      if (!dict) return;
+
+      localStorage.setItem('language', lang);
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (dict[key]) {
+          el.innerText = dict[key];
+        }
+      });
+
+      const pageKey = document.body.dataset.page || 'index';
+      if (dict['page-title-' + pageKey]) {
+        document.title = dict['page-title-' + pageKey];
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const preferredLang = localStorage.getItem('language');
+      const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2);
+
+      let langToSet = 'en';
+      if (preferredLang && (preferredLang === 'en' || preferredLang === 'es')) {
+        langToSet = preferredLang;
+      } else if (browserLang === 'es') {
+        langToSet = 'es';
+      }
+
+      await setLanguage(langToSet);
+    });
+  </script>
+</body>
+
+</html>
