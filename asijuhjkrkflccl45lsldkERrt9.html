@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speak2DB - Ask. Analyze. Decide.</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+  <link rel="icon" type="image/png" href="speak2db-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+      background-color: #1a202c;
+      color: #f7fafc;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* Navbar */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(26, 32, 44, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #2d3748;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-nav .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .site-nav .nav-brand img {
+      height: 28px;
+      width: auto;
+      border-radius: 4px;
+    }
+
+    .site-nav .nav-brand span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f7fafc;
+    }
+
+    .site-nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .site-nav .nav-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .site-nav .nav-links a:hover {
+      color: #63b3ed;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-switcher button {
+      background-color: #4a5568;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.4rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #2d3748;
+    }
+
+    /* Mobile nav toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #a0aec0;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .site-nav .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(26, 32, 44, 0.98);
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #2d3748;
+        gap: 1rem;
+      }
+
+      .site-nav .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Offset for sticky nav on anchor links */
+    section[id] {
+      scroll-margin-top: 4rem;
+    }
+
+    /* How-it-works step number */
+    .step-number {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      background-color: #2563eb;
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    /* Connector arrow between steps (desktop only) */
+    .step-arrow {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .step-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2563eb;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* FAQ card */
+    .faq-card {
+      background-color: #1a202c;
+      border: 1px solid #2d3748;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+
+    .faq-card:hover {
+      border-color: #2563eb;
+    }
+  </style>
+</head>
+
+<body data-page="index">
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="site-nav">
+    <a href="#hero" class="nav-brand">
+      <img src="speak2db-logo.png" alt="Speak2DB">
+    </a>
+
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+
+    <div class="nav-links">
+      <a href="#features" data-key="nav-features">Features</a>
+      <a href="#audience" data-key="nav-audience">Who is it for?</a>
+      <a href="#faq" data-key="nav-faq">FAQ</a>
+      <a href="tutorials.html" data-key="nav-tutorials">Tutorials</a>
+      <a href="beta.html" data-key="nav-beta">Beta</a>
+      <div class="lang-switcher">
+        <button onclick="setLanguage('en')">
+          <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+        </button>
+        <button onclick="setLanguage('es')">
+          <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" class="text-center mb-12 max-w-4xl mx-auto pt-16 sm:pt-12 px-4">
+    <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 leading-tight" data-key="main-heading">
+      Your AI-Powered Senior Data Consultant.
+    </h1>
+    <p class="text-2xl sm:text-3xl text-blue-300 font-semibold mb-8" data-key="slogan">
+      Ask. Analyze. Decide. Confidently.
+    </p>
+    <p class="text-lg sm:text-xl mb-10 leading-relaxed" data-key="description">
+      The Senior Data Consultant your SME needs. Get decision-grade insights without expensive licenses, specialized
+      consultants, or complex BI tools.
+    </p>
+    <a href="beta.html"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg inline-block"
+      data-key="cta-button">
+      Join Open Beta
+    </a>
+    <p class="mt-4 text-sm text-blue-300 font-semibold" data-key="beta-testers-badge">
+      Join the first beta testers
+    </p>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section id="how-it-works" class="max-w-5xl mx-auto px-4 mb-16 pt-8">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-2 text-center text-blue-400" data-key="how-title">How it works</h2>
+    <p class="text-center text-gray-400 mb-10 max-w-2xl mx-auto" data-key="how-subtitle">From raw data to a defensible
+      decision in three steps.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      <!-- Step 1 -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 text-center">
+        <div class="step-number">1</div>
+        <h3 class="text-xl font-bold text-blue-400 mb-2" data-key="how-step1-title">Connect</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="how-step1-desc">Link your Excel files, MySQL,
+          PostgreSQL or MongoDB in minutes. No technical setup required.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 text-center">
+        <div class="step-number">2</div>
+        <h3 class="text-xl font-bold text-blue-400 mb-2" data-key="how-step2-title">Ask</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="how-step2-desc">Ask questions about your business in
+          plain language, the same way you would ask a senior consultant.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 text-center">
+        <div class="step-number">3</div>
+        <h3 class="text-xl font-bold text-blue-400 mb-2" data-key="how-step3-title">Decide</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="how-step3-desc">Get verifiable answers, executive
+          summaries and charts ready to share — and the confidence to defend them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section id="features" class="max-w-7xl mx-auto px-4 mb-12">
+
+    <!-- Modes subsection -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl font-extrabold mb-2 text-blue-400" data-key="modes-section-title">One product,
+        five modes</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto" data-key="modes-section-subtitle">A complete workflow from question to
+        decision, not just another dashboard.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+      <!-- f1: Analysis Mode -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f1-title">🧠 Analysis Mode</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f1-desc">Ask questions about your business as
+          naturally as you would ask a consultant. Speak2DB retrieves the information you need and lets you explore your
+          results through business insights and data consistency analysis so you can make better decisions.</p>
+      </div>
+
+      <!-- f2: Take Your Analysis Further (sub-analysis) -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 transition duration-300 md:row-span-2">
+        <h3 class="text-xl font-bold text-blue-400 mb-4" data-key="f2-title">📊 Take Your Analysis Further</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+          <div class="border-l-2 border-blue-500 pl-3">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider" data-key="f2-insight-title">Business
+              insights</h4>
+            <p class="text-gray-400 text-xs" data-key="f2-insight-desc">Discover patterns, trends and opportunities
+              hidden in your data.</p>
+          </div>
+          <div class="border-l-2 border-green-500 pl-3">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider" data-key="f2-summary-title">Data
+              consistency</h4>
+            <p class="text-gray-400 text-xs" data-key="f2-summary-desc">Detect duplicated, missing or inconsistent
+              records before making decisions.</p>
+          </div>
+          <div class="border-l-2 border-purple-500 pl-3">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider" data-key="f2-data-title">Verifiable
+              answers</h4>
+            <p class="text-gray-400 text-xs" data-key="f2-data-desc">Check that conclusions are backed by the
+              information Speak2DB retrieved.</p>
+          </div>
+          <div class="border-l-2 border-orange-500 pl-3">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider" data-key="f2-integrity-title">One-click
+              export</h4>
+            <p class="text-gray-400 text-xs" data-key="f2-integrity-desc">Take your analysis results to Excel or CSV the
+              moment you need them.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- f5: Queries -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f5-title">🔖 Queries</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f5-desc">Save the questions you ask most often and
+          organize them into the categories that fit your business — daily, weekly, monthly, or anything you choose.</p>
+      </div>
+
+      <!-- f3: Alerts -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f3-title">🔔 Alerts</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f3-desc">Define the rules that matter to your
+          business. Speak2DB watches your data and emails you when stock runs low, sales drop unexpectedly, or anomalies
+          appear.</p>
+      </div>
+
+      <!-- f4: Dashboards -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f4-title">📈 Dashboards</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f4-desc">Create AI-assisted dashboards in minutes.
+          Speak2DB recommends the most relevant KPIs and charts for your data, analyzes every visualization, explains
+          what it means and generates executive summaries ready to share.</p>
+      </div>
+
+      <!-- f6: Journal -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f6-title">📔 Journal</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f6-desc">Store the executive summaries generated from
+          your dashboards and compare them side by side to understand how your business evolves over time.</p>
+      </div>
+    </div>
+
+    <!-- Capabilities subsection -->
+    <div class="text-center mb-8">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-blue-400" data-key="capabilities-section-title">Built-in trust
+        and export</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+      <!-- f7: Read-Only Access -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f7-title">🔒 Read-Only Access</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f7-desc">Speak2DB never modifies your original data.
+          Your spreadsheets and databases stay exactly as they are.</p>
+      </div>
+
+      <!-- f8: Excel & CSV Reports -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="f8-title">📄 Excel & CSV Reports</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="f8-desc">Export results with one click, including
+          charts your team and partners can open and share immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AUDIENCE ========== -->
+  <section id="audience" class="text-center mb-12 max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl sm:text-5xl font-extrabold mb-4" data-key="who-title">Who uses Speak2DB?</h2>
+    <p class="text-xl text-blue-300 font-semibold mb-4" data-key="who-subtitle">Owners and managers who need decisions,
+      not just dashboards.</p>
+    <p class="text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed" data-key="who-explanation">Speak2DB translates
+      business data into practical recommendations written for decision makers — not data analysts. Instead of simply
+      showing charts, it explains what is happening, why it matters, what could happen next, and which actions to
+      consider. All in language business owners and managers can understand.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Card 1 -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card1-title">🏭 Operations & Inventory Managers
+        </h3>
+        <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card1-profile">You are responsible for
+          keeping stock available and operations running, but your data lives in spreadsheets and disconnected systems.</p>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card1-pain-title">Daily
+          pain</h4>
+        <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
+          <li data-key="who-card1-pain1">Hours spent checking figures manually</li>
+          <li data-key="who-card1-pain2">Inconsistent or outdated inventory data</li>
+          <li data-key="who-card1-pain3">Problems only surface when it is already too late</li>
+        </ul>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card1-help-title">How
+          Speak2DB helps</h4>
+        <ul class="text-gray-400 text-xs list-disc list-inside space-y-1">
+          <li data-key="who-card1-help1">Detects stock issues and anomalies automatically</li>
+          <li data-key="who-card1-help2">Flags inconsistencies before they become operational risks</li>
+          <li data-key="who-card1-help3">Delivers clear summaries without building reports</li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card2-title">🧾 Sales Managers</h3>
+        <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card2-profile">You own the numbers, but most
+          of your week goes into preparing reports instead of acting on them.</p>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card2-pain-title">Daily
+          pain</h4>
+        <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
+          <li data-key="who-card2-pain1">Sales data does not always match finance</li>
+          <li data-key="who-card2-pain2">Excel-based reporting takes longer every month</li>
+          <li data-key="who-card2-pain3">Insights arrive when it is too late to react</li>
+        </ul>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card2-help-title">How
+          Speak2DB helps</h4>
+        <ul class="text-gray-400 text-xs list-disc list-inside space-y-1">
+          <li data-key="who-card2-help1">Generates executive summaries in seconds</li>
+          <li data-key="who-card2-help2">Detects sales anomalies and trends automatically</li>
+          <li data-key="who-card2-help3">Answers business questions without waiting for a report</li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card3-title">🧠 SME Owners Without a Data Team
+        </h3>
+        <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card3-profile">You need better decisions
+          from your data, but hiring analysts or rolling out a complex BI platform is not realistic.</p>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card3-pain-title">Daily
+          pain</h4>
+        <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
+          <li data-key="who-card3-pain1">Traditional BI tools are too complex to learn</li>
+          <li data-key="who-card3-pain2">Consultants are expensive and slow to engage</li>
+          <li data-key="who-card3-pain3">Administrative staff ends up doing analyst work manually</li>
+        </ul>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card3-help-title">How
+          Speak2DB helps</h4>
+        <ul class="text-gray-400 text-xs list-disc list-inside space-y-1">
+          <li data-key="who-card3-help1">Provides executive-level insights without specialists</li>
+          <li data-key="who-card3-help2">Replaces manual reporting with on-demand analysis</li>
+          <li data-key="who-card3-help3">Turns everyday operational data into clear business decisions</li>
+        </ul>
+      </div>
+      <!-- Card 4 -->
+      <div
+        class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-3" data-key="who-card4-title">📋 Administrators & Area Leads</h3>
+        <p class="text-gray-300 text-sm leading-relaxed mb-3" data-key="who-card4-profile">You are the bridge between
+          the data and leadership. Every week you must deliver clear, defensible reports to your boss.</p>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card4-pain-title">Daily
+          pain</h4>
+        <ul class="text-gray-400 text-xs mb-3 list-disc list-inside space-y-1">
+          <li data-key="who-card4-pain1">Reports built by hand take hours you don't have</li>
+          <li data-key="who-card4-pain2">Fear of being questioned on numbers that don't add up</li>
+          <li data-key="who-card4-pain3">No time to verify every figure before sending it up</li>
+        </ul>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2" data-key="who-card4-help-title">How
+          Speak2DB helps</h4>
+        <ul class="text-gray-400 text-xs list-disc list-inside space-y-1">
+          <li data-key="who-card4-help1">Verifiable summaries ready to share, not estimates</li>
+          <li data-key="who-card4-help2">One-click Excel export with charts included</li>
+          <li data-key="who-card4-help3">Conclusions backed by the data, so you can defend them</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mt-10 text-lg sm:text-xl text-blue-300 font-semibold max-w-3xl mx-auto leading-relaxed" data-key="emotional-hook">
+      Walk into your next meeting with the answer ready — and the confidence to defend it.
+    </p>
+    <p class="mt-6 text-lg text-gray-300 italic" data-key="who-closing-line">Speak2DB is not another BI dashboard.<br>It's
+      the data consultant your team can actually afford — and use.</p>
+  </section>
+
+  <!-- ========== TUTORIALS TEASER ========== -->
+  <section id="tutorials-teaser" class="max-w-7xl mx-auto px-4 mb-12 text-center">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-2 text-blue-400" data-key="teaser-title">Watch the tutorials</h2>
+    <p class="text-gray-400 mb-8" data-key="teaser-desc">Learn how to get the most out of Speak2DB.</p>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <a href="tutorials.html" class="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-500 transition duration-300 overflow-hidden group">
+        <div class="relative">
+          <img src="https://www.speak2db.com/media/tutorials/beta/analsys_and_query.jpg" alt="Analysis & Query" class="w-full aspect-video object-cover">
+          <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition">
+            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <p class="text-xs text-gray-300 py-2 px-2 truncate" data-key="tut-1-title">Analysis & Query</p>
+      </a>
+      <a href="tutorials.html" class="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-500 transition duration-300 overflow-hidden group">
+        <div class="relative">
+          <img src="https://www.speak2db.com/media/tutorials/beta/alerts.jpg" alt="Alerts" class="w-full aspect-video object-cover">
+          <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition">
+            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <p class="text-xs text-gray-300 py-2 px-2 truncate" data-key="tut-2-title">Smart Alerts</p>
+      </a>
+      <a href="tutorials.html" class="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-500 transition duration-300 overflow-hidden group">
+        <div class="relative">
+          <img src="https://www.speak2db.com/media/tutorials/beta/dashboard_and_journal.jpg" alt="Dashboard & Journal" class="w-full aspect-video object-cover">
+          <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition">
+            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <p class="text-xs text-gray-300 py-2 px-2 truncate" data-key="tut-3-title">Dashboard & Journal</p>
+      </a>
+      <a href="tutorials.html" class="bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-500 transition duration-300 overflow-hidden group">
+        <div class="relative">
+          <img src="https://www.speak2db.com/media/tutorials/beta/configuration.jpg" alt="Configuration" class="w-full aspect-video object-cover">
+          <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition">
+            <svg class="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <p class="text-xs text-gray-300 py-2 px-2 truncate" data-key="tut-4-title">Configuration & Connectivity</p>
+      </a>
+    </div>
+
+    <a href="tutorials.html"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
+      data-key="teaser-cta">
+      View all tutorials
+    </a>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="max-w-3xl mx-auto px-4 mb-12">
+    <h2 class="text-3xl sm:text-4xl font-extrabold mb-8 text-center text-blue-400" data-key="faq-title">Frequently asked
+      questions</h2>
+
+    <div class="space-y-4">
+      <div class="faq-card">
+        <h3 class="text-lg font-bold text-blue-400 mb-2" data-key="faq-q1">Is my data safe?</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="faq-a1">Yes. Speak2DB works with read-only access.
+          Your spreadsheets and databases are never modified — not a single value changes.</p>
+      </div>
+      <div class="faq-card">
+        <h3 class="text-lg font-bold text-blue-400 mb-2" data-key="faq-q2">Do I need technical help to connect my data?
+        </h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="faq-a2">No. The guided assistant walks you through
+          connecting Excel files or MySQL, PostgreSQL and MongoDB databases in minutes, no IT background required.</p>
+      </div>
+      <div class="faq-card">
+        <h3 class="text-lg font-bold text-blue-400 mb-2" data-key="faq-q3">Do I need to install anything?</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="faq-a3">Speak2DB is a desktop app for Windows. Your
+          data stays where it is — it is not uploaded to the cloud.</p>
+      </div>
+      <div class="faq-card">
+        <h3 class="text-lg font-bold text-blue-400 mb-2" data-key="faq-q4">Can my technical team validate the queries?
+        </h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="faq-a4">Absolutely. You can view and share the
+          technical query Speak2DB generates, so your IT team can verify every result.</p>
+      </div>
+      <div class="faq-card">
+        <h3 class="text-lg font-bold text-blue-400 mb-2" data-key="faq-q5">What happens after the beta?</h3>
+        <p class="text-gray-300 text-sm leading-relaxed" data-key="faq-a5">Your feedback shapes the product. As an early
+          user you keep an advantage: the insights you build now stay with you, and you help decide what we build next.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer id="footer" class="text-center text-gray-500 text-sm mt-12 pb-8">
+    <p data-key="footer-copy">&copy; 2026 Speak2DB. All rights reserved.</p>
+  </footer>
+
+  <!-- ========== I18N ENGINE ========== -->
+  <script>
+    let currentLanguage = 'en';
+    let translations = {};
+
+    async function loadTranslations(lang) {
+      if (translations[lang]) return translations[lang];
+      try {
+        const response = await fetch(`i18n/${lang}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        translations[lang] = await response.json();
+        return translations[lang];
+      } catch (err) {
+        console.error(`Failed to load translations for "${lang}":`, err);
+        return null;
+      }
+    }
+
+    async function setLanguage(lang) {
+      const dict = await loadTranslations(lang);
+      if (!dict) return;
+
+      localStorage.setItem('language', lang);
+      currentLanguage = lang;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (dict[key]) {
+          el.innerText = dict[key];
+        }
+      });
+
+      const pageKey = document.body.dataset.page || 'index';
+      if (dict['page-title-' + pageKey]) {
+        document.title = dict['page-title-' + pageKey];
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const preferredLang = localStorage.getItem('language');
+      const browserLang = (navigator.language || navigator.userLanguage).slice(0, 2);
+
+      let langToSet = 'en';
+      if (preferredLang && (preferredLang === 'en' || preferredLang === 'es')) {
+        langToSet = preferredLang;
+      } else if (browserLang === 'es') {
+        langToSet = 'es';
+      }
+
+      await setLanguage(langToSet);
+    });
+  </script>
+</body>
+
+</html>
