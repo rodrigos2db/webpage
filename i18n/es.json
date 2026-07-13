@@ -112,8 +112,8 @@
   "who-closing-line": "Speak2DB no es otro dashboard de BI.\nEs el consultor de datos que tu equipo sí puede contratar — y usar.",
 
   "faq-title": "Preguntas frecuentes",
-  "faq-q1": "¿Mi data está segura?",
-  "faq-a1": "Sí. Speak2DB funciona con acceso de solo lectura. Tus planillas y bases de datos nunca se modifican — ni un solo valor cambia.",
+  "faq-q1": "¿Mis datos están seguros?",
+  "faq-a1": "Sí. Speak2DB trabaja con acceso de solo lectura, por lo que tus planillas y bases de datos nunca se modifican — ni un solo valor cambia. Además, solo compartes con la plataforma ciertos datos del esquema de tu fuente de datos y algunas muestras estadísticas. Speak2DB jamás almacena tus consultas ni respuestas, y firma con sus proveedores un contrato de Zero Data Retention: tus datos nunca son almacenados ni utilizados para ningún fin adicional. En la práctica, los datos que nos envías son anónimos y desaparecen tras la respuesta.",
   "faq-q2": "¿Necesito ayuda técnica para conectar mis datos?",
   "faq-a2": "No. El asistente guiado te lleva paso a paso para conectar archivos de Excel o bases de datos MySQL, PostgreSQL y MongoDB en minutos, sin conocimientos de TI.",
   "faq-q3": "¿Tengo que instalar algo?",
@@ -126,8 +126,6 @@
   "faq-a6": "No. La aplicación se conecta a la plataforma de Speak2DB, que ya incluye los modelos más eficientes para las tareas que realiza.",
   "faq-q7": "¿Por qué veo código SQL en lugar de las fórmulas tradicionales de Excel?",
   "faq-a7": "En lugar de repetir miles de fórmulas celda por celda (que ralentizan tu archivo), nuestra aplicación concentra toda la lógica de tu reporte en una sola 'Súper-Fórmula' escrita en SQL. Es la forma moderna, segura y ultrarrápida de procesar datos sin sobrecargar tu pantalla.",
-  "faq-q8": "¿Están mis datos seguros?",
-  "faq-a8": "Solo compartirás con la plataforma de Speak2DB ciertos datos del esquema de tu fuente de datos y algunas muestras estadísticas. Al aprobar el uso de Speak2DB, autorizas a nuestra plataforma a tratarlos. Speak2DB jamás almacena tus consultas ni respuestas. Además, Speak2DB firma con sus proveedores un contrato de Zero Data Retention, lo que significa que tus datos nunca son almacenados ni utilizados para ningún fin adicional. En la práctica, los datos que nos envías son anónimos y desaparecen tras la respuesta.",
 
   "teaser-title": "Mira los tutoriales",
   "teaser-desc": "Videos paso a paso para que veas cómo funciona Speak2DB.",
