@@ -9,16 +9,16 @@
 
   "main-heading": "Tu consultor de datos senior, impulsado por IA.",
   "slogan": "Pregunta. Analiza. Decide. Con confianza.",
-  "description": "El consultor de datos senior que tu PYME necesita. Obtén insights de nivel ejecutivo sin licencias costosas, consultores especializados, ni herramientas de BI complejas.",
+  "description": "Obtén respuestas, análisis y recomendaciones escritas para dueños y gerentes de pymes. Todo sin licencias costosas, consultores especializados ni herramientas de BI complejas.",
 
   "beta-testers-badge": "Únete a los primeros beta testers",
 
   "how-title": "Cómo funciona",
   "how-subtitle": "Desde los datos en bruto hasta una decisión defendible, en tres pasos.",
   "how-step1-title": "Conecta",
-  "how-step1-desc": "Conecta tus archivos de Excel, MySQL, PostgreSQL o MongoDB en minutos. Sin configuración técnica.",
+  "how-step1-desc": "Elige el tipo de fuente de datos (Excel, MySQL, PostgreSQL o MongoDB), asigna un nombre y completa los datos de conexión. Nada más.",
   "how-step2-title": "Pregunta",
-  "how-step2-desc": "Haz preguntas sobre tu negocio en lenguaje natural, igual que le preguntarías a un consultor senior.",
+  "how-step2-desc": "Haz preguntas sobre tu negocio en lenguaje natural, igual que le preguntarías a un consultor senior. O para empezar usa alguna de las consultas recomendadas a partir de tus datos.",
   "how-step3-title": "Decide",
   "how-step3-desc": "Obtén respuestas verificables, resúmenes ejecutivos y gráficos listos para compartir — con la confianza de poder defenderlos.",
 
@@ -115,7 +115,7 @@
   "faq-q1": "¿Mis datos están seguros?",
   "faq-a1": "Sí. Speak2DB trabaja con acceso de solo lectura, por lo que tus planillas y bases de datos nunca se modifican — ni un solo valor cambia. Además, solo compartes con la plataforma ciertos datos del esquema de tu fuente de datos y algunas muestras estadísticas. Speak2DB jamás almacena tus consultas ni respuestas, y firma con sus proveedores un contrato de Zero Data Retention: tus datos nunca son almacenados ni utilizados para ningún fin adicional. En la práctica, los datos que nos envías son anónimos y desaparecen tras la respuesta.",
   "faq-q2": "¿Necesito ayuda técnica para conectar mis datos?",
-  "faq-a2": "No. El asistente guiado te lleva paso a paso para conectar archivos de Excel o bases de datos MySQL, PostgreSQL y MongoDB en minutos, sin conocimientos de TI.",
+  "faq-a2": "No necesitas experiencia técnica previa. El asistente guiado te lleva paso a paso para conectar tus archivos de Excel o tus bases de datos MySQL, PostgreSQL y MongoDB. Para las bases de datos, solo necesitas tener a mano tu cadena de conexión y permisos de lectura.",
   "faq-q3": "¿Tengo que instalar algo?",
   "faq-a3": "Speak2DB es una aplicación de escritorio para Windows. Tus datos se quedan donde están — no se suben a la nube.",
   "faq-q4": "¿Puede mi equipo técnico validar las consultas?",

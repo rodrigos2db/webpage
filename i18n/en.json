@@ -9,16 +9,16 @@
 
   "main-heading": "Your AI-Powered Senior Data Consultant.",
   "slogan": "Ask. Analyze. Decide. Confidently.",
-  "description": "The Senior Data Consultant your SME needs. Get decision-grade insights without expensive licenses, specialized consultants, or complex BI tools.",
+  "description": "Get written answers, analysis and recommendations for SME owners and managers. All without expensive licenses, specialized consultants or complex BI tools.",
 
   "beta-testers-badge": "Join the first beta testers",
 
   "how-title": "How it works",
   "how-subtitle": "From raw data to a defensible decision in three steps.",
   "how-step1-title": "Connect",
-  "how-step1-desc": "Link your Excel files, MySQL, PostgreSQL or MongoDB in minutes. No technical setup required.",
+  "how-step1-desc": "Pick your data source type (Excel, MySQL, PostgreSQL or MongoDB), give it a name and fill in the connection details. That's it.",
   "how-step2-title": "Ask",
-  "how-step2-desc": "Ask questions about your business in plain language, the same way you would ask a senior consultant.",
+  "how-step2-desc": "Ask questions about your business in plain language, the same way you would ask a senior consultant. Or get started with one of the recommended queries based on your data.",
   "how-step3-title": "Decide",
   "how-step3-desc": "Get verifiable answers, executive summaries and charts ready to share — and the confidence to defend them.",
 
@@ -115,7 +115,7 @@
   "faq-q1": "Is my data safe?",
   "faq-a1": "Yes. Speak2DB works with read-only access, so your spreadsheets and databases are never modified — not a single value changes. On top of that, you only share with the platform certain schema data from your data source and some statistical samples. Speak2DB never stores your queries or answers, and signs a Zero Data Retention contract with its providers: your data is never stored or used for any additional purpose. In practice, the data you send us is anonymous and disappears after the response.",
   "faq-q2": "Do I need technical help to connect my data?",
-  "faq-a2": "No. The guided assistant walks you through connecting Excel files or MySQL, PostgreSQL and MongoDB databases in minutes, no IT background required.",
+  "faq-a2": "No prior technical experience is needed. The guided assistant walks you step by step through connecting your Excel files or your MySQL, PostgreSQL and MongoDB databases. For databases, you only need your connection string and read permissions on hand.",
   "faq-q3": "Do I need to install anything?",
   "faq-a3": "Speak2DB is a desktop app for Windows. Your data stays where it is — it is not uploaded to the cloud.",
   "faq-q4": "Can my technical team validate the queries?",
