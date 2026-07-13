@@ -122,6 +122,12 @@
   "faq-a4": "Absolutely. You can view and share the technical query Speak2DB generates, so your IT team can verify every result.",
   "faq-q5": "What happens after the beta?",
   "faq-a5": "Your feedback shapes the product. As an early user you keep an advantage: the insights you build now stay with you, and you help decide what we build next.",
+  "faq-q6": "Do I need to pay for any additional AI plan or API keys?",
+  "faq-a6": "No. The app connects to the Speak2DB platform, which already includes the most efficient models for the tasks it performs.",
+  "faq-q7": "Why do I see SQL code instead of traditional Excel formulas?",
+  "faq-a7": "Instead of repeating thousands of formulas cell by cell (which slow down your file), our app concentrates all the logic of your report into a single 'Super-Formula' written in SQL. It is the modern, safe, and ultra-fast way to process data without overloading your spreadsheet.",
+  "faq-q8": "Is my data secure?",
+  "faq-a8": "You only share with the Speak2DB platform certain schema data from your data source and some statistical samples. By approving the use of Speak2DB, you authorize our platform to process them. Speak2DB never stores your queries or answers. In addition, Speak2DB signs a Zero Data Retention contract with its providers, which means your data is never stored or used for any additional purpose. In practice, the data you send us is anonymous and disappears after the response.",
 
   "teaser-title": "Watch the tutorials",
   "teaser-desc": "Step-by-step videos so you can see how Speak2DB works.",
