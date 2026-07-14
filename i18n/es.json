@@ -29,15 +29,6 @@
   "f1-title": "🧠 Modo Análisis",
   "f1-desc": "Haz preguntas sobre tu negocio con la misma naturalidad con que se las harías a un asesor. Speak2DB obtiene la información que necesitas y te permite profundizar en tus resultados mediante análisis de negocio y validaciones de consistencia para ayudarte a tomar mejores decisiones.",
 
-  "f2-title": "📊 Profundiza el análisis de tus resultados",
-  "f2-insight-title": "Insights de negocio",
-  "f2-insight-desc": "Descubre patrones, tendencias y oportunidades ocultas en tus datos.",
-  "f2-summary-title": "Consistencia de datos",
-  "f2-summary-desc": "Detecta registros duplicados, faltantes e inconsistencias antes de tomar decisiones.",
-  "f2-data-title": "Respuestas verificables",
-  "f2-data-desc": "Comprueba que las conclusiones estén respaldadas por la información recuperada por Speak2DB.",
-  "f2-integrity-title": "Exportación inmediata",
-  "f2-integrity-desc": "Lleva los resultados del análisis a Excel o CSV justo cuando los necesites.",
 
   "f3-title": "🔔 Alertas",
   "f3-desc": "Define las reglas que importan en tu negocio. Speak2DB vigila tus datos y te avisa por email cuando falta stock, las ventas caen de forma inesperada o aparece una anomalía.",

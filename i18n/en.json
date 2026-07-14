@@ -29,16 +29,6 @@
   "f1-title": "🧠 Analysis Mode",
   "f1-desc": "Ask questions about your business as naturally as you would ask a consultant. Speak2DB retrieves the information you need and lets you explore your results through business insights and data consistency analysis so you can make better decisions.",
 
-  "f2-title": "📊 Take Your Analysis Further",
-  "f2-insight-title": "Business insights",
-  "f2-insight-desc": "Discover patterns, trends and opportunities hidden in your data.",
-  "f2-summary-title": "Data consistency",
-  "f2-summary-desc": "Detect duplicated, missing or inconsistent records before making decisions.",
-  "f2-data-title": "Verifiable answers",
-  "f2-data-desc": "Check that conclusions are backed by the information Speak2DB retrieved.",
-  "f2-integrity-title": "One-click export",
-  "f2-integrity-desc": "Take your analysis results to Excel or CSV the moment you need them.",
-
   "f3-title": "🔔 Alerts",
   "f3-desc": "Define the rules that matter to your business. Speak2DB watches your data and emails you when stock runs low, sales drop unexpectedly, or anomalies appear.",
 
