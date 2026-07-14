@@ -29,6 +29,10 @@ def deploy(c: Context):
         print(f"Activando configuración: {GCLOUD_CONFIG}")
         c.run(f"gcloud config configurations activate {GCLOUD_CONFIG}")
 
+    # Build: embebe i18n + versiona CSS
+    print("🔨 Ejecutando build (npm run build)...")
+    c.run("npm run build")
+
     # El comando de deploy
     print(f"🚀 Desplegando servicio [{SERVICE_NAME}] a App Engine...")
     c.run("gcloud app deploy app.yaml --quiet")
