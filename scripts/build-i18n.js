@@ -5,7 +5,7 @@ const ROOT = path.resolve(__dirname, '..');
 const I18N_DIR = path.join(ROOT, 'i18n');
 
 const PAGE_I18N = {
-  'asijuhjkrkflccl45lsldkERrt9.html': { en: 'en.json', es: 'es.json' },
+  'index.html': { en: 'en.json', es: 'es.json' },
   'tutorials.html': { en: 'en.json', es: 'es.json' },
   'beta.html': { en: 'beta-en.json', es: 'beta-es.json' },
 };

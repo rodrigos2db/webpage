@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./asijuhjkrkflccl45lsldkERrt9.html", "./beta.html", "./tutorials.html"],
+  content: ["./index.html", "./beta.html", "./tutorials.html"],
   theme: {
     extend: {},
   },
