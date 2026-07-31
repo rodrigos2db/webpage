@@ -7,9 +7,9 @@ handlers:
   upload: (.*\.(woff2|woff|ttf))$
   expiration: "365d"
 
-- url: /(styles\.css|speak2db-logo\.png|favicon\.ico|uk\.svg|spain\.svg)$
+- url: /(styles\.css|speak2db-logo\.png|favicon\.ico|uk\.svg|spain\.svg|js/i18n\.js)$
   static_files: \1
-  upload: (styles\.css|speak2db-logo\.png|favicon\.ico|uk\.svg|spain\.svg)$
+  upload: (styles\.css|speak2db-logo\.png|favicon\.ico|uk\.svg|spain\.svg|js/i18n\.js)$
   expiration: "365d"
 
 - url: /i18n/([^/]+\.json)$
