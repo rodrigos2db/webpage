@@ -23,12 +23,12 @@
   "how-step3-title": "Decide",
   "how-step3-desc": "Obtén respuestas verificables, resúmenes ejecutivos y gráficos listos para compartir — con la confianza de poder defenderlos.",
 
-  "modes-section-title": "Un producto, cinco modos",
+  "modes-section-title": "Un producto, cuatro funcionalidades",
   "modes-section-subtitle": "Un flujo completo de la pregunta a la decisión, no solo otro dashboard.",
   "capabilities-section-title": "Confianza y exportación incluidas",
 
-  "f1-title": "🧠 Modo Análisis",
-  "f1-desc": "Haz preguntas sobre tu negocio con la misma naturalidad con que se las harías a un asesor. Speak2DB obtiene la información que necesitas y te permite profundizar en tus resultados mediante análisis de negocio y validaciones de consistencia para ayudarte a tomar mejores decisiones.",
+  "f1-title": "🧠 Preguntar y Guarda",
+  "f1-desc": "Haz cualquier pregunta sobre tu negocio en lenguaje natural — como se la harías a un asesor. Speak2DB consulta a la IA para obtener la información; luego guarda lo que funcionó y ejecútalo cuando quieras sin consultar a la IA — con resultados casi instantáneos. Organiza tus preguntas guardadas en las categorías que quieras — diarias, semanales, mensuales o como prefieras — y explora los resultados con análisis de negocio y validaciones de consistencia para tomar mejores decisiones.",
 
 
   "f3-title": "🔔 Alertas",
@@ -36,9 +36,6 @@
 
   "f4-title": "📈 Dashboards",
   "f4-desc": "Crea dashboards asistidos por IA en minutos. Speak2DB recomienda los KPIs y gráficos más relevantes para tus datos, analiza cada visualización, explica lo que significa y genera resúmenes ejecutivos listos para compartir.",
-
-  "f5-title": "🔖 Consultas",
-  "f5-desc": "Guarda las preguntas que más repites y organízalas en las categorías que se ajusten a cómo manejas tu negocio: diarias, semanales, mensuales o las que necesites.",
 
   "f6-title": "📔 Bitácora",
   "f6-desc": "Guarda los resúmenes ejecutivos generados desde tus dashboards y compáralos lado a lado para entender cómo evoluciona tu negocio con el tiempo.",
@@ -124,8 +121,8 @@
   "teaser-cta": "Ver todos los tutoriales",
   "tut-hero-title": "Tutoriales",
   "tut-hero-desc": "Guías paso a paso para aprovechar al máximo Speak2DB.",
-  "tut-1-title": "Modo Análisis y Consultas",
-  "tut-1-desc": "Haz preguntas en lenguaje natural y guarda las que más repites.",
+  "tut-1-title": "Preguntar y Guarda",
+  "tut-1-desc": "Pregunta a la IA en lenguaje natural y ejecuta tus consultas guardadas cuando quieras.",
   "tut-2-title": "Alertas",
   "tut-2-desc": "Configura notificaciones automáticas por quiebres de stock y anomalías.",
   "tut-3-title": "Dashboards y Bitácora",

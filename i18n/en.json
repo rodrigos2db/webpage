@@ -23,21 +23,18 @@
   "how-step3-title": "Decide",
   "how-step3-desc": "Get verifiable answers, executive summaries and charts ready to share — and the confidence to defend them.",
 
-  "modes-section-title": "One product, five modes",
+  "modes-section-title": "One product, four features",
   "modes-section-subtitle": "A complete workflow from question to decision, not just another dashboard.",
   "capabilities-section-title": "Built-in trust and export",
 
-  "f1-title": "🧠 Analysis Mode",
-  "f1-desc": "Ask questions about your business as naturally as you would ask a consultant. Speak2DB retrieves the information you need and lets you explore your results through business insights and data consistency analysis so you can make better decisions.",
+  "f1-title": "🧠 Ask & Save",
+  "f1-desc": "Ask any business question in plain language — just as you would ask a consultant. Speak2DB queries the AI to retrieve the information, then save what worked and re-run it anytime without querying the AI — with near-instant results. Organize your saved questions into the categories that fit your business — daily, weekly, monthly, or however you want — and explore results with business insights and data consistency analysis so you can make better decisions.",
 
   "f3-title": "🔔 Alerts",
   "f3-desc": "Define the rules that matter to your business. Speak2DB watches your data and emails you when stock runs low, sales drop unexpectedly, or anomalies appear.",
 
   "f4-title": "📈 Dashboards",
   "f4-desc": "Create AI-assisted dashboards in minutes. Speak2DB recommends the most relevant KPIs and charts for your data, analyzes every visualization, explains what it means and generates executive summaries ready to share.",
-
-  "f5-title": "🔖 Queries",
-  "f5-desc": "Save the questions you ask most often and organize them into the categories that fit your business — daily, weekly, monthly, or anything you choose.",
 
   "f6-title": "📔 Journal",
   "f6-desc": "Store the executive summaries generated from your dashboards and compare them side by side to understand how your business evolves over time.",
@@ -123,8 +120,8 @@
   "teaser-cta": "View all tutorials",
   "tut-hero-title": "Tutorials",
   "tut-hero-desc": "Step-by-step guides to help you make the most of Speak2DB.",
-  "tut-1-title": "Analysis Mode & Queries",
-  "tut-1-desc": "Ask questions in plain language and save the ones you use most.",
+  "tut-1-title": "Ask & save",
+  "tut-1-desc": "Ask the AI in plain language and re-run your saved queries anytime.",
   "tut-2-title": "Alerts",
   "tut-2-desc": "Set up automatic notifications for stock-outs and anomalies.",
   "tut-3-title": "Dashboards & Journal",
