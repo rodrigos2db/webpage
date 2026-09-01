@@ -5,7 +5,8 @@
   "scripts": {
     "build:css": "npx @tailwindcss/cli -i input.css -o styles.css",
     "build:i18n": "node scripts/build-i18n.js",
-    "build": "npm run build:css && npm run build:i18n",
+    "build:sitemap": "node scripts/build-sitemap.js",
+    "build": "npm run build:css && npm run build:i18n && npm run build:sitemap",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

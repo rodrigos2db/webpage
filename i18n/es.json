@@ -17,7 +17,7 @@
   "how-title": "Cómo funciona",
   "how-subtitle": "Desde los datos en bruto hasta una decisión defendible, en tres pasos.",
   "how-step1-title": "Conecta",
-  "how-step1-desc": "Elige el tipo de fuente de datos (Excel, MySQL, PostgreSQL o MongoDB), asigna un nombre y completa los datos de conexión. Nada más.",
+  "how-step1-desc": "Empieza con lo que ya tienes — Excel — o conecta MySQL, PostgreSQL o MongoDB. Asigna un nombre, completa los datos de conexión y listo. Sin migración.",
   "how-step2-title": "Pregunta",
   "how-step2-desc": "Haz preguntas sobre tu negocio en lenguaje natural, igual que le preguntarías a un consultor senior. O para empezar usa alguna de las consultas recomendadas a partir de tus datos.",
   "how-step3-title": "Decide",
@@ -28,7 +28,7 @@
   "capabilities-section-title": "Confianza y exportación incluidas",
 
   "f1-title": "🧠 Preguntar y Guarda",
-  "f1-desc": "Haz cualquier pregunta sobre tu negocio en lenguaje natural — como se la harías a un asesor. Speak2DB consulta a la IA para obtener la información; luego guarda lo que funcionó y ejecútalo cuando quieras sin consultar a la IA — con resultados casi instantáneos. Organiza tus preguntas guardadas en las categorías que quieras — diarias, semanales, mensuales o como prefieras — y explora los resultados con análisis de negocio y validaciones de consistencia para tomar mejores decisiones.",
+  "f1-desc": "Haz cualquier pregunta sobre tu negocio en lenguaje natural — como se la harías a un asesor — ya sea que tus datos estén en planillas de Excel o en bases MySQL, PostgreSQL o MongoDB. Speak2DB consulta a la IA para obtener la información; luego guarda lo que funcionó y ejecútalo cuando quieras sin consultar a la IA — con resultados casi instantáneos. Organiza tus preguntas guardadas en las categorías que quieras y explora los resultados con análisis de negocio y validaciones de consistencia.",
 
 
   "f3-title": "🔔 Alertas",
@@ -44,20 +44,20 @@
   "f7-desc": "Speak2DB nunca modifica tus datos originales. Tus planillas y bases de datos quedan exactamente como están.",
 
   "f8-title": "📄 Reportes en Excel y CSV",
-  "f8-desc": "Exporta resultados con un clic, incluyendo gráficos que tu equipo y tus socios pueden abrir y compartir al instante.",
+  "f8-desc": "Empieza desde tu Excel actual y exporta resultados con un clic, incluyendo gráficos que tu equipo puede abrir y compartir al instante. Sin migración — escala a bases de datos cuando lo necesites.",
 
   "cta-button": "Únete a la Beta Abierta",
   "footer-copy": "© 2026 Speak2DB. Todos los derechos reservados.",
 
   "who-title": "¿Quién usa Speak2DB?",
   "who-subtitle": "Dueños y gerentes que necesitan decisiones, no solo dashboards.",
-  "who-explanation": "Speak2DB traduce los datos del negocio en recomendaciones prácticas escritas para tomadores de decisiones, no para analistas. En lugar de mostrar simplemente gráficos, explica qué está pasando, por qué importa, qué podría pasar después y qué acciones conviene considerar. Todo en un lenguaje que los dueños y gerentes pueden entender.",
+  "who-explanation": "Speak2DB traduce los datos del negocio en recomendaciones prácticas escritas para tomadores de decisiones, no para analistas. Empieza desde los Excel que ya usas y escala a MySQL, PostgreSQL o MongoDB sin migración. En lugar de mostrar simplemente gráficos, explica qué está pasando, por qué importa, qué podría pasar después y qué acciones conviene considerar.",
 
   "who-card1-title": "🏭 Gerentes de Operaciones e Inventario",
-  "who-card1-profile": "Eres responsable de mantener el stock disponible y las operaciones funcionando, pero tus datos viven en planillas y sistemas desconectados.",
+  "who-card1-profile": "Eres responsable de mantener el stock disponible y las operaciones funcionando, pero tus datos viven en planillas de Excel y sistemas desconectados — justo donde ya trabajas.",
   "who-card1-pain-title": "Dolores diarios",
   "who-card1-pain1": "Horas revisando números a mano",
-  "who-card1-pain2": "Datos de inventario inconsistentes o desactualizados",
+  "who-card1-pain2": "Datos de inventario en Excel inconsistentes, desactualizados entre versiones",
   "who-card1-pain3": "Los problemas aparecen cuando ya es demasiado tarde",
   "who-card1-help-title": "Cómo ayuda Speak2DB",
   "who-card1-help1": "Detecta quiebres de stock y anomalías automáticamente",

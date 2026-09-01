@@ -17,7 +17,7 @@
   "how-title": "How it works",
   "how-subtitle": "From raw data to a defensible decision in three steps.",
   "how-step1-title": "Connect",
-  "how-step1-desc": "Pick your data source type (Excel, MySQL, PostgreSQL or MongoDB), give it a name and fill in the connection details. That's it.",
+  "how-step1-desc": "Start with what you already have — Excel — or connect MySQL, PostgreSQL or MongoDB. Give it a name, fill in the connection details, and you're done. No migration needed.",
   "how-step2-title": "Ask",
   "how-step2-desc": "Ask questions about your business in plain language, the same way you would ask a senior consultant. Or get started with one of the recommended queries based on your data.",
   "how-step3-title": "Decide",
@@ -28,7 +28,7 @@
   "capabilities-section-title": "Built-in trust and export",
 
   "f1-title": "🧠 Ask & Save",
-  "f1-desc": "Ask any business question in plain language — just as you would ask a consultant. Speak2DB queries the AI to retrieve the information, then save what worked and re-run it anytime without querying the AI — with near-instant results. Organize your saved questions into the categories that fit your business — daily, weekly, monthly, or however you want — and explore results with business insights and data consistency analysis so you can make better decisions.",
+  "f1-desc": "Ask any business question in plain language — just as you would ask a consultant — whether your data is in Excel spreadsheets or MySQL, PostgreSQL or MongoDB databases. Speak2DB queries the AI to retrieve the information, then save what worked and re-run it anytime without querying the AI — with near-instant results. Organize your saved questions into the categories that fit your business and explore results with business insights and data consistency analysis.",
 
   "f3-title": "🔔 Alerts",
   "f3-desc": "Define the rules that matter to your business. Speak2DB watches your data and emails you when stock runs low, sales drop unexpectedly, or anomalies appear.",
@@ -43,20 +43,20 @@
   "f7-desc": "Speak2DB never modifies your original data. Your spreadsheets and databases stay exactly as they are.",
 
   "f8-title": "📄 Excel & CSV Reports",
-  "f8-desc": "Export results with one click, including charts your team and partners can open and share immediately.",
+  "f8-desc": "Start from your existing Excel file and export results with one click, including charts your team can open and share immediately. No migration needed — scale to databases when you're ready.",
 
   "cta-button": "Join the Open Beta",
   "footer-copy": "© 2026 Speak2DB. All rights reserved.",
 
   "who-title": "Who uses Speak2DB?",
   "who-subtitle": "Owners and managers who need decisions, not just dashboards.",
-  "who-explanation": "Speak2DB translates business data into practical recommendations written for decision makers — not data analysts. Instead of simply showing charts, it explains what is happening, why it matters, what could happen next, and which actions to consider. All in language business owners and managers can understand.",
+  "who-explanation": "Speak2DB translates business data into practical recommendations written for decision makers — not data analysts. Start from the Excel files you already use and scale to MySQL, PostgreSQL or MongoDB without migration. Instead of simply showing charts, it explains what is happening, why it matters, what could happen next, and which actions to consider.",
 
   "who-card1-title": "🏭 Operations & Inventory Managers",
-  "who-card1-profile": "You are responsible for keeping stock available and operations running, but your data lives in spreadsheets and disconnected systems.",
+  "who-card1-profile": "You are responsible for keeping stock available and operations running, but your data lives in Excel spreadsheets and disconnected systems — exactly where you already work.",
   "who-card1-pain-title": "Daily pain",
   "who-card1-pain1": "Hours spent checking figures manually",
-  "who-card1-pain2": "Inconsistent or outdated inventory data",
+  "who-card1-pain2": "Inconsistent Excel inventory data, outdated across versions",
   "who-card1-pain3": "Problems only surface when it is already too late",
   "who-card1-help-title": "How Speak2DB helps",
   "who-card1-help1": "Detects stock issues and anomalies automatically",

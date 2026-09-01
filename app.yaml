@@ -17,6 +17,11 @@ handlers:
   upload: i18n/([^/]+\.json)$
   expiration: "7d"
 
+- url: /(sitemap\.xml)$
+  static_files: \1
+  upload: (sitemap\.xml)$
+  expiration: "1h"
+
 - url: /
   static_files: index.html
   upload: index.html
