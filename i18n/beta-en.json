@@ -86,5 +86,6 @@
   "ERR_INTERNAL": "Internal server error. Please try again later.",
   "ERR_EMAIL_INV": "Invalid email address.",
   "ERR_MISSING_DATA": "Required data is missing.",
-  "ERR_CAPTCHA": "Security verification failed. Please try again."
+  "ERR_CAPTCHA": "Security verification failed. Please try again.",
+  "beta-privacy-notice": "By submitting this form, you agree to our Privacy Policy and DPA. This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply."
 }

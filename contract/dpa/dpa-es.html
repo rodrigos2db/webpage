@@ -6,8 +6,8 @@
 </head>
 <body>
   <h1>Acuerdo de Tratamiento de Datos (DPA)</h1>
-  <p><strong>Versión:</strong> 1.0</p>
-  <p><strong>Última actualización:</strong> 22 de junio de 2026</p>
+  <p><strong>Versión:</strong> 1.1</p>
+  <p><strong>Última actualización:</strong> 16 de septiembre de 2026</p>
   <p>
     Este Acuerdo de Tratamiento de Datos ("DPA") forma parte de los
     <a href="../tos/terms-es.html">Términos de Servicio</a> (el "Contrato")
@@ -56,7 +56,7 @@
       limitadas de datos para interpretar consultas en lenguaje natural y generar respuestas de IA.</li>
     <li>Autenticación de la identidad del Responsable y gestión de su licencia.</li>
     <li>Envío de comunicaciones esenciales del servicio.</li>
-    <li>Garantía de la seguridad e integridad de la plataforma.</li>
+    <li>Garantía de la seguridad e integridad de la plataforma (incluyendo protección antibot y rate limiting).</li>
   </ul>
 
   <h2>3. Categorías de Datos Personales</h2>
@@ -72,13 +72,23 @@
     <tbody>
       <tr>
         <td>Datos de Identidad</td>
-        <td>Nombre completo, cargo, empresa, email, país</td>
-        <td>Proporcionados por el Responsable durante el registro</td>
+        <td>Nombre completo, cargo, empresa, email, país, URL de perfil de LinkedIn (opcional)</td>
+        <td>Proporcionados por el Responsable durante la solicitud de acceso beta (landing)</td>
+      </tr>
+      <tr>
+        <td>Datos de Autenticación</td>
+        <td>Email, token de verificación / OTP, JWT y refresh tokens (hasheados en reposo), identificador de dispositivo (hash derivado de hardware), estado de trial y versión de token</td>
+        <td>Proporcionados por el Responsable (app de escritorio, add-in); el identificador se deriva en el dispositivo</td>
       </tr>
       <tr>
         <td>Datos Técnicos</td>
-        <td>Dirección IP, identificador de dispositivo</td>
+        <td>Dirección IP, IP de Cloudflare, user-agent, versión/plataforma de la app, evaluación reCAPTCHA/Turnstile, versión de consentimiento, preferencia de idioma, ID anónimo de dispositivo (add-in)</td>
         <td>Recopilados automáticamente</td>
+      </tr>
+      <tr>
+        <td>Datos de Uso del Servicio</td>
+        <td>Archivo Excel subido en la demo (transitorio, ~10 min), esquema de sesión, registro opt-in de demo (email, idioma, origen), contadores mensuales de cuota del add-in e IDs de operación, contadores de rate-limit por IP</td>
+        <td>Proporcionados por el Responsable (carga de archivo, consultas) o derivados del uso</td>
       </tr>
       <tr>
         <td>Metadatos de BD</td>
@@ -87,13 +97,18 @@
       </tr>
       <tr>
         <td>Muestras de Datos</td>
-        <td>Fragmentos limitados de registros necesarios para identificar patrones</td>
+        <td>Fragmentos limitados de registros y hasta 50 filas de muestra para funciones de Insights/consistencia, necesarios para identificar patrones</td>
         <td>Proporcionados por la conexión a la BD del Responsable</td>
       </tr>
       <tr>
         <td>Metadatos Estadísticos</td>
         <td>Resúmenes de valores, distribuciones, frecuencias</td>
         <td>Derivados de la BD del Responsable</td>
+      </tr>
+      <tr>
+        <td>Datos de Soporte</td>
+        <td>Correo, descripción y ZIP de logs locales (solo cuando el Responsable elige "Enviar Logs"; cadenas de conexión redactadas)</td>
+        <td>Proporcionados voluntariamente por el Responsable</td>
       </tr>
     </tbody>
   </table>
@@ -108,7 +123,7 @@
       contienen datos personales de terceros, el Responsable garantiza que cuenta
       con la base legal necesaria para compartir dichos datos con el Encargado.</li>
     <li><strong>Empleados o representantes del Responsable</strong> — email, nombre,
-      cargo, identificador de dispositivo para la licencia.</li>
+      cargo, empresa, país, URL de LinkedIn, identificador de dispositivo para la licencia.</li>
   </ul>
 
   <h2>5. Obligaciones del Encargado</h2>
@@ -146,10 +161,15 @@
   </p>
   <ul>
     <li>DeepSeek AI (China / internacional) — Inferencia LLM (v4-pro, v4-flash, directo vía proxy de Speak2DB, cumple ZDR).</li>
-    <li>Google LLC (EE.UU. / UE) — Inferencia LLM (Gemini vía Vertex AI, directo vía proxy de Speak2DB) e infraestructura cloud.</li>
+    <li>Google LLC (EE.UU. / UE) — Inferencia LLM (gemini-3.5-flash vía Vertex AI, directo vía proxy de Speak2DB) e infraestructura cloud.</li>
     <li>OpenRouter, Inc. (EE.UU.) — Agregación y enrutamiento de LLM (ZDR activado).</li>
     <li>Zhipu AI / z-ai (China / internacional) — Inferencia LLM (z-ai/glm-5.2 vía OpenRouter).</li>
-    <li>DeepSeek AI (China / internacional) — Inferencia LLM (deepseek-v4-flash vía OpenRouter).</li>
+    <li>DeepSeek AI (China / internacional) — Inferencia LLM (deepseek-v4-flash-latest vía OpenRouter).</li>
+    <li>OpenAI, LLC (EE.UU.) — Inferencia LLM (openai/gpt-5.6-luna vía OpenRouter).</li>
+    <li>Brevo SAS (UE / Francia) — Email transaccional (verificación, OTP, soporte) y marketing opt-in.</li>
+    <li>Cloudflare, Inc. (EE.UU.) — Protección antibot y seguridad (Turnstile; autenticación de origen).</li>
+    <li>Upstash, Inc. (EE.UU.) — Rate limiting (Redis) para cuotas anónimas y autenticadas.</li>
+    <li>Google LLC (EE.UU.) — reCAPTCHA v3 para prevención de fraude en formularios de solicitud y descarga beta.</li>
   </ul>
   <p>
     La lista actual con políticas de retención y jurisdicciones se mantiene en

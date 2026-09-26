@@ -6,9 +6,10 @@
   <title>Privacy Policy - Speak2DB</title>
 </head>
 
-<body data-version="2.0" data-last-updated="2026-06-22">
+<body data-version="3.0" data-last-updated="2026-09-16">
   <h1>Speak2DB Privacy Policy</h1>
-  <p><strong>Last updated:</strong> June 27, 2026</p>
+  <p><strong>Last updated:</strong> September 16, 2026</p>
+  <p><strong>Version:</strong> 3.0</p>
 
   <h2>1. Data Controller</h2>
   <p>
@@ -21,29 +22,64 @@
   </p>
 
   <h2>2. Information We Collect</h2>
-  <p>Speak2DB collects and processes the following categories of information:</p>
+  <p>
+    Speak2DB offers its service through several channels. The categories below describe
+    what we collect <strong>per channel</strong>. The same LLM infrastructure is used
+    across all channels (see <a href="subprocessors-en.html">Sub-processor List</a> and
+    <a href="ai-disclosure-en.html">AI Disclosure</a>).
+  </p>
 
-  <h3>2.1. Registration Data (Trial/Beta Request)</h3>
-  <p>When you register to request access to the software, we collect:</p>
+  <h3>2.1. Beta Access Request — Landing Page (speak2db.com/beta.html)</h3>
+  <p>When you request access to the limited beta through our landing page, we collect:</p>
   <ul>
     <li>Full name</li>
-    <li>Role or position</li>
+    <li>Corporate email address</li>
     <li>Company or organization</li>
-    <li>Email address</li>
+    <li>Role or position (e.g., Inventory Manager, Sales Manager, HR Manager, Operations, IT, Other)</li>
     <li>Country</li>
-    <li>IP address (collected automatically)</li>
-    <li>Registration date (collected automatically)</li>
+    <li>LinkedIn profile URL (optional)</li>
+    <li>IP address, user-agent and Cloudflare IP (collected automatically for fraud prevention)</li>
+    <li>reCAPTCHA v3 assessment (Google) and Turnstile verification where applicable</li>
+    <li>Registration date and status (pending / approved / rejected)</li>
   </ul>
+  <p>
+    This data is stored in Firestore (<code>beta_requests/{email}</code> and upon approval
+    <code>beta_testers/{email}</code>) and is administered through an internal back-office.
+    Approval generates a time-limited beta token sent to your email.
+  </p>
 
-  <h3>2.2. Data During Active Use of the Software</h3>
-  <p>Once approved and using the application, we process:</p>
+  <h3>2.2. Desktop App — Active Use (Windows beta)</h3>
+  <p>Once approved and using the desktop application, we process:</p>
   <ul>
-    <li>Email address (for authentication and account identification)</li>
-    <li>Device identifier (generated from hardware characteristics of your machine)</li>
-    <li>Dashboard data</li>
+    <li>Email address (authentication and account identification)</li>
+    <li>One-time verification token and derived session tokens (JWT / refresh token, hashed at rest)</li>
+    <li>Device identifier — a hash derived from hardware characteristics of your machine (e.g., motherboard serial + CPU ID), used solely for license binding</li>
+    <li>Trial status, license state and token version</li>
+    <li>App version and platform (collected via version-check endpoint for update delivery and aggregated telemetry)</li>
+    <li>Support logs — only if you choose "Send Logs": your email, description and a ZIP of local logs. Connection strings and secrets are redacted before sending; logs are deleted after the support case is resolved</li>
+    <li>Local encrypted storage only — account tokens in an OS-level vault (Stronghold) and connection settings in an AES-encrypted file under your user directory; not transmitted except as above</li>
   </ul>
 
-  <h3>2.3. Technical Data Processed by the AI Service</h3>
+  <h3>2.3. Web Demo (demo.speak2db.com)</h3>
+  <p>The web demo is a stateless trial without account creation:</p>
+  <ul>
+    <li>Uploaded Excel file (.xlsx) — stored transiently in Google Cloud Storage and automatically deleted ~10 minutes after upload; schema (sheet/column names and types) is held in a short-lived session for query processing</li>
+    <li>Session metadata (schema, language, consent version, IP address) in Firestore with a ~10-minute TTL; IP-based daily query counter (retained up to 30 days for abuse prevention, then deleted)</li>
+    <li>Opt-in email (optional, dismissible) — if you subscribe, your email, language and source ("demo") are stored in <code>demo_subscribers/{email}</code> and added to our Brevo contact list for product updates (only with explicit consent; you may unsubscribe at any time)</li>
+    <li>Cookie consent preference (<code>s2db_cookie_consent</code>) and language preference, stored locally in your browser</li>
+  </ul>
+
+  <h3>2.4. Excel Add-in (Microsoft Office)</h3>
+  <p>The Excel add-in operates in metadata-only mode:</p>
+  <ul>
+    <li>Email address and one-time OTP code (6 characters) for authentication; session tokens (JWT / refresh token) stored in Office roaming settings / local storage</li>
+    <li>Consent version and anonymous device identifier (<code>speak2db.anonid.v1</code>) for anonymous rate limiting</li>
+    <li>Database metadata sent to the backend — sheet/column names, data types and relationships; for Insights/consistency features, limited statistical summaries and up to 50 sample rows; the workbook contents never leave your device outside these scoped payloads</li>
+    <li>Monthly usage counters per email (<code>addin_monthly_usage/{email__YYYY-MM}</code>, limit 40 queries/month) and operation IDs for quota enforcement</li>
+    <li>Local telemetry counters (query counts, rate-limit state) and query history stored inside the Excel document properties — no personal data leaves the device</li>
+  </ul>
+
+  <h3>2.5. Technical Data Processed by the AI Service</h3>
   <p>
     As described in our <a href="../tos/terms-en.html">Terms of Service</a> and
     <a href="ai-disclosure-en.html">AI Disclosure</a>,
@@ -60,7 +96,7 @@
     and is not used for profiling or marketing purposes.
   </p>
 
-  <h3>2.4. Zero Data Retention (ZDR)</h3>
+  <h3>2.6. Zero Data Retention (ZDR)</h3>
   <p>
     <strong>All AI providers used by Speak2DB comply with Zero Data Retention (ZDR).</strong>
     This means your data is never stored, retained, or used for training by any provider.
@@ -77,7 +113,7 @@
     For details, see our <a href="subprocessors-en.html">Sub-processor List</a>.
   </p>
 
-  <h3>2.5. Direct Provider Mode (BYOK)</h3>
+  <h3>2.7. Direct Provider Mode (BYOK)</h3>
   <p>
     Speak2DB offers an optional <strong>Direct Provider Mode</strong> that allows you
     to connect using your own third-party API credentials (currently OpenAI and DeepSeek).
@@ -104,7 +140,11 @@
     </thead>
     <tbody>
       <tr>
-        <td>Registration and account creation</td>
+        <td>Registration and account creation (beta request, add-in OTP)</td>
+        <td>Consent of the data subject</td>
+      </tr>
+      <tr>
+        <td>Demo file upload and session handling</td>
         <td>Consent of the data subject</td>
       </tr>
       <tr>
@@ -116,12 +156,16 @@
         <td>Performance of a contract</td>
       </tr>
       <tr>
-        <td>Sending promotional or informational communications</td>
+        <td>Sending promotional or informational communications (Brevo list)</td>
         <td>Explicit consent of the data subject</td>
       </tr>
       <tr>
         <td>Device identification for license management</td>
         <td>Performance of a contract</td>
+      </tr>
+      <tr>
+        <td>Fraud/abuse prevention (reCAPTCHA, Turnstile, rate limiting, IP counters)</td>
+        <td>Legitimate interest</td>
       </tr>
       <tr>
         <td>Compliance with legal obligations</td>
@@ -134,11 +178,12 @@
   <p>Your personal data is used for the following purposes:</p>
   <ul>
     <li>Evaluating and approving access requests to the software.</li>
-    <li>Authenticating your identity and managing your license.</li>
+    <li>Authenticating your identity and managing your license (including add-in OTP and desktop device binding).</li>
+    <li>Operating the web demo and Excel add-in (session handling, quota enforcement, abuse prevention).</li>
     <li>Essential communications related to the service (e.g., subscription expiration, security alerts).</li>
     <li>Sending promotional communications or product updates <strong>only with your
         explicit prior consent</strong>. You may withdraw this consent at any time.</li>
-    <li>Ensuring the security and integrity of the platform through device identification.</li>
+    <li>Ensuring the security and integrity of the platform through device identification and bot-protection (reCAPTCHA, Turnstile, rate limiting).</li>
   </ul>
 
   <h2>5. Data Sharing and Third Parties</h2>
@@ -157,17 +202,17 @@
     <tbody>
       <tr>
         <td>DeepSeek API</td>
-        <td>LLM inference (v4-pro, v4-flash) — direct via Speak2DB proxy (ZDR-compliant)</td>
+        <td>LLM inference (deepseek-v4-pro, deepseek-v4-flash) — direct via Speak2DB proxy (ZDR-compliant)</td>
         <td>China / international endpoints</td>
       </tr>
       <tr>
         <td>Google Vertex AI</td>
-        <td>LLM inference (gemini-2.5-flash, gemini-2.5-pro) — direct via Speak2DB proxy (ZDR-compliant)</td>
+        <td>LLM inference (gemini-3.5-flash) — direct via Speak2DB proxy (ZDR-compliant)</td>
         <td>United States / European Union</td>
       </tr>
       <tr>
         <td>OpenRouter (LLM Aggregator)</td>
-        <td>Routing queries to z-ai/glm-5.2, deepseek providers, and others (ZDR enabled)</td>
+        <td>Routing queries to z-ai/glm-5.2, openai/gpt-5.6-luna, deepseek and others (ZDR enabled)</td>
         <td>United States</td>
       </tr>
       <tr>
@@ -177,12 +222,37 @@
       </tr>
       <tr>
         <td>DeepSeek (via OpenRouter)</td>
-        <td>LLM inference (deepseek-v4-flash) via OpenRouter</td>
+        <td>LLM inference (deepseek-v4-flash-latest) via OpenRouter</td>
         <td>China / international endpoints</td>
+      </tr>
+      <tr>
+        <td>OpenAI (via OpenRouter)</td>
+        <td>LLM inference (openai/gpt-5.6-luna) via OpenRouter</td>
+        <td>United States</td>
       </tr>
       <tr>
         <td>Cloud Infrastructure (Google Cloud)</td>
         <td>Hosting, backend processing, and request routing</td>
+        <td>United States</td>
+      </tr>
+      <tr>
+        <td>Brevo (Sendinblue)</td>
+        <td>Transactional email (verification, OTP, support) and opt-in marketing list (language + source)</td>
+        <td>European Union (France)</td>
+      </tr>
+      <tr>
+        <td>Cloudflare</td>
+        <td>Bot protection and security (Turnstile on demo/add-in; origin authentication)</td>
+        <td>United States</td>
+      </tr>
+      <tr>
+        <td>Upstash Redis</td>
+        <td>Rate limiting (anonymous and authenticated quotas) — IP and email counters</td>
+        <td>United States</td>
+      </tr>
+      <tr>
+        <td>Google reCAPTCHA</td>
+        <td>Fraud prevention on beta request and download forms (score-based, v3)</td>
         <td>United States</td>
       </tr>
     </tbody>
@@ -203,8 +273,8 @@
     Your data may be transferred to and processed in countries outside Chile, including:
   </p>
   <ul>
-    <li><strong>United States</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter.</li>
-    <li><strong>European Union</strong> — Google Vertex AI EU endpoints.</li>
+    <li><strong>United States</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter, OpenAI (via OpenRouter), Cloudflare, Upstash, Google reCAPTCHA.</li>
+    <li><strong>European Union</strong> — Google Vertex AI EU endpoints; Brevo (France, under GDPR adequacy).</li>
     <li><strong>China / International</strong> — DeepSeek API (direct) and providers via OpenRouter (z-ai/glm-5.2, deepseek). All ZDR-compliant.</li>
   </ul>
   <p>
@@ -229,13 +299,17 @@
   <h2>7. Data Retention</h2>
   <p>We retain your data for the following periods:</p>
   <ul>
-    <li><strong>Registration data:</strong> For the duration of your account and up to 30 days after deletion request.</li>
+    <li><strong>Beta request data (landing page):</strong> Until approval/rejection and for the duration of your account; if you request deletion, we delete within 30 days unless retention is required by law. The beta token expires per the approval email; download count is tracked with a limited number of uses.</li>
+    <li><strong>Desktop app account data (email, device identifier, trial state):</strong> For the duration of your active license and up to 30 days after deletion request.</li>
+    <li><strong>Web demo — uploaded Excel and session:</strong> File and session metadata are deleted automatically ~10 minutes after upload. IP-based daily counters are retained up to 30 days for abuse prevention, then deleted by a scheduled job.</li>
+    <li><strong>Web demo — opt-in subscribers:</strong> Retained until you unsubscribe or request deletion (Brevo list + Firestore record).</li>
+    <li><strong>Add-in — monthly quota counters:</strong> Per-email counters reset monthly; operation IDs and counters are retained per billing period for quota enforcement.</li>
     <li><strong>Query processing data (database metadata, samples):</strong> <strong>Not stored.</strong>
       Data is processed in real-time and discarded immediately after the response is generated. It is not
       persisted in any database, file system, or log.</li>
     <li><strong>Device identifier:</strong> For the duration of your active license.</li>
     <li><strong>Statistical records:</strong> Only aggregated, anonymous data is retained (query volume,
-      response times, error rates) for service improvement purposes.</li>
+      response times, error rates) for service improvement purposes; Cloud metrics up to 90 days.</li>
     <li><strong>Support logs:</strong> Optionally sent by the user, they exclude all database connection
       parameters, and are deleted once the support case is resolved.</li>
   </ul>

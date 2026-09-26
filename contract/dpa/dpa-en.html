@@ -6,8 +6,8 @@
 </head>
 <body>
   <h1>Data Processing Agreement (DPA)</h1>
-  <p><strong>Version:</strong> 1.0</p>
-  <p><strong>Last updated:</strong> June 22, 2026</p>
+  <p><strong>Version:</strong> 1.1</p>
+  <p><strong>Last updated:</strong> September 16, 2026</p>
   <p>
     This Data Processing Agreement ("DPA") forms part of the
     <a href="../tos/terms-en.html">Terms of Service</a> (the "Agreement")
@@ -56,7 +56,7 @@
       to interpret natural-language queries and generate AI responses.</li>
     <li>Authenticating the Controller's identity and managing their license.</li>
     <li>Sending essential service communications.</li>
-    <li>Ensuring the security and integrity of the platform.</li>
+    <li>Ensuring the security and integrity of the platform (including fraud and bot protection, and rate limiting).</li>
   </ul>
 
   <h2>3. Categories of Personal Data</h2>
@@ -72,13 +72,23 @@
     <tbody>
       <tr>
         <td>Identity Data</td>
-        <td>Full name, role, company, email, country</td>
-        <td>Provided by Controller during registration</td>
+        <td>Full name, role, company, email, country, LinkedIn profile URL (optional)</td>
+        <td>Provided by Controller during beta access request (landing page)</td>
+      </tr>
+      <tr>
+        <td>Authentication Data</td>
+        <td>Email, verification token / OTP, JWT and refresh tokens (hashed at rest), device identifier (hardware-derived hash), trial and token version state</td>
+        <td>Provided by Controller (desktop app, add-in); device identifier derived on device</td>
       </tr>
       <tr>
         <td>Technical Data</td>
-        <td>IP address, device identifier</td>
+        <td>IP address, Cloudflare IP, user-agent, app version/platform, reCAPTCHA/Turnstile assessment, consent version, language preference, anonymous device ID (add-in)</td>
         <td>Collected automatically</td>
+      </tr>
+      <tr>
+        <td>Service Usage Data</td>
+        <td>Demo uploaded Excel file (transient, ~10 min), session schema, demo_subscribers opt-in record (email, language, source), add-in monthly quota counters and operation IDs, IP-based rate-limit counters</td>
+        <td>Provided by Controller (file upload, queries) or derived from usage</td>
       </tr>
       <tr>
         <td>Database Metadata</td>
@@ -87,13 +97,18 @@
       </tr>
       <tr>
         <td>Data Samples</td>
-        <td>Limited fragments of records necessary for pattern identification</td>
+        <td>Limited fragments of records and up to 50 sample rows for Insights/consistency features, necessary for pattern identification</td>
         <td>Provided by Controller's database connection</td>
       </tr>
       <tr>
         <td>Statistical Metadata</td>
         <td>Value summaries, distributions, frequencies</td>
         <td>Derived from Controller's database</td>
+      </tr>
+      <tr>
+        <td>Support Data</td>
+        <td>Email, description and ZIP of local logs (only when Controller chooses "Send Logs"; connection strings redacted)</td>
+        <td>Provided by Controller voluntarily</td>
       </tr>
     </tbody>
   </table>
@@ -107,7 +122,7 @@
       of third parties, the Controller warrants it has the necessary legal basis
       to share such data with the Processor.</li>
     <li><strong>Controller's employees or representatives</strong> — email, name,
-      role, device identifier for licensing.</li>
+      role, company, country, LinkedIn URL, device identifier for licensing.</li>
   </ul>
 
   <h2>5. Processor's Obligations</h2>
@@ -144,11 +159,16 @@
     sub-processors to provide the service:
   </p>
   <ul>
-    <li>DeepSeek AI (China / international) — LLM inference (v4-pro, v4-flash, direct via Speak2DB proxy, ZDR-compliant).</li>
-    <li>Google LLC (USA / EU) — LLM inference (Gemini via Vertex AI, direct via Speak2DB proxy) and cloud infrastructure.</li>
+    <li>DeepSeek AI (China / international) — LLM inference (deepseek-v4-pro, deepseek-v4-flash, direct via Speak2DB proxy, ZDR-compliant).</li>
+    <li>Google LLC (USA / EU) — LLM inference (gemini-3.5-flash via Vertex AI, direct via Speak2DB proxy) and cloud infrastructure.</li>
     <li>OpenRouter, Inc. (USA) — LLM aggregation and routing (ZDR enabled).</li>
     <li>Zhipu AI / z-ai (China / international) — LLM inference (z-ai/glm-5.2 via OpenRouter).</li>
-    <li>DeepSeek AI (China / international) — LLM inference (deepseek-v4-flash via OpenRouter).</li>
+    <li>DeepSeek AI (China / international) — LLM inference (deepseek/deepseek-v4-flash-latest via OpenRouter).</li>
+    <li>OpenAI, LLC (USA) — LLM inference (openai/gpt-5.6-luna via OpenRouter).</li>
+    <li>Brevo SAS (EU / France) — Transactional email (verification, OTP, support) and opt-in marketing.</li>
+    <li>Cloudflare, Inc. (USA) — Bot protection and security (Turnstile; origin authentication).</li>
+    <li>Upstash, Inc. (USA) — Rate limiting (Redis) for anonymous and authenticated quotas.</li>
+    <li>Google LLC (USA) — reCAPTCHA v3 for fraud prevention on beta request and download forms.</li>
   </ul>
   <p>
     The current list with retention policies and jurisdictions is maintained at

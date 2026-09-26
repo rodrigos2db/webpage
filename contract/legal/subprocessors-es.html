@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <title>Lista de Sub-procesadores - Speak2DB</title>
 </head>
-<body data-version="3.0" data-last-updated="2026-06-27">
+<body data-version="4.0" data-last-updated="2026-09-16">
   <h1>Lista de Sub-procesadores de Speak2DB</h1>
-  <p><strong>Última actualización:</strong> 27 de junio de 2026</p>
-  <p><strong>Versión:</strong> 3.0</p>
+  <p><strong>Última actualización:</strong> 16 de septiembre de 2026</p>
+  <p><strong>Versión:</strong> 4.0</p>
 
   <h2>1. ¿Qué es un Sub-procesador?</h2>
   <p>
@@ -53,7 +53,7 @@
         <td><strong>Google Vertex AI</strong></td>
         <td>Google LLC<br/>EE.UU. / UE</td>
         <td>Inferencia LLM — API enterprise directa</td>
-        <td>gemini-2.5-flash<br/>gemini-2.5-pro</td>
+        <td>gemini-3.5-flash</td>
         <td>Retención cero (API Vertex AI)</td>
         <td>DPA, retención cero, sin entrenamiento</td>
       </tr>
@@ -62,18 +62,72 @@
         <td><strong>OpenRouter</strong></td>
         <td>OpenRouter, Inc.<br/>EE.UU.</td>
         <td>Agregador y enrutador de LLM (ZDR activado)</td>
-        <td>Múltiples proveedores incluyendo z-ai/glm-5.2, deepseek-v4-flash (ver abajo)</td>
+        <td>Múltiples proveedores incluyendo z-ai/glm-5.2, openai/gpt-5.6-luna, deepseek-v4-flash (ver abajo)</td>
         <td>Retención cero según DPA; logs transitorios para facturación/abuso</td>
         <td>DPA, configuración ZDR, cláusula de no-entrenamiento</td>
+      </tr>
+
+      <tr>
+        <td><strong>z-ai (GLM) (vía OpenRouter)</strong></td>
+        <td>Zhipu AI / z-ai<br/>China / endpoints internacionales</td>
+        <td>Inferencia LLM vía OpenRouter</td>
+        <td>z-ai/glm-5.2</td>
+        <td>Retención cero según DPA de OpenRouter</td>
+        <td>ZDR vía OpenRouter, cláusula de no-entrenamiento</td>
       </tr>
 
       <tr>
         <td><strong>DeepSeek (vía OpenRouter)</strong></td>
         <td>DeepSeek AI<br/>China / endpoints internacionales</td>
         <td>Inferencia LLM vía OpenRouter</td>
-        <td>deepseek/deepseek-v4-flash</td>
+        <td>deepseek/deepseek-v4-flash-latest</td>
         <td>Retención cero según DPA de OpenRouter</td>
         <td>ZDR vía OpenRouter, cláusula de no-entrenamiento</td>
+      </tr>
+
+      <tr>
+        <td><strong>OpenAI (vía OpenRouter)</strong></td>
+        <td>OpenAI, LLC<br/>EE.UU.</td>
+        <td>Inferencia LLM vía OpenRouter</td>
+        <td>openai/gpt-5.6-luna</td>
+        <td>Retención cero según DPA de OpenRouter</td>
+        <td>ZDR vía OpenRouter, cláusula de no-entrenamiento</td>
+      </tr>
+
+      <tr>
+        <td><strong>Brevo (Sendinblue)</strong></td>
+        <td>Brevo SAS<br/>UE (Francia)</td>
+        <td>Email transaccional (verificación, OTP, soporte) y lista de marketing opt-in</td>
+        <td>—</td>
+        <td>Contactos de marketing hasta baja o solicitud de eliminación; logs transaccionales según DPA de Brevo</td>
+        <td>DPA, cumplimiento RGPD, cifrado en tránsito y reposo</td>
+      </tr>
+
+      <tr>
+        <td><strong>Cloudflare</strong></td>
+        <td>Cloudflare, Inc.<br/>EE.UU.</td>
+        <td>Protección antibot y seguridad (Turnstile en demo/add-in; autenticación de origen)</td>
+        <td>—</td>
+        <td>Sin persistencia del contenido de formularios; tokens Turnstile transitorios</td>
+        <td>DPA, SOC 2, cifrado</td>
+      </tr>
+
+      <tr>
+        <td><strong>Upstash</strong></td>
+        <td>Upstash, Inc.<br/>EE.UU.</td>
+        <td>Rate limiting (Redis) — cuotas anónimas y autenticadas (contadores por IP y por email)</td>
+        <td>—</td>
+        <td>Contadores hasta 30 días (límites por IP en demo) o por período de facturación (cuotas del add-in), luego eliminados</td>
+        <td>DPA, cifrado en tránsito y reposo</td>
+      </tr>
+
+      <tr>
+        <td><strong>Google reCAPTCHA</strong></td>
+        <td>Google LLC<br/>EE.UU.</td>
+        <td>Prevención de fraude en formularios de solicitud y descarga beta (v3 basado en scoring)</td>
+        <td>—</td>
+        <td>Según Política de Privacidad y Términos de Google; scores transitorios, no vinculados al procesamiento LLM</td>
+        <td>DPA de Google, <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidad de Google</a> y <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Términos</a></td>
       </tr>
     </tbody>
   </table>
@@ -87,7 +141,7 @@
       el backend de Speak2DB a DeepSeek API y Google Vertex AI. Todos los proveedores directos
       cumplen ZDR y están sujetos a acuerdos de tratamiento de datos con términos contractuales
       de retención cero y no-entrenamiento.</li>
-    <li><strong>Ruta OpenRouter (ZDR):</strong> Las consultas para z-ai/glm-5.2 y proveedores
+    <li><strong>Ruta OpenRouter (ZDR):</strong> Las consultas para z-ai/glm-5.2, openai/gpt-5.6-luna y proveedores
       adicionales de deepseek se enrutan a través de OpenRouter (EE.UU.). OpenRouter está
       configurado con <strong>Retención Cero de Datos (ZDR)</strong>, lo que impide que los
       proveedores downstream retengan o entrenen con sus datos. Se pueden agregar más proveedores
@@ -102,8 +156,8 @@
   <h2>4. Transferencias Internacionales y Salvaguardas</h2>
   <p>Los sub-procesadores pueden procesar datos en las siguientes jurisdicciones:</p>
   <ul>
-    <li><strong>Estados Unidos</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter (agregador).</li>
-    <li><strong>Unión Europea</strong> — endpoints de Google Vertex AI en la UE, bajo adecuación del RGPD.</li>
+    <li><strong>Estados Unidos</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter (agregador), OpenAI (vía OpenRouter), Cloudflare, Upstash, Google reCAPTCHA.</li>
+    <li><strong>Unión Europea</strong> — endpoints de Google Vertex AI en la UE (bajo adecuación del RGPD); Brevo (Francia, RGPD).</li>
     <li><strong>China / Internacional</strong> — DeepSeek API (directo) y proveedores enrutados
       a través de OpenRouter (z-ai/glm-5.2, deepseek vía OpenRouter). Todos están protegidos por:
       <ul>

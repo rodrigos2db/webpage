@@ -86,5 +86,6 @@
   "ERR_INTERNAL": "Error interno del servidor. Inténtalo más tarde.",
   "ERR_EMAIL_INV": "Dirección de correo electrónico inválida.",
   "ERR_MISSING_DATA": "Faltan datos requeridos.",
-  "ERR_CAPTCHA": "Verificación de seguridad fallida. Por favor intenta de nuevo."
+  "ERR_CAPTCHA": "Verificación de seguridad fallida. Por favor intenta de nuevo.",
+  "beta-privacy-notice": "Al enviar este formulario, aceptas nuestra Política de Privacidad y el DPA. Este sitio está protegido por reCAPTCHA y se aplican la Política de Privacidad y los Términos de Servicio de Google."
 }
