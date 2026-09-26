@@ -1,53 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <title>Términos de Servicio - Speak2DB</title>
 </head>
-<body>
-  <h1>Términos de Servicio de Speak2DB</h1>
-  <p><strong>Última actualización:</strong> 1 de septiembre de 2025</p>
 
-  <h2>1. Descripción del servicio</h2>
+<body data-version="2.0" data-last-updated="2026-06-22">
+  <h1>Términos de Servicio de Speak2DB</h1>
+  <p><strong>Última actualización:</strong> 27 de junio de 2026</p>
+
+  <h2>1. Identidad del Prestador del Servicio</h2>
   <p>
-    Speak2DB es una aplicación que permite realizar consultas en lenguaje natural
-    sobre la <strong>estructura de bases de datos</strong>. La aplicación utiliza
-    inteligencia artificial para interpretar dichas consultas y generar resultados
-    basados únicamente en la información de la estructura de la base (tablas,
-    columnas, relaciones, etc.).
+    Speak2DB es operado por <strong>SPEAK2DB SpA</strong>, RUT 78.279.953-3, con domicilio en Santiago, Chile.
+  </p>
+  <p>
+    Para cualquier consulta relacionada con estos términos, puede contactarnos en:
+    <a href="mailto:info@speak2db.com">info@speak2db.com</a>.
   </p>
 
-  <h2>2. Uso del servicio</h2>
+  <h2>2. Descripción del Servicio</h2>
+  <p>
+    Speak2DB es una plataforma de análisis de datos que permite realizar consultas en lenguaje natural.
+    La aplicación utiliza modelos de inteligencia artificial para interpretar el esquema, las relaciones
+    y el contexto de la información para generar resultados accionables.
+  </p>
+  <p>
+    Para información importante sobre cómo Speak2DB utiliza la IA, incluyendo las políticas de
+    Retención Cero de Datos (ZDR), los proveedores de modelos y sus derechos respecto al
+    procesamiento automatizado, consulte nuestra <a href="../legal/ai-disclosure-es.html">Declaración de IA</a>.
+  </p>
+  <p>
+    El servicio está destinado a usuarios mayores de 18 años o que hayan alcanzado la mayoría de edad
+    legal en su jurisdicción. Al utilizar el servicio, usted declara cumplir con este requisito.
+  </p>
+
+  <h2>3. Procesamiento de Información y Datos</h2>
+  <p>Para garantizar la precisión de las respuestas y la generación de métricas relevantes, Speak2DB procesa:</p>
   <ul>
-    <li>Usted es responsable del uso que haga de Speak2DB.</li>
-    <li>El servicio <strong>no accede ni procesa directamente los datos
-      contenidos en la base de datos</strong>, únicamente su estructura.</li>
-    <li>El usuario debe asegurarse de que el uso de Speak2DB cumpla con las leyes
-      y regulaciones aplicables.</li>
+    <li><strong>Estructura de la base de datos:</strong> Tablas, columnas, tipos de datos y relaciones.</li>
+    <li><strong>Muestras de datos:</strong> Fragmentos limitados de registros para identificar patrones de contenido.</li>
+    <li><strong>Metadatos estadísticos:</strong> Resúmenes de valores (mínimos, máximos, frecuencias) y distribuciones.</li>
+  </ul>
+  <p>
+    El usuario acepta que Speak2DB comparta esta información con proveedores de modelos de lenguaje (LLM)
+    bajo estrictos acuerdos de confidencialidad y acuerdos de procesamiento de datos, para el único propósito
+    de procesar la consulta.
+  </p>
+  <p>
+    Para información detallada sobre cómo tratamos sus datos, consulte nuestra
+    <a href="../legal/publicprivacy-es.html">Política de Privacidad</a>.
+  </p>
+
+  <h3>3.1. Flujo de Datos y Retención</h3>
+  <p>
+    Cuando usted envía una consulta, la aplicación transmite su solicitud (incluyendo los metadatos y
+    muestras de datos relevantes de la base de datos) a nuestro servicio backend alojado en Google Cloud.
+    Desde allí, la solicitud es reenviada a proveedores de IA para su procesamiento.
+    <strong>No se almacenan datos del usuario</strong> en ningún punto de este flujo. Los datos se procesan
+    en tiempo real y se descartan inmediatamente después de generar la respuesta. No se persisten en
+    ninguna base de datos, sistema de archivos ni registro (log).
+  </p>
+  <p>
+    Los logs del sistema no contienen ni exponen datos enviados por el usuario, parámetros de conexión a
+    bases de datos, ni contenido de consultas. Solo se conservan registros estadísticos agregados y
+    anónimos con fines de mejora del servicio (ej.: volumen de consultas, tiempos de respuesta, tasas de error).
+  </p>
+
+  <h3>3.2. Logs de Soporte Iniciados por el Usuario</h3>
+  <p>
+    El usuario puede opcionalmente enviar logs de diagnóstico a Speak2DB con fines de soporte técnico.
+    Estos logs se generan localmente en el dispositivo del usuario y <strong>excluyen cualquier parámetro
+    de conexión a bases de datos</strong> (credenciales, host, puerto, nombre de base de datos). Los logs
+    de soporte se utilizan exclusivamente para diagnosticar problemas y se eliminan una vez resuelto el
+    caso de soporte.
+  </p>
+
+  <h3>3.3. Transferencias Internacionales de Datos</h3>
+  <p>
+    Para prestar el servicio, sus datos pueden ser transferidos y procesados en países fuera de Chile,
+    incluyendo los Estados Unidos, donde operan nuestra infraestructura (Google Cloud) y proveedores de IA.
+    Dichas transferencias están protegidas por salvaguardas apropiadas, incluyendo cláusulas contractuales
+    y acuerdos de procesamiento de datos que aseguran un nivel adecuado de protección para sus datos
+    personales, en cumplimiento de la Ley 21.719 sobre Protección de Datos Personales de Chile.
+  </p>
+
+  <h2>4. Responsabilidad del Usuario y Privacidad</h2>
+  <ul>
+    <li>Usted es el único responsable del uso que haga de Speak2DB y de las consultas ejecutadas.</li>
+    <li><strong>Datos Sensibles:</strong> Es responsabilidad del usuario asegurarse de que las muestras de datos
+      compartidas no contengan información de identificación personal (PII), datos de salud, datos financieros,
+      o datos protegidos por leyes de privacidad específicas (incluyendo pero no limitándose a la Ley 21.719 de Chile,
+      RGPD, CCPA o LGPD), a menos que cuente con el consentimiento necesario y la base legal correspondiente
+      debidamente documentados.</li>
+    <li>El usuario garantiza que tiene los derechos legales y las autorizaciones necesarias para cargar o conectar
+      la base de datos al servicio.</li>
+    <li>El usuario no utilizará el servicio para ningún fin ilícito ni en violación de las leyes o regulaciones
+      aplicables.</li>
   </ul>
 
-  <h2>3. Limitación de responsabilidad</h2>
+  <h2>5. Propiedad Intelectual</h2>
   <p>
-    Speak2DB se proporciona “tal cual”, sin garantías de ningún tipo, expresas o
-    implícitas. No garantizamos que el servicio esté libre de errores,
-    interrupciones o vulnerabilidades.
+    El usuario conserva todos los derechos de propiedad sobre sus datos, bases de datos y cualquier
+    información cargada al servicio.
   </p>
   <p>
-    Speak2DB no será responsable por pérdidas de datos, daños indirectos,
-    incidentales o consecuentes derivados del uso del servicio.
+    Los resultados, análisis y productos generados por Speak2DB a partir de los datos del usuario son
+    propiedad del usuario. Speak2DB no retiene derechos de propiedad intelectual sobre los resultados
+    generados por el usuario.
   </p>
-
-  <h2>4. Modificaciones</h2>
   <p>
-    Nos reservamos el derecho de modificar, suspender o interrumpir el servicio,
-    así como de actualizar estos Términos de Servicio en cualquier momento. Los
-    cambios serán notificados a través de la aplicación o por correo electrónico.
+    La plataforma Speak2DB, incluyendo su software, algoritmos, marca e identidad visual, y documentación,
+    es propiedad intelectual exclusiva de Speak2DB.
   </p>
 
-  <h2>5. Aceptación</h2>
+  <h2>6. Limitación de Responsabilidad</h2>
   <p>
-    Al usar Speak2DB, usted confirma que ha leído, comprendido y aceptado estos
-    Términos de Servicio. Si no está de acuerdo, no debe utilizar la aplicación.
+    Speak2DB se proporciona "tal cual" y "según disponibilidad", sin garantías de ningún tipo, ya sean
+    expresas o implícitas, incluyendo pero no limitándose a garantías de comerciabilidad, idoneidad para
+    un fin particular o no infracción.
+  </p>
+  <p>
+    No garantizamos la exactitud absoluta de las respuestas generadas por la IA, ya que estas dependen de
+    la calidad de los metadatos proporcionados y de las limitaciones inherentes a los modelos de inteligencia
+    artificial.
+  </p>
+  <p>
+    En la máxima medida permitida por la legislación aplicable, Speak2DB no será responsable por:
+  </p>
+  <ul>
+    <li>Decisiones de negocio tomadas con base en los resultados del servicio.</li>
+    <li>Daños indirectos, incidentales, especiales, consecuentes o punitivos derivados del uso de la herramienta.</li>
+    <li>Pérdida de datos, beneficios u oportunidades de negocio.</li>
+    <li>Interrupciones o indisponibilidad del servicio.</li>
+  </ul>
+
+  <h2>7. Indemnización</h2>
+  <p>
+    Usted se compromete a indemnizar, defender y mantener indemne a Speak2DB y a sus directivos, empleados
+    y agentes frente a cualquier reclamación, responsabilidad, daño, pérdida y gasto (incluyendo honorarios
+    legales razonables) que surjan de o estén relacionados con:
+  </p>
+  <ul>
+    <li>Su violación de estos Términos de Servicio.</li>
+    <li>Su uso del servicio de manera que infrinja los derechos de terceros.</li>
+    <li>Datos cargados sin la debida autorización o en violación de las leyes de protección de datos aplicables.</li>
+  </ul>
+
+  <h2>8. Terminación y Suspensión</h2>
+  <p>
+    Nos reservamos el derecho de suspender o terminar su acceso al servicio, con o sin aviso previo, si:
+  </p>
+  <ul>
+    <li>Usted viola estos Términos de Servicio.</li>
+    <li>Su uso del servicio representa un riesgo de seguridad o puede perjudicar a otros usuarios.</li>
+    <li>Lo exige la ley o una orden legal válida.</li>
+    <li>Su cuenta permanece inactiva durante un período continuo de doce (12) meses.</li>
+  </ul>
+  <p>
+    Tras la terminación, su derecho a utilizar el servicio cesa inmediatamente. Cualquier dato asociado
+    a su cuenta será eliminado en un plazo de treinta (30) días desde la terminación, salvo que la ley
+    exija su conservación.
+  </p>
+  <p>
+    Usted puede cancelar su cuenta en cualquier momento contactándonos en
+    <a href="mailto:info@speak2db.com">info@speak2db.com</a>.
+  </p>
+
+  <h2>9. Modificaciones y Aceptación</h2>
+  <p>
+    Nos reservamos el derecho de actualizar estos términos para reflejar mejoras tecnológicas, cambios
+    legales o modificaciones al servicio.
+  </p>
+  <p>
+    Los cambios sustanciales serán comunicados a los usuarios con al menos <strong>treinta (30) días</strong>
+    de anticipación mediante correo electrónico o mediante un aviso destacado dentro de la aplicación.
+    Si no está de acuerdo con los términos actualizados, puede cancelar su cuenta antes de que los cambios
+    entren en vigor.
+  </p>
+  <p>
+    El uso continuado de Speak2DB tras la fecha efectiva de los términos actualizados constituye la
+    aceptación de los nuevos términos.
+  </p>
+
+  <h2>10. Ley Aplicable, Resolución de Disputas y Arbitraje</h2>
+  <p>
+    Estos Términos de Servicio se regirán e interpretarán de acuerdo con las leyes de la
+    República de Chile, incluyendo la Ley 21.719 sobre Protección de Datos Personales.
+  </p>
+
+  <h3>10.1. Resolución Informal</h3>
+  <p>
+    Las partes intentarán de buena fe resolver cualquier disputa que surja de o esté relacionada
+    con estos Términos mediante negociación informal dentro de los treinta (30) días siguientes
+    a la notificación por escrito.
+  </p>
+
+  <h3>10.2. Arbitraje Vinculante</h3>
+  <p>
+    Cualquier disputa no resuelta mediante negociación informal será resuelta definitivamente
+    mediante <strong>arbitraje vinculante</strong> administrado por el
+    <strong>Centro de Arbitraje y Mediación de Santiago (CAM Santiago)</strong>
+    bajo su Reglamento de Arbitraje Comercial vigente al momento de la solicitud.
+    La sede del arbitraje será Santiago, Chile. El idioma del arbitraje será el español.
+    El número de árbitros será uno (1).
+  </p>
+
+  <h3>10.3. Medidas Cautelares</h3>
+  <p>
+    No obstante lo anterior, Speak2DB podrá solicitar medidas cautelares u otras medidas
+    de equidad ante cualquier tribunal competente para proteger su propiedad intelectual,
+    información confidencial o para exigir el cumplimiento de estos Términos.
+  </p>
+
+  <h3>10.4. Renuncia a Acciones Colectivas</h3>
+  <p>
+    Cualquier arbitraje o procedimiento se realizará únicamente a título individual.
+    Las partes renuncian a cualquier derecho de participar en una acción de clase,
+    colectiva o representativa.
+  </p>
+
+  <p>
+    Si alguna disposición de estos términos se considera inválida o inaplicable, las disposiciones
+    restantes permanecerán en pleno vigor y efecto.
+  </p>
+
+  <h2>11. Contacto</h2>
+  <p>
+    Para preguntas sobre estos Términos de Servicio, contáctenos en:
+  </p>
+  <ul>
+    <li>Email: <a href="mailto:info@speak2db.com">info@speak2db.com</a></li>
+    <li>Dirección: Santiago, Chile</li>
+  </ul>
+
+  <h2>12. Modo de Proveedor Directo</h2>
+  <p>
+    Speak2DB ofrece una configuración opcional que le permite usar sus propias credenciales
+    de proveedor de IA de terceros (actualmente OpenAI GPT-5.4 y DeepSeek v4 Pro) directamente, sin pasar
+    por la infraestructura de Speak2DB.
+  </p>
+
+  <h3>12.1. Cómo Funciona el Modo de Proveedor Directo</h3>
+  <p>
+    Cuando activa el Modo de Proveedor Directo:
+  </p>
+  <ul>
+    <li>Speak2DB actúa únicamente como una interfaz local en su dispositivo.</li>
+    <li>Speak2DB no tiene acceso a las consultas, muestras de datos o respuestas
+      intercambiadas con el proveedor externo.</li>
+    <li>La relación de tratamiento de datos se establece directamente entre usted
+      y el proveedor externo.</li>
+  </ul>
+
+  <h3>12.2. Sus Responsabilidades</h3>
+  <p>Usted reconoce y acepta que:</p>
+  <ul>
+    <li>Es el único responsable de revisar y aceptar los términos de servicio y
+      la política de privacidad del proveedor externo.</li>
+    <li>Speak2DB no hace representaciones ni garantías sobre las prácticas de
+      tratamiento de datos del proveedor externo.</li>
+    <li>Speak2DB no es parte de la relación de tratamiento de datos entre usted
+      y el proveedor externo.</li>
+    <li>Es responsable de asegurar que su uso del proveedor externo cumpla con
+      todas las leyes aplicables, incluyendo pero no limitándose a la Ley 21.719
+      de Chile, RGPD, CCPA y PIPL.</li>
+  </ul>
+
+  <h3>12.3. Disponibilidad de Proveedores</h3>
+  <p>
+    Speak2DB se reserva el derecho de agregar, eliminar o modificar la lista de
+    proveedores directos compatibles en cualquier momento. Los cambios se comunicarán
+    de acuerdo con la Sección 9 de estos Términos.
+  </p>
+
+  <h2>13. Acuerdo de Tratamiento de Datos (DPA)</h2>
+  <p>
+    En la medida en que Speak2DB procese datos personales por cuenta del usuario
+    como encargado del tratamiento (según la Ley 21.719 de Chile, el RGPD u otras
+    leyes de protección de datos aplicables), los términos del
+    <a href="../dpa/dpa-es.html">Acuerdo de Tratamiento de Datos</a>
+    se incorporan y forman parte de estos Términos.
+  </p>
+  <p>
+    Al aceptar estos Términos de Servicio, el usuario también acepta el DPA.
+    Si se requiere una copia firmada, el usuario puede contactarnos en
+    <a href="mailto:info@speak2db.com">info@speak2db.com</a>
+    para solicitar una versión en PDF prellenada y prefirmada.
   </p>
 </body>
+
 </html>

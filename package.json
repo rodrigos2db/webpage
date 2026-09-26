@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "tailwind.config.js",
   "scripts": {
+    "build:css": "npx @tailwindcss/cli -i input.css -o styles.css",
+    "build:i18n": "node scripts/build-i18n.js",
+    "build:sitemap": "node scripts/build-sitemap.js",
+    "build": "npm run build:css && npm run build:i18n && npm run build:sitemap",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,8 +20,12 @@
     "url": "https://github.com/rodrigos2db/webpage/issues"
   },
   "homepage": "https://github.com/rodrigos2db/webpage#readme",
-  "description": "",
   "devDependencies": {
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.18"
+  },
+  "description": "",
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@tailwindcss/cli": "^4.1.18"
   }
 }

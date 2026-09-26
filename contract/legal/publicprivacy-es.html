@@ -1,47 +1,402 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <title>Política de Privacidad - Speak2DB</title>
 </head>
-<body>
+
+<body data-version="3.0" data-last-updated="2026-09-16">
   <h1>Política de Privacidad de Speak2DB</h1>
-  <p><strong>Última actualización:</strong> 1 de septiembre de 2025</p>
+  <p><strong>Última actualización:</strong> 16 de septiembre de 2026</p>
+  <p><strong>Versión:</strong> 3.0</p>
 
-  <h2>1. Información que recopilamos</h2>
+  <h2>1. Responsable del Tratamiento</h2>
   <p>
-    Speak2DB puede recopilar información mínima de contacto, como su correo
-    electrónico, al momento de registrarse o suscribirse al servicio.
+    El responsable del tratamiento de sus datos personales es <strong>SPEAK2DB SpA</strong>, RUT 78.279.953-3,
+    con domicilio en Santiago, Chile.
+  </p>
+  <p>
+    Para cualquier consulta relacionada con privacidad o para ejercer sus derechos, contáctenos en:
+    <a href="mailto:info@speak2db.com">info@speak2db.com</a>.
   </p>
 
-  <h2>2. Uso de la información</h2>
+  <h2>2. Información que Recopilamos</h2>
   <p>
-    Su correo electrónico no será compartido con terceros y se utilizará
-    únicamente para:
+    Speak2DB presta el servicio a través de varios canales. Las categorías siguientes describen
+    qué recopilamos <strong>por canal</strong>. La misma infraestructura de LLM se usa
+    en todos los canales (ver <a href="subprocessors-es.html">Lista de Sub-procesadores</a> y
+    <a href="ai-disclosure-es.html">Declaración de IA</a>).
   </p>
+
+  <h3>2.1. Solicitud de Acceso Beta — Landing Page (speak2db.com/beta.html)</h3>
+  <p>Cuando solicita acceso a la beta de acceso limitado desde nuestra landing, recopilamos:</p>
   <ul>
-    <li>Comunicaciones esenciales relacionadas con el servicio (ejemplo: fin de suscripción).</li>
-    <li>Envío de promociones, novedades o información relevante para el usuario.</li>
+    <li>Nombre completo</li>
+    <li>Correo electrónico corporativo</li>
+    <li>Empresa u organización</li>
+    <li>Cargo o rol (ej.: Gerente de Inventario, Gerente de Ventas, RRHH, Operaciones, TI, Otro)</li>
+    <li>País</li>
+    <li>URL de perfil de LinkedIn (opcional)</li>
+    <li>Dirección IP, user-agent e IP de Cloudflare (recopilados automáticamente para prevención de fraude)</li>
+    <li>Evaluación de reCAPTCHA v3 (Google) y verificación de Turnstile cuando aplica</li>
+    <li>Fecha de registro y estado (pendiente / aprobado / rechazado)</li>
+  </ul>
+  <p>
+    Estos datos se almacenan en Firestore (<code>beta_requests/{email}</code> y, tras la aprobación,
+    <code>beta_testers/{email}</code>) y se administran desde un back-office interno.
+    La aprobación genera un token beta de duración limitada enviado a su correo.
+  </p>
+
+  <h3>2.2. App de Escritorio — Uso Activo (beta Windows)</h3>
+  <p>Una vez aprobado y usando la aplicación de escritorio, procesamos:</p>
+  <ul>
+    <li>Dirección de correo electrónico (autenticación e identificación de cuenta)</li>
+    <li>Token de verificación de un solo uso y tokens de sesión derivados (JWT / refresh token, hasheados en reposo)</li>
+    <li>Identificador de dispositivo — hash derivado de características de hardware de su equipo (ej.: serial de placa + ID de CPU), usado solo para vincular la licencia</li>
+    <li>Estado de trial, estado de licencia y versión de token</li>
+    <li>Versión de la app y plataforma (recopilados vía endpoint de verificación de versión para entrega de actualizaciones y telemetría agregada)</li>
+    <li>Logs de soporte — solo si elige "Enviar Logs": su correo, descripción y un ZIP de logs locales. Las cadenas de conexión y secretos se redactan antes del envío; los logs se eliminan tras resolver el caso de soporte</li>
+    <li>Almacenamiento local cifrado únicamente — tokens de cuenta en vault del SO (Stronghold) y ajustes de conexión en archivo cifrado AES bajo su directorio de usuario; no se transmiten salvo lo indicado arriba</li>
   </ul>
 
-  <h2>3. Derechos del usuario</h2>
+  <h3>2.3. Demo Web (demo.speak2db.com)</h3>
+  <p>La demo web es una prueba sin creación de cuenta:</p>
+  <ul>
+    <li>Archivo Excel subido (.xlsx) — almacenado de forma transitoria en Google Cloud Storage y eliminado automáticamente ~10 minutos después de la subida; el esquema (nombres de hojas/columnas y tipos) se conserva en una sesión de corta duración para procesar la consulta</li>
+    <li>Metadatos de sesión (esquema, idioma, versión de consentimiento, dirección IP) en Firestore con TTL de ~10 minutos; contador diario de consultas por IP (conservado hasta 30 días para prevención de abuso, luego eliminado)</li>
+    <li>Correo opt-in (opcional, descartable) — si se suscribe, su correo, idioma y origen ("demo") se guardan en <code>demo_subscribers/{email}</code> y se añaden a nuestra lista de contactos de Brevo para novedades del producto (solo con consentimiento explícito; puede darse de baja en cualquier momento)</li>
+    <li>Preferencia de consentimiento de cookies (<code>s2db_cookie_consent</code>) y preferencia de idioma, guardadas localmente en su navegador</li>
+  </ul>
+
+  <h3>2.4. Add-in de Excel (Microsoft Office)</h3>
+  <p>El add-in de Excel funciona en modo solo-metadatos:</p>
+  <ul>
+    <li>Correo electrónico y código OTP de un solo uso (6 caracteres) para autenticación; tokens de sesión (JWT / refresh token) guardados en la configuración móvil de Office / almacenamiento local</li>
+    <li>Versión de consentimiento e identificador anónimo de dispositivo (<code>speak2db.anonid.v1</code>) para limitación de tasa anónima</li>
+    <li>Metadatos de la base de datos enviados al backend — nombres de hojas/columnas, tipos de datos y relaciones; para funciones de Insights/consistencia, resúmenes estadísticos limitados y hasta 50 filas de muestra; el contenido del libro nunca sale de su dispositivo fuera de estos envíos acotados</li>
+    <li>Contadores mensuales de uso por correo (<code>addin_monthly_usage/{email__YYYY-MM}</code>, límite 40 consultas/mes) e IDs de operación para control de cuota</li>
+    <li>Contadores locales de telemetría (conteos de consultas, estado de rate-limit) e historial de consultas guardado dentro de las propiedades del documento Excel — ningún dato personal sale del dispositivo</li>
+  </ul>
+
+  <h3>2.5. Datos Técnicos Procesados por el Servicio de IA</h3>
   <p>
-    Usted puede solicitar dejar de recibir comunicaciones promocionales en
-    cualquier momento. Además, puede solicitar la eliminación de sus datos de
-    contacto de nuestros registros.
+    Como se describe en nuestros <a href="../tos/terms-es.html">Términos de Servicio</a> y
+    <a href="ai-disclosure-es.html">Declaración de IA</a>,
+    Speak2DB utiliza modelos de inteligencia artificial para interpretar consultas en
+    lenguaje natural. Cuando utiliza el servicio, procesamos:
+  </p>
+  <ul>
+    <li>Estructura de la base de datos (tablas, columnas, tipos de datos, relaciones).</li>
+    <li>Muestras limitadas de datos para identificar patrones de contenido.</li>
+    <li>Metadatos estadísticos (resúmenes de valores, distribuciones).</li>
+  </ul>
+  <p>
+    Estos datos técnicos se procesan únicamente con el fin de prestar el servicio y no se utilizan
+    para perfilado ni con fines de marketing.
   </p>
 
-  <h2>4. Seguridad</h2>
+  <h3>2.6. Retención Cero de Datos (ZDR)</h3>
   <p>
-    Implementamos medidas razonables para proteger la información de los usuarios,
-    aunque no podemos garantizar seguridad absoluta frente a accesos no
-    autorizados.
+    <strong>Todos los proveedores de IA utilizados por Speak2DB cumplen con Retención Cero de Datos (ZDR).</strong>
+    Esto significa que sus datos nunca se almacenan, retienen ni se usan para entrenamiento por ningún proveedor.
+  </p>
+  <p>
+    Para consultas enrutadas a través de OpenRouter, ZDR se aplica mediante configuración que
+    bloquea cualquier endpoint que retenga o entrene con datos de solicitudes. Para proveedores
+    directos (DeepSeek API, Google Vertex AI), las mismas garantías de retención cero y
+    no-entrenamiento están aseguradas mediante DPA contractuales directos.
+  </p>
+  <p>
+    Los datos se procesan en tiempo real y se descartan inmediatamente después de generar la
+    respuesta. No se persisten en ninguna base de datos, sistema de archivos ni registro.
+    Para más detalles, consulte nuestra <a href="subprocessors-es.html">Lista de Sub-procesadores</a>.
   </p>
 
-  <h2>5. Cambios en la política</h2>
+  <h3>2.7. Modo de Proveedor Directo (BYOK)</h3>
   <p>
-    Esta Política de Privacidad puede actualizarse ocasionalmente. Los cambios se
-    notificarán dentro de la aplicación o por correo electrónico.
+    Speak2DB ofrece un <strong>Modo de Proveedor Directo</strong> opcional que le permite
+    conectarse usando sus propias credenciales de API de terceros (actualmente OpenAI y DeepSeek).
+    En este modo:
   </p>
+  <ul>
+    <li>Speak2DB no procesa, almacena ni transmite sus consultas o datos.</li>
+    <li>Los términos y la política de privacidad del proveedor externo rigen sus datos.</li>
+    <li>Usted es el responsable del tratamiento de datos y debe asegurar el cumplimiento de las
+      leyes aplicables (Ley 21.719, RGPD, CCPA, PIPL, etc.).</li>
+  </ul>
+
+  <h2>3. Base Legal del Tratamiento</h2>
+  <p>
+    Procesamos sus datos con base en los siguientes fundamentos legales, de acuerdo con la Ley 21.719
+    sobre Protección de Datos Personales de Chile y, cuando sea aplicable, el Reglamento General de
+    Protección de Datos (RGPD) de la UE:
+  </p>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Actividad de Tratamiento</th>
+        <th>Base Legal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Registro y creación de cuenta (solicitud beta, OTP del add-in)</td>
+        <td>Consentimiento del titular</td>
+      </tr>
+      <tr>
+        <td>Carga de archivo y manejo de sesión en la demo</td>
+        <td>Consentimiento del titular</td>
+      </tr>
+      <tr>
+        <td>Procesamiento de metadatos y muestras de BD para consultas de IA</td>
+        <td>Ejecución de un contrato</td>
+      </tr>
+      <tr>
+        <td>Envío de comunicaciones esenciales del servicio (ej.: vencimiento de licencia)</td>
+        <td>Ejecución de un contrato</td>
+      </tr>
+      <tr>
+        <td>Envío de comunicaciones promocionales o informativas (lista Brevo)</td>
+        <td>Consentimiento explícito del titular</td>
+      </tr>
+      <tr>
+        <td>Identificación de dispositivo para gestión de licencia</td>
+        <td>Ejecución de un contrato</td>
+      </tr>
+      <tr>
+        <td>Prevención de fraude/abuso (reCAPTCHA, Turnstile, rate limiting, contadores por IP)</td>
+        <td>Interés legítimo</td>
+      </tr>
+      <tr>
+        <td>Cumplimiento de obligaciones legales</td>
+        <td>Obligación legal</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Uso de la Información</h2>
+  <p>Sus datos personales se utilizan para los siguientes fines:</p>
+  <ul>
+    <li>Evaluar y aprobar solicitudes de acceso al software.</li>
+    <li>Autenticar su identidad y gestionar su licencia (incluyendo OTP del add-in y vinculación por deviceId en la app de escritorio).</li>
+    <li>Operar la demo web y el add-in de Excel (manejo de sesiones, control de cuotas, prevención de abuso).</li>
+    <li>Comunicaciones esenciales relacionadas con el servicio (ejemplo: vencimiento de suscripción,
+      alertas de seguridad).</li>
+    <li>Envío de comunicaciones promocionales o actualizaciones del producto <strong>únicamente con su
+        consentimiento explícito previo</strong>. Puede retirar este consentimiento en cualquier momento.</li>
+    <li>Garantizar la seguridad e integridad de la plataforma mediante la identificación de dispositivos y protección antibot (reCAPTCHA, Turnstile, rate limiting).</li>
+  </ul>
+
+  <h2>5. Compartición de Datos y Terceros</h2>
+  <p>
+    Compartimos sus datos con las siguientes categorías de proveedores de servicios terceros,
+    vinculados por acuerdos de tratamiento de datos:
+  </p>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Categoría de Tercero</th>
+        <th>Finalidad</th>
+        <th>Ubicación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DeepSeek API</td>
+        <td>Inferencia LLM (deepseek-v4-pro, deepseek-v4-flash) — directo vía proxy de Speak2DB (cumple ZDR)</td>
+        <td>China / endpoints internacionales</td>
+      </tr>
+      <tr>
+        <td>Google Vertex AI</td>
+        <td>Inferencia LLM (gemini-3.5-flash) — directo vía proxy de Speak2DB (cumple ZDR)</td>
+        <td>Estados Unidos / Unión Europea</td>
+      </tr>
+      <tr>
+        <td>OpenRouter (Agregador de LLM)</td>
+        <td>Enrutamiento de consultas a z-ai/glm-5.2, openai/gpt-5.6-luna, deepseek y otros (ZDR activado)</td>
+        <td>Estados Unidos</td>
+      </tr>
+      <tr>
+        <td>z-ai (GLM)</td>
+        <td>Inferencia LLM (z-ai/glm-5.2) vía OpenRouter</td>
+        <td>China / endpoints internacionales</td>
+      </tr>
+      <tr>
+        <td>DeepSeek (vía OpenRouter)</td>
+        <td>Inferencia LLM (deepseek-v4-flash-latest) vía OpenRouter</td>
+        <td>China / endpoints internacionales</td>
+      </tr>
+      <tr>
+        <td>OpenAI (vía OpenRouter)</td>
+        <td>Inferencia LLM (openai/gpt-5.6-luna) vía OpenRouter</td>
+        <td>Estados Unidos</td>
+      </tr>
+      <tr>
+        <td>Infraestructura en la nube (Google Cloud)</td>
+        <td>Hosting, procesamiento backend y enrutamiento de solicitudes</td>
+        <td>Estados Unidos</td>
+      </tr>
+      <tr>
+        <td>Brevo (Sendinblue)</td>
+        <td>Email transaccional (verificación, OTP, soporte) y lista de marketing opt-in (idioma + origen)</td>
+        <td>Unión Europea (Francia)</td>
+      </tr>
+      <tr>
+        <td>Cloudflare</td>
+        <td>Protección antibot y seguridad (Turnstile en demo/add-in; autenticación de origen)</td>
+        <td>Estados Unidos</td>
+      </tr>
+      <tr>
+        <td>Upstash Redis</td>
+        <td>Rate limiting (cuotas anónimas y autenticadas) — contadores por IP y por email</td>
+        <td>Estados Unidos</td>
+      </tr>
+      <tr>
+        <td>Google reCAPTCHA</td>
+        <td>Prevención de fraude en formularios de solicitud y descarga beta (scoring v3)</td>
+        <td>Estados Unidos</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Los proveedores LLM directos (DeepSeek API, Google Vertex AI) están sujetos a DPA directos
+    con Speak2DB. Los proveedores enrutados a través de OpenRouter están configurados con
+    Retención Cero de Datos (ZDR). Todos tienen prohibición contractual de entrenar con sus datos.
+    Para la lista completa, consulte nuestra <a href="subprocessors-es.html">Lista de Sub-procesadores</a>.
+  </p>
+  <p>
+    No vendemos sus datos personales a terceros. Los datos se comparten únicamente cuando es necesario
+    para prestar el servicio o cuando lo exige la ley.
+  </p>
+
+  <h2>6. Transferencias Internacionales de Datos</h2>
+  <p>
+    Sus datos pueden ser transferidos y procesados en países fuera de Chile, incluyendo:
+  </p>
+  <ul>
+    <li><strong>Estados Unidos</strong> — Google Vertex AI, Google Cloud Platform, OpenRouter, OpenAI (vía OpenRouter), Cloudflare, Upstash, Google reCAPTCHA.</li>
+    <li><strong>Unión Europea</strong> — endpoints de Google Vertex AI en la UE; Brevo (Francia, bajo adecuación del RGPD).</li>
+    <li><strong>China / Internacional</strong> — DeepSeek API (directo) y proveedores vía OpenRouter (z-ai/glm-5.2, deepseek). Todos cumplen ZDR.</li>
+  </ul>
+  <p>
+    De acuerdo con la Ley 21.719 (Artículos 27 y 28) y, cuando sea aplicable, el RGPD
+    (Artículos 45-49), dichas transferencias están protegidas por:
+  </p>
+  <ul>
+    <li>Cláusulas Contractuales Tipo (SCC) con las entidades receptoras.</li>
+    <li>Acuerdos de Tratamiento de Datos con todos los proveedores terceros.</li>
+    <li>Cumplimiento verificado de Retención Cero de Datos (ZDR) para todos los endpoints de inferencia LLM (directos y enrutados por OpenRouter).</li>
+    <li>Garantías contractuales de no-entrenamiento.</li>
+    <li>Medidas técnicas incluyendo cifrado en tránsito y en reposo.</li>
+  </ul>
+  <p>
+    Al usar Speak2DB, usted reconoce que algunos de sus datos técnicos (esquema, muestras,
+    estadísticas) pueden ser procesados en jurisdicciones sin una decisión de adecuación de la
+    Comisión Europea. Para más detalles sobre proveedores
+    específicos y sus salvaguardas, consulte nuestra
+    <a href="subprocessors-es.html">Lista de Sub-procesadores</a>.
+  </p>
+
+  <h2>7. Retención de Datos</h2>
+  <p>Conservamos sus datos durante los siguientes períodos:</p>
+  <ul>
+    <li><strong>Datos de solicitud beta (landing):</strong> Hasta aprobación/rechazo y durante la vigencia de su cuenta; si solicita eliminación, eliminamos en 30 días salvo obligación legal. El token beta expira según el correo de aprobación; el contador de descargas tiene un número limitado de usos.</li>
+    <li><strong>Datos de cuenta de la app de escritorio (correo, identificador de dispositivo, estado de trial):</strong> Durante la vigencia de su licencia activa y hasta 30 días después de la solicitud de eliminación.</li>
+    <li><strong>Demo web — Excel subido y sesión:</strong> Archivo y metadatos de sesión se eliminan automáticamente ~10 minutos después de la subida. Los contadores diarios por IP se conservan hasta 30 días para prevención de abuso, luego se eliminan por job programado.</li>
+    <li><strong>Demo web — suscriptores opt-in:</strong> Conservados hasta que se dé de baja o solicite eliminación (lista Brevo + registro Firestore).</li>
+    <li><strong>Add-in — contadores mensuales de cuota:</strong> Contadores por correo con reseteo mensual; IDs de operación y contadores se conservan por período de facturación para control de cuota.</li>
+    <li><strong>Datos de procesamiento de consultas (metadatos de BD, muestras):</strong> <strong>No se
+      almacenan.</strong> Los datos se procesan en tiempo real y se descartan inmediatamente después de
+      generar la respuesta. No se persisten en ninguna base de datos, sistema de archivos ni registro (log).</li>
+    <li><strong>Identificador de dispositivo:</strong> Durante la vigencia de su licencia activa.</li>
+    <li><strong>Registros estadísticos:</strong> Solo se conservan datos agregados y anónimos (volumen de consultas,
+      tiempos de respuesta, tasas de error) con fines de mejora del servicio; métricas de Cloud hasta 90 días.</li>
+    <li><strong>Logs de soporte:</strong> Enviados opcionalmente por el usuario, excluyen todo parámetro de
+      conexión a bases de datos, y se eliminan una vez resuelto el caso de soporte.</li>
+  </ul>
+  <p>
+    Una vez que los datos ya no sean necesarios para los fines descritos, serán eliminados de forma segura
+    o anonimizados de manera irreversible, en cumplimiento de los principios de seguridad y proporcionalidad
+    de la Ley 21.719.
+  </p>
+
+  <h2>8. Derechos del Usuario</h2>
+  <p>
+    Conforme a la Ley 21.719 sobre Protección de Datos Personales de Chile (y, cuando sea aplicable,
+    el RGPD, CCPA o LGPD), usted tiene los siguientes derechos:
+  </p>
+  <ul>
+    <li><strong>Derecho de Acceso:</strong> Solicitar una copia de los datos personales que mantenemos sobre usted.</li>
+    <li><strong>Derecho de Rectificación:</strong> Solicitar la corrección de datos inexactos o incompletos.</li>
+    <li><strong>Derecho de Supresión (Cancelación):</strong> Solicitar la eliminación de sus datos personales.</li>
+    <li><strong>Derecho de Oposición:</strong> Oponerse al tratamiento de sus datos en determinadas circunstancias.</li>
+    <li><strong>Derecho a la Portabilidad:</strong> Recibir sus datos en un formato estructurado y legible por máquina,
+      y solicitar su transferencia a otro responsable.</li>
+    <li><strong>Derecho de Bloqueo:</strong> Solicitar la suspensión temporal del tratamiento de sus datos mientras
+      se resuelve una solicitud de rectificación, supresión u oposición.</li>
+    <li><strong>Derecho a Retirar el Consentimiento:</strong> Cuando el tratamiento se base en el consentimiento,
+      puede retirarlo en cualquier momento sin afectar la licitud del tratamiento previo.</li>
+    <li><strong>Derecho a Presentar una Reclamación:</strong> Tiene derecho a presentar una reclamación ante la
+      Agencia de Protección de Datos Personales de Chile o la autoridad de control correspondiente en
+      su jurisdicción.</li>
+  </ul>
+  <p>
+    Para ejercer cualquiera de estos derechos, contáctenos en
+    <a href="mailto:info@speak2db.com">info@speak2db.com</a>. Responderemos a su solicitud
+    en un plazo de 30 días.
+  </p>
+
+  <h2>9. Medidas de Seguridad</h2>
+  <p>
+    En cumplimiento del principio de seguridad establecido en la Ley 21.719, implementamos medidas
+    técnicas y organizativas apropiadas para proteger sus datos, incluyendo:
+  </p>
+  <ul>
+    <li>Cifrado de datos en tránsito (TLS) y en reposo.</li>
+    <li>Controles de acceso y mecanismos de autenticación.</li>
+    <li>Almacenamiento seguro de credenciales (contraseñas hasheadas, sin almacenamiento en texto plano).</li>
+  </ul>
+  <p>
+    Si bien nos esforzamos por proteger sus datos, ningún método de transmisión electrónica o
+    almacenamiento es 100% seguro. En caso de un incidente de seguridad que afecte sus datos personales,
+    le notificaremos a usted y a la Agencia de Protección de Datos Personales de Chile sin dilación
+    indebida, conforme lo exige la Ley 21.719.
+  </p>
+
+  <h2>10. Privacidad por Diseño y por Defecto</h2>
+  <p>
+    Speak2DB aplica los principios de privacidad por diseño y por defecto establecidos en el Artículo
+    14 quater de la Ley 21.719. Recopilamos únicamente los datos mínimos necesarios para prestar el
+    servicio, y nuestros sistemas están diseñados para proteger los datos personales desde su concepción.
+  </p>
+
+  <h2>11. Privacidad de Menores</h2>
+  <p>
+    Speak2DB no está dirigido a personas menores de 18 años. No recopilamos deliberadamente datos
+    personales de menores. Si tenemos conocimiento de que hemos recopilado datos de un menor,
+    tomaremos medidas para eliminarlos de inmediato, en cumplimiento del Artículo 16 quater de la
+    Ley 21.719.
+  </p>
+
+  <h2>12. Cambios en la Política</h2>
+  <p>
+    Esta Política de Privacidad puede actualizarse ocasionalmente para reflejar cambios en nuestras
+    prácticas, tecnología o requisitos legales. Los cambios sustanciales serán comunicados con al menos
+    <strong>treinta (30) días</strong> de anticipación mediante correo electrónico o mediante un aviso
+    destacado dentro de la aplicación.
+  </p>
+  <p>
+    Le recomendamos revisar esta política periódicamente. La fecha de "Última actualización" en la parte
+    superior indica cuándo fue revisada por última vez.
+  </p>
+
+  <h2>13. Contacto</h2>
+  <p>Para preguntas sobre esta Política de Privacidad o para ejercer sus derechos de protección de datos:</p>
+  <ul>
+    <li>Email: <a href="mailto:info@speak2db.com">info@speak2db.com</a></li>
+    <li>Dirección: Santiago, Chile</li>
+  </ul>
 </body>
+
 </html>
