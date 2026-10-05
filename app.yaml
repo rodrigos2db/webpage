@@ -22,6 +22,21 @@ handlers:
   upload: (sitemap\.xml)$
   expiration: "1h"
 
+# Landing promo: una sola ficha, dos rutas. /promo (prod) y /promo/qa (QA);
+# la ruta es la señal de entorno (el JS elige API y colección Firestore).
+# Deben ir ANTES del catch-all /(.*), que buscaría un fichero llamado `promo`.
+- url: /promo/qa/?$
+  static_files: promo.html
+  upload: promo.html
+  expiration: "5m"
+  http_headers:
+    X-Robots-Tag: "noindex, nofollow"
+
+- url: /promo/?$
+  static_files: promo.html
+  upload: promo.html
+  expiration: "5m"
+
 - url: /
   static_files: index.html
   upload: index.html

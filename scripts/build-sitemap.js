@@ -9,6 +9,8 @@ const urls = [
   { loc: 'https://www.speak2db.com/', priority: '1.0', changefreq: 'weekly' },
   { loc: 'https://www.speak2db.com/tutorials.html', priority: '0.8', changefreq: 'monthly' },
   { loc: 'https://www.speak2db.com/beta.html', priority: '0.5', changefreq: 'monthly' },
+  // Solo la ruta de producción: /promo/qa es entorno de pruebas y va noindex.
+  { loc: 'https://www.speak2db.com/promo', priority: '0.7', changefreq: 'weekly' },
 ];
 
 const xml =

@@ -13,6 +13,30 @@ Las traducciones se editan exclusivamente en:
 | `i18n/beta-es.json` | beta.html (88 claves) |
 | `i18n/tutorials-en.json` | tutorials.html (20 claves) |
 | `i18n/tutorials-es.json` | tutorials.html (20 claves) |
+| `i18n/promo-en.json` | promo.html (28 claves) |
+| `i18n/promo-es.json` | promo.html (28 claves) |
+
+`promo.html` es una landing suelta **sin navbar** (`<!--HEADER-->` no aplica):
+se sirve en `/promo` (prod) y `/promo/qa` (QA) — la ruta es la señal de
+entorno, el JS elige la API (`api` vs `qa-api`), inyecta `noindex` y el badge
+`[QA]`. Solo `/promo` entra en el sitemap y `/promo/qa` lleva además el header
+`X-Robots-Tag: noindex, nofollow` en `app.yaml`.
+
+### `promo.html` — avisos y atribución reCAPTCHA
+
+- El formulario responde a `already_sent` del backend (cooldown de 15 min del
+  `POST /promo/send-code`) con `promo-already-sent-title` /
+  `promo-already-sent-desc`, sustituyendo el título y la descripción del
+  bloque de éxito vía `promoShowSuccess()` (`{minutes}` se rellena con
+  `ceil(retry_after_s/60)`, y "min" es invariante en EN/ES para no tener
+  plural). Ese es el motivo de los ids `promo-success-title` y
+  `promo-success-desc`: **no quitarlos**, el JS los usa.
+- Los minutos de la ventana viven en el backend (`PROMO_RESEND_COOLDOWN_MIN`)
+  pero el texto estático de `promo-success-desc` los escribe a mano ("15
+  min"). Si cambias el env, cambia también ese string.
+- La atribución legal de reCAPTCHA (bajo `promo-privacy`) está **estática en
+  inglés y sin `data-key`**, igual que `beta.html`: `setLanguage()` asigna
+  `innerText`, así que borraría los `<a>` a las políticas de Google.
 
 El build step (`npm run build`) valida que no haya drift entre los archivos externos y los inline.
 
@@ -51,7 +75,7 @@ Los HTML contienen `<!--HEADER-->` como placeholder. El build lo reemplaza con e
 ## CSS
 
 - `styles.css` se genera desde `input.css` + Tailwind v4
-- Fuentes HTML escaneadas por Tailwind: index.html, tutorials.html, beta.html, _includes/header.html
+- Fuentes HTML escaneadas por Tailwind (`tailwind.config.js`): index.html, tutorials.html, beta.html, promo.html, _includes/header.html
 - No editar `styles.css` directamente, siempre regenerar vía `npm run build:css`
 - Clases utilitarias repetitivas (btn-primary, btn-secondary) pueden agregarse como rules en input.css
 
@@ -68,12 +92,16 @@ webpage/
     tutorials-es.json     # Fuente de traducciones ES (tutorials, 20 claves)
     beta-en.json          # Fuente de traducciones EN (beta)
     beta-es.json          # Fuente de traducciones ES (beta)
+    promo-en.json         # Fuente de traducciones EN (promo, 28 claves)
+    promo-es.json         # Fuente de traducciones ES (promo, 28 claves)
   js/i18n.js              # Engine i18n (carga traducciones, setLanguage, data-key)
   scripts/
     build-i18n.js         # Build: inyecta header + i18n + valida drift
+    build-sitemap.js      # Build: genera sitemap.xml (incluye /promo)
   input.css               # Entry point de Tailwind v4
   styles.css              # Generado: Tailwind v4 compiled
   index.html              # Sin build: contiene <!--HEADER--> + <!--INLINE_I18N--> markers
   tutorials.html          # Sin build: contiene <!--HEADER--> + <!--INLINE_I18N--> markers
   beta.html               # Sin build: contiene <!--INLINE_I18N--> marker
+  promo.html              # Sin build: contiene <!--INLINE_I18N--> marker
 ```

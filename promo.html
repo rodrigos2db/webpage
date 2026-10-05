@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    Rutas: /promo (prod) y /promo/qa (QA). El <base> es obligatorio: la misma
+    ficha se sirve dos niveles más profunda, así que los assets relativos
+    (styles.css, fonts/, js/, i18n/) tendrían que resolver contra /promo/.
+  -->
+  <base href="/">
+  <title>Get your Speak2DB promo code</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+  <link rel="icon" type="image/png" href="speak2db-logo.png">
+  <link rel="stylesheet" href="styles.css?v=20261005">
+  <script src="https://www.google.com/recaptcha/api.js?render=6LekEpEsAAAAAEIfTGKLpjRH8zyKMQ6HiPS6Z8f7"></script>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin-400-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin-700-normal.woff2" crossorigin>
+  <script>
+    // Señal de entorno: /promo/qa => QA (y sus códigos van a la colección
+    // promo_email de la isla apis-qa, no a promo_email_prod de producción).
+    window.S2DB_PROMO_QA = /^\/promo\/qa\/?$/.test(location.pathname);
+    window.S2DB_PROMO_API = window.S2DB_PROMO_QA
+      ? 'https://qa-api.speak2db.com/api/auth'
+      : 'https://api.speak2db.com/api/auth';
+    if (window.S2DB_PROMO_QA) {
+      var robots = document.createElement('meta');
+      robots.name = 'robots';
+      robots.content = 'noindex, nofollow';
+      document.head.appendChild(robots);
+      document.title = '[QA] ' + document.title;
+    }
+  </script>
+              <script type="application/json" id="i18n-en">{"page-title-promo":"Speak2DB - Get your promo code","promo-badge":"Free beta promo","promo-qa-badge":"QA environment — codes go to a separate collection","promo-heading":"Get your Speak2DB promo code","promo-desc":"Enter your email and we'll send you a code that unlocks the promo plan in the Speak2DB Excel add-in. One code per email, activated in seconds.","promo-steps-title":"How it works","promo-step1":"Enter your email below.","promo-step2":"Copy the code we send you.","promo-step3":"Open the Speak2DB add-in in Excel, go to My Account and paste the code.","promo-form-title":"Send me the code","promo-email-label":"Email address","promo-email-placeholder":"you@example.com","promo-submit-btn":"Send me the code","promo-loading-text":"Sending...","promo-success-title":"Check your inbox","promo-success-desc":"If that address is valid, the code is on its way. It can take a couple of minutes to arrive. Didn't get it? You can request it again in 15 min.","promo-already-sent-title":"Code already sent","promo-already-sent-desc":"We already sent a code to this address. Check your inbox and spam, it can take a couple of minutes to arrive. You can request it again in {minutes} min.","promo-error-default":"Something went wrong. Please try again later.","promo-error-email":"Please enter a valid email address.","promo-privacy":"We only use your email to send this code and to contact you about the Speak2DB beta. No spam, ever.","promo-back-btn":"Back to Home Page","footer-copy":"© 2026 Speak2DB. All rights reserved.","ERR_PROMO_EMAIL":"Please enter a valid email address.","ERR_RECAPTCHA":"We couldn't verify that you're human. Please try again.","ERR_RL_IP":"Too many requests from your network. Wait a minute and try again.","ERR_RL_EMAIL":"Too many requests for this email. Wait a minute and try again.","ERR_INTERNAL":"Something went wrong. Please try again later."}</script>
+    <script type="application/json" id="i18n-es">{"page-title-promo":"Speak2DB - Tu código promocional","promo-badge":"Promo beta gratis","promo-qa-badge":"Entorno QA — los códigos van a otra colección","promo-heading":"Consigue tu código promocional de Speak2DB","promo-desc":"Escribe tu email y te enviamos un código que desbloquea el plan promo en el add-in de Excel de Speak2DB. Un código por email, activado en segundos.","promo-steps-title":"Cómo funciona","promo-step1":"Escribe tu email aquí abajo.","promo-step2":"Copia el código que te enviamos.","promo-step3":"Abre el add-in de Speak2DB en Excel, entra en Mi cuenta y pega el código.","promo-form-title":"Envíame el código","promo-email-label":"Dirección de correo","promo-email-placeholder":"tu@ejemplo.com","promo-submit-btn":"Envíame el código","promo-loading-text":"Enviando...","promo-success-title":"Revisa tu correo","promo-success-desc":"Si la dirección es válida, el código ya va en camino. Puede tardar un par de minutos. ¿No llegó? Puedes volver a pedirlo en 15 min.","promo-already-sent-title":"Código ya enviado","promo-already-sent-desc":"Ya enviamos un código a esta dirección. Revisa tu bandeja de entrada y el spam, puede tardar un par de minutos. Puedes volver a pedirlo en {minutes} min.","promo-error-default":"Algo salió mal. Inténtalo de nuevo más tarde.","promo-error-email":"Introduce una dirección de correo válida.","promo-privacy":"Solo usamos tu email para enviarte este código y hablarte de la beta de Speak2DB. Sin spam, nunca.","promo-back-btn":"Volver a la página de inicio","footer-copy":"© 2026 Speak2DB. Todos los derechos reservados.","ERR_PROMO_EMAIL":"Introduce una dirección de correo válida.","ERR_RECAPTCHA":"No hemos podido confirmar que eres humano. Inténtalo de nuevo.","ERR_RL_IP":"Demasiadas peticiones desde tu red. Espera un minuto e inténtalo de nuevo.","ERR_RL_EMAIL":"Demasiadas peticiones para este email. Espera un minuto e inténtalo de nuevo.","ERR_INTERNAL":"Algo salió mal. Inténtalo de nuevo más tarde."}</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (document.getElementById('i18n-en') || document.getElementById('i18n-es')) {
+        document.body.style.visibility = 'hidden';
+      }
+    });
+  </script>
+  <style>
+    body {
+      visibility: hidden;
+      font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
+      background-color: #1a202c;
+      color: #f7fafc;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .lang-switcher {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      display: flex;
+    }
+
+    .lang-switcher button {
+      background-color: #4a5568;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.5rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #2d3748;
+    }
+
+    .env-badge {
+      display: none;
+      background-color: #7c2d12;
+      color: #fed7aa;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid #c2410c;
+      margin-bottom: 1.5rem;
+    }
+
+    body.is-qa .env-badge {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body data-page="promo">
+  <div class="lang-switcher">
+    <button onclick="setLanguage('en')">
+      <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+    </button>
+    <button onclick="setLanguage('es')">
+      <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
+    </button>
+  </div>
+
+  <section class="text-center mb-12 max-w-3xl mx-auto pt-20 sm:pt-16 px-4">
+    <span class="inline-block bg-blue-600/20 border border-blue-500 text-blue-300 text-xs font-bold uppercase tracking-widest rounded-full px-4 py-1 mb-6"
+      data-key="promo-badge">Free beta promo</span>
+
+    <span class="env-badge" data-key="promo-qa-badge">QA environment</span>
+
+    <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight text-blue-400"
+      data-key="promo-heading">
+      Get your Speak2DB promo code
+    </h1>
+    <p class="text-lg sm:text-xl mb-8 leading-relaxed text-gray-300" data-key="promo-desc">
+      Enter your email and we'll send you a code that unlocks the promo plan in the Speak2DB Excel add-in.
+    </p>
+
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-700 mb-8 text-left max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold text-blue-300 mb-4" data-key="promo-steps-title">How it works</h2>
+      <ol class="list-decimal list-inside text-gray-300 space-y-3">
+        <li data-key="promo-step1">Enter your email below.</li>
+        <li data-key="promo-step2">Copy the code we send you.</li>
+        <li data-key="promo-step3">Open the Speak2DB add-in in Excel, go to My Account and paste the code.</li>
+      </ol>
+    </div>
+
+    <div class="bg-gray-800 p-8 rounded-xl shadow-xl border border-blue-500 max-w-xl mx-auto">
+      <h2 class="text-3xl font-bold text-blue-300 mb-6 text-center" data-key="promo-form-title">
+        Send me the code
+      </h2>
+
+      <form id="promo-code-form" class="space-y-8 text-left">
+        <label for="promo-email" class="block text-gray-300 font-medium" data-key="promo-email-label">
+          Email address
+        </label>
+        <input type="email" id="promo-email" name="email" required autocomplete="email"
+          class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="you@example.com" data-key="promo-email-placeholder">
+
+        <button type="submit" id="promo-submit-btn"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-[1.02] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          data-key="promo-submit-btn">
+          Send me the code
+        </button>
+      </form>
+
+      <div id="promo-loading" class="hidden mt-8 text-center">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-400"></div>
+        <p class="mt-4 text-gray-300" data-key="promo-loading-text">Sending...</p>
+      </div>
+
+      <div id="promo-error" class="hidden mt-8 p-4 bg-red-900/30 border border-red-700 rounded-lg text-red-300">
+        <p id="promo-error-text" data-key="promo-error-default">Something went wrong. Please try again later.</p>
+      </div>
+
+      <div id="promo-success" class="hidden mt-8 p-4 bg-green-900/30 border border-green-700 rounded-lg text-green-300">
+        <p id="promo-success-title" class="font-bold text-green-200 mb-2" data-key="promo-success-title">Check your inbox</p>
+        <p id="promo-success-desc" data-key="promo-success-desc">If that address is valid, the code is on its way.</p>
+      </div>
+
+      <p class="text-xs text-gray-500 mt-6 leading-relaxed" data-key="promo-privacy">
+        We only use your email to send this code.
+      </p>
+      <!-- Paridad con beta.html: atribución legal de reCAPTCHA, estática en
+           inglés (sin data-key, como beta) porque innerText de js/i18n.js
+           borraría los <a>. -->
+      <p class="text-xs text-gray-500 mt-3 leading-relaxed">
+        This site is protected by reCAPTCHA and the
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener"
+          class="underline hover:text-blue-400">Google Privacy Policy</a> and
+        <a href="https://policies.google.com/terms" target="_blank" rel="noopener"
+          class="underline hover:text-blue-400">Terms of Service</a> apply.
+      </p>
+    </div>
+
+    <div class="text-center mt-12 mb-12">
+      <a href="index.html"
+        class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full text-md transition duration-300 ease-in-out shadow-md inline-block"
+        data-key="promo-back-btn">
+        Back to Home Page
+      </a>
+    </div>
+  </section>
+
+  <footer class="text-center text-gray-500 text-sm mt-12 pb-8">
+    <p data-key="footer-copy">&copy; 2026 Speak2DB. All rights reserved.</p>
+    <nav class="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3 text-xs" aria-label="Legal">
+      <a href="contract/legal/publicprivacy-en.html" target="_blank" rel="noopener"
+        class="hover:text-blue-400 underline underline-offset-2">Privacy Policy</a>
+      <a href="contract/tos/terms-en.html" target="_blank" rel="noopener"
+        class="hover:text-blue-400 underline underline-offset-2">Terms</a>
+      <span class="opacity-40">|</span>
+      <a href="contract/legal/publicprivacy-es.html" target="_blank" rel="noopener"
+        class="hover:text-blue-400 underline underline-offset-2">Política de Privacidad</a>
+      <a href="contract/tos/terms-es.html" target="_blank" rel="noopener"
+        class="hover:text-blue-400 underline underline-offset-2">Términos</a>
+    </nav>
+  </footer>
+
+  <script>
+    const RECAPTCHA_SITE_KEY = '6LekEpEsAAAAAEIfTGKLpjRH8zyKMQ6HiPS6Z8f7';
+
+    if (window.S2DB_PROMO_QA) document.body.classList.add('is-qa');
+
+    // Traducción de un ERROR_CODE del backend. Lee el JSON inline para no
+    // depender del orden de carga de js/i18n.js.
+    function promoT(key) {
+      try {
+        const lang = (typeof currentLanguage !== 'undefined') ? currentLanguage : 'en';
+        const el = document.getElementById('i18n-' + lang) || document.getElementById('i18n-en');
+        const dict = JSON.parse(el.textContent);
+        if (dict[key]) return dict[key];
+      } catch (e) { /* cae al fallback */ }
+      try {
+        const fallback = JSON.parse(document.getElementById('i18n-en').textContent);
+        if (fallback[key]) return fallback[key];
+      } catch (e) { }
+      return '';
+    }
+
+    function promoShowError(key) {
+      const text = promoT(key) || promoT('promo-error-default');
+      const el = document.getElementById('promo-error-text');
+      if (el) el.textContent = text;
+      document.getElementById('promo-error').classList.remove('hidden');
+    }
+
+    // Éxito del envío. Si el backend responde `already_sent` (estamos dentro
+    // del cooldown de PROMO_RESEND_COOLDOWN_MIN) no hubo reenvío: cambiamos el
+    // texto por el aviso y contamos los minutos restantes.
+    function promoShowSuccess(data) {
+      const already = Boolean(data && data.already_sent);
+      const title = document.getElementById('promo-success-title');
+      const desc = document.getElementById('promo-success-desc');
+      const titleText = promoT(already ? 'promo-already-sent-title' : 'promo-success-title');
+      const descText = promoT(already ? 'promo-already-sent-desc' : 'promo-success-desc');
+      if (title && titleText) title.textContent = titleText;
+      if (desc && descText) {
+        const minutes = Math.max(1, Math.ceil(Number(data.retry_after_s || 0) / 60));
+        desc.textContent = descText.replace('{minutes}', String(minutes));
+      }
+      document.getElementById('promo-success').classList.remove('hidden');
+    }
+
+    async function handlePromoCodeRequest(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const emailInput = document.getElementById('promo-email');
+      const email = emailInput.value.trim();
+      const submitBtn = document.getElementById('promo-submit-btn');
+      const loading = document.getElementById('promo-loading');
+      const errorBox = document.getElementById('promo-error');
+      const successBox = document.getElementById('promo-success');
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        promoShowError('promo-error-email');
+        return;
+      }
+
+      errorBox.classList.add('hidden');
+      successBox.classList.add('hidden');
+      submitBtn.disabled = true;
+      loading.classList.remove('hidden');
+
+      try {
+        const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'promo_code' });
+        const lang = (typeof currentLanguage !== 'undefined') ? currentLanguage : 'en';
+
+        const response = await fetch(`${window.S2DB_PROMO_API}/promo/send-code`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, lang, recaptcha_token: recaptchaToken }),
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(JSON.stringify(data));
+
+        loading.classList.add('hidden');
+        promoShowSuccess(data);
+        // Dentro del cooldown no hubo envío: conservamos el email para que el
+        // usuario vea a qué dirección se le envió el código.
+        if (!data.already_sent) form.reset();
+        setTimeout(() => { submitBtn.disabled = false; }, 60000);
+      } catch (error) {
+        loading.classList.add('hidden');
+        submitBtn.disabled = false;
+        let code = 'promo-error-default';
+        try {
+          const parsed = JSON.parse(error.message);
+          if (parsed.ERROR_CODE && promoT(parsed.ERROR_CODE)) code = parsed.ERROR_CODE;
+        } catch (e) { /* red caída o JSON inesperado */ }
+        promoShowError(code);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('promo-code-form');
+      if (form) form.addEventListener('submit', handlePromoCodeRequest);
+    });
+  </script>
+  <script src="js/i18n.js"></script>
+</body>
+
+</html>

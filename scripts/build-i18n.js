@@ -9,6 +9,9 @@ const PAGE_I18N = {
   'index.html': { en: 'en.json', es: 'es.json' },
   'tutorials.html': { en: 'tutorials-en.json', es: 'tutorials-es.json' },
   'beta.html': { en: 'beta-en.json', es: 'beta-es.json' },
+  // Sin <!--HEADER-->: promo.html es una landing suelta (sin navbar) servida
+  // en /promo (prod) y /promo/qa (QA). Un solo fichero, dos rutas.
+  'promo.html': { en: 'promo-en.json', es: 'promo-es.json' },
 };
 
 function buildHeader(pageName) {
