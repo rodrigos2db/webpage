@@ -62,7 +62,7 @@
         <td><strong>OpenRouter</strong></td>
         <td>OpenRouter, Inc.<br/>EE.UU.</td>
         <td>Agregador y enrutador de LLM (ZDR activado)</td>
-        <td>Múltiples proveedores incluyendo z-ai/glm-5.2, openai/gpt-5.6-luna, deepseek-v4-flash (ver abajo)</td>
+        <td>Múltiples proveedores incluyendo z-ai/glm-5.2, openai/gpt-6-luna, deepseek-v4-flash (ver abajo)</td>
         <td>Retención cero según DPA; logs transitorios para facturación/abuso</td>
         <td>DPA, configuración ZDR, cláusula de no-entrenamiento</td>
       </tr>
@@ -89,7 +89,7 @@
         <td><strong>OpenAI (vía OpenRouter)</strong></td>
         <td>OpenAI, LLC<br/>EE.UU.</td>
         <td>Inferencia LLM vía OpenRouter</td>
-        <td>openai/gpt-5.6-luna</td>
+        <td>openai/gpt-6-luna</td>
         <td>Retención cero según DPA de OpenRouter</td>
         <td>ZDR vía OpenRouter, cláusula de no-entrenamiento</td>
       </tr>
@@ -141,7 +141,7 @@
       el backend de Speak2DB a DeepSeek API y Google Vertex AI. Todos los proveedores directos
       cumplen ZDR y están sujetos a acuerdos de tratamiento de datos con términos contractuales
       de retención cero y no-entrenamiento.</li>
-    <li><strong>Ruta OpenRouter (ZDR):</strong> Las consultas para z-ai/glm-5.2, openai/gpt-5.6-luna y proveedores
+    <li><strong>Ruta OpenRouter (ZDR):</strong> Las consultas para z-ai/glm-5.2, openai/gpt-6-luna y proveedores
       adicionales de deepseek se enrutan a través de OpenRouter (EE.UU.). OpenRouter está
       configurado con <strong>Retención Cero de Datos (ZDR)</strong>, lo que impide que los
       proveedores downstream retengan o entrenen con sus datos. Se pueden agregar más proveedores

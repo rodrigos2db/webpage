@@ -61,7 +61,7 @@
         <td><strong>OpenRouter</strong></td>
         <td>OpenRouter, Inc.<br/>USA</td>
         <td>LLM aggregation and routing (ZDR enabled)</td>
-        <td>Multiple providers including z-ai/glm-5.2, openai/gpt-5.6-luna, deepseek-v4-flash (see below)</td>
+        <td>Multiple providers including z-ai/glm-5.2, openai/gpt-6-luna, deepseek-v4-flash (see below)</td>
         <td>Zero retention per DPA; transient logs for billing/abuse only</td>
         <td>DPA, ZDR configuration, no-training clause</td>
       </tr>
@@ -88,7 +88,7 @@
         <td><strong>OpenAI (via OpenRouter)</strong></td>
         <td>OpenAI, LLC<br/>USA</td>
         <td>LLM inference via OpenRouter</td>
-        <td>openai/gpt-5.6-luna</td>
+        <td>openai/gpt-6-luna</td>
         <td>Zero retention per OpenRouter DPA</td>
         <td>ZDR via OpenRouter, no-training clause</td>
       </tr>
@@ -139,7 +139,7 @@
     <li><strong>Direct route (ZDR-compliant):</strong> Queries are sent directly from Speak2DB's
       backend to DeepSeek API and Google Vertex AI. All direct providers are ZDR-compliant
       and bound by data processing agreements with contractual zero-retention and no-training terms.</li>
-    <li><strong>OpenRouter route (ZDR):</strong> Queries for z-ai/glm-5.2, openai/gpt-5.6-luna and additional
+    <li><strong>OpenRouter route (ZDR):</strong> Queries for z-ai/glm-5.2, openai/gpt-6-luna and additional
       deepseek providers are routed through OpenRouter (USA). OpenRouter is configured with
       <strong>Zero Data Retention (ZDR)</strong>, which prevents all downstream providers
       from retaining or training on your data. Additional providers may be added through
