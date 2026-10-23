@@ -17,10 +17,10 @@
   <title>Speak2DB - Tutorials</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico?v=2" sizes="any">
   <link rel="icon" type="image/png" href="speak2db-logo.png" sizes="32x32">
-  <link rel="stylesheet" href="styles.css?v=20261007">
+  <link rel="stylesheet" href="styles.css?v=adc46550738e">
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin-400-normal.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin-700-normal.woff2" crossorigin>
-                                                                                                                                                              <script type="application/json" id="i18n-en">{"footer-copy":"© 2026 Speak2DB. All rights reserved.","nav-audience":"Who is it for?","nav-beta":"Beta","nav-demo":"Online Demo","nav-features":"Features","nav-tutorials":"Tutorials","sample-cta":"Download sample file","sample-desc":"⚠️ This sample file intentionally includes some data issues (blank sheets, missing column headers, and future-dated records) to demonstrate how Speak2DB detects anomalies and self-heals. Use it to follow along with the tutorials.","sample-title":"Download the sample file","tut-1-desc":"Ask the AI in plain language and re-run your saved queries anytime.","tut-1-title":"Ask & save","tut-2-desc":"Set up automatic notifications for stock-outs and anomalies.","tut-2-title":"Alerts","tut-3-desc":"Build dashboards and track how your business evolves over time.","tut-3-title":"Dashboards & Journal","tut-4-desc":"Connect your databases and configure Speak2DB.","tut-4-title":"Configuration & Connectivity","tut-back-btn":"Back to Home Page","tut-hero-desc":"Step-by-step guides to help you make the most of Speak2DB.","tut-hero-title":"Tutorials"}</script>
+                                                                                                                                                                                                                  <script type="application/json" id="i18n-en">{"footer-copy":"© 2026 Speak2DB. All rights reserved.","nav-audience":"Who is it for?","nav-beta":"Beta","nav-demo":"Online Demo","nav-features":"Features","nav-tutorials":"Tutorials","sample-cta":"Download sample file","sample-desc":"⚠️ This sample file intentionally includes some data issues (blank sheets, missing column headers, and future-dated records) to demonstrate how Speak2DB detects anomalies and self-heals. Use it to follow along with the tutorials.","sample-title":"Download the sample file","tut-1-desc":"Ask the AI in plain language and re-run your saved queries anytime.","tut-1-title":"Ask & save","tut-2-desc":"Set up automatic notifications for stock-outs and anomalies.","tut-2-title":"Alerts","tut-3-desc":"Build dashboards and track how your business evolves over time.","tut-3-title":"Dashboards & Journal","tut-4-desc":"Connect your databases and configure Speak2DB.","tut-4-title":"Configuration & Connectivity","tut-back-btn":"Back to Home Page","tut-hero-desc":"Step-by-step guides to help you make the most of Speak2DB.","tut-hero-title":"Tutorials"}</script>
     <script type="application/json" id="i18n-es">{"footer-copy":"© 2026 Speak2DB. Todos los derechos reservados.","nav-audience":"¿Para quién?","nav-beta":"Beta","nav-demo":"Demo en línea","nav-features":"Funcionalidades","nav-tutorials":"Tutoriales","sample-cta":"Descargar archivo de ejemplo","sample-desc":"⚠️ Este archivo de ejemplo incluye intencionalmente algunos problemas de datos (hojas en blanco, encabezados de columnas faltantes y registros con fechas futuras) para mostrar cómo Speak2DB detecta anomalías y se autocorrige. Úsalo para seguir los tutoriales.","sample-title":"Descargar archivo de ejemplo","tut-1-desc":"Pregunta a la IA en lenguaje natural y ejecuta tus consultas guardadas cuando quieras.","tut-1-title":"Preguntar y Guarda","tut-2-desc":"Configura notificaciones automáticas por quiebres de stock y anomalías.","tut-2-title":"Alertas","tut-3-desc":"Crea dashboards y observa cómo evoluciona tu negocio en el tiempo.","tut-3-title":"Dashboards y Bitácora","tut-4-desc":"Conecta tus bases de datos y configura Speak2DB.","tut-4-title":"Configuración y Conectividad","tut-back-btn":"Volver a la página principal","tut-hero-desc":"Guías paso a paso para aprovechar al máximo Speak2DB.","tut-hero-title":"Tutoriales"}</script>
   <style>
     body {
@@ -139,6 +139,9 @@
 <body data-page="tutorials">
 
   <!-- ========== NAVBAR ========== -->
+  <!-- ========== NAVBAR ========== -->
+  <!-- ========== NAVBAR ========== -->
+  <!-- ========== NAVBAR ========== -->
   <nav class="site-nav">
     <a href="index.html" class="nav-brand">
       <img src="speak2db-logo.png" alt="Speak2DB — AI business data analytics platform logo">
@@ -152,13 +155,20 @@
       <a href="tutorials.html" class="active" data-key="nav-tutorials">Tutorials</a>
       <a href="https://demo.speak2db.com/" data-key="nav-demo" target="_blank" rel="noopener">Online Demo</a>
       <a href="beta.html" data-key="nav-beta" >Beta</a>
-      <div class="lang-switcher">
-        <button onclick="setLanguage('en')">
-          <img src="uk.svg" alt="English" class="w-6 h-6 rounded-full">
+      <div class="language-selector" data-language-selector>
+        <button type="button" data-language-trigger onclick="togglePageLanguageMenu(this)"
+          aria-haspopup="menu" aria-expanded="false">
+          <img data-language-flag src="uk.svg" alt="" aria-hidden="true">
+          <span data-language-code>EN</span><span aria-hidden="true">▾</span>
         </button>
-        <button onclick="setLanguage('es')">
-          <img src="spain.svg" alt="Español" class="w-6 h-6 rounded-full">
-        </button>
+        <div data-language-menu role="menu" class="language-menu hidden">
+          <button type="button" role="menuitemradio" data-language="es" onclick="selectPageLanguage(this, 'es')">
+            <span data-language-check></span><img src="spain.svg" alt="" aria-hidden="true"><span data-language-label="es">Spanish</span>
+          </button>
+          <button type="button" role="menuitemradio" data-language="en" onclick="selectPageLanguage(this, 'en')">
+            <span data-language-check></span><img src="uk.svg" alt="" aria-hidden="true"><span data-language-label="en">English</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -253,7 +263,7 @@
     </nav>
   </footer>
 
-  <script src="js/i18n.js"></script>
+  <script src="js/i18n.js?v=1efd788519ef"></script>
 </body>
 
 </html>

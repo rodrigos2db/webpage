@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const I18N_DIR = path.join(ROOT, 'i18n');
@@ -12,6 +13,7 @@ const PAGE_I18N = {
   // Sin <!--HEADER-->: promo.html es una landing suelta (sin navbar) servida
   // en /promo (prod) y /promo/qa (QA). Un solo fichero, dos rutas.
   'promo.html': { en: 'promo-en.json', es: 'promo-es.json' },
+  'support.html': { en: 'support-en.json', es: 'support-es.json' },
 };
 
 function buildHeader(pageName) {
@@ -82,7 +84,15 @@ function validateDrift(html, pageName, files) {
 }
 
 function build() {
-  const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const cssPath = path.join(ROOT, 'styles.css');
+  const i18nScriptPath = path.join(ROOT, 'js', 'i18n.js');
+  const assetVersion = (filePath) => crypto
+    .createHash('sha256')
+    .update(fs.readFileSync(filePath))
+    .digest('hex')
+    .slice(0, 12);
+  const cssVersion = assetVersion(cssPath);
+  const i18nVersion = assetVersion(i18nScriptPath);
 
   let hasDrift = false;
 
@@ -103,6 +113,16 @@ function build() {
         html = html.replace('<!--HEADER-->', headerHtml);
         modified = true;
         console.log(`  Injected header into ${page}`);
+      }
+    } else if (page === 'index.html' || page === 'tutorials.html') {
+      const headerHtml = buildHeader(page);
+      const existingHeader = /<nav class="site-nav">[\s\S]*?<\/nav>/;
+      if (headerHtml && existingHeader.test(html)) {
+        html = html.replace(existingHeader, headerHtml.trim());
+        modified = true;
+        console.log(`  Refreshed header in ${page}`);
+      } else {
+        console.log(`  No site-nav found in ${page}, skipping header`);
       }
     } else {
       console.log(`  No HEADER marker in ${page}, skipping header`);
@@ -141,7 +161,11 @@ function build() {
     // --- CSS cache bust ---
     html = html.replace(
       /(href="styles\.css)(?:\?v=[^"]*)?(")/g,
-      `$1?v=${dateStr}$2`
+      `$1?v=${cssVersion}$2`
+    );
+    html = html.replace(
+      /(<script src="js\/i18n\.js)(?:\?v=[^"]*)?("><\/script>)/g,
+      `$1?v=${i18nVersion}$2`
     );
 
     if (modified) {

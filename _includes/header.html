@@ -13,13 +13,20 @@
       <a href="tutorials.html" data-key="nav-tutorials">Tutorials</a>
       <a href="https://demo.speak2db.com/" data-key="nav-demo" target="_blank" rel="noopener">Online Demo</a>
       <a href="beta.html" data-key="nav-beta" aria-label="Join the free open beta of Speak2DB">Free Beta</a>
-      <div class="lang-switcher">
-        <button onclick="setLanguage('en')">
-          <img src="uk.svg" alt="Switch Speak2DB interface to English" class="w-6 h-6 rounded-full">
+      <div class="language-selector" data-language-selector>
+        <button type="button" data-language-trigger onclick="togglePageLanguageMenu(this)"
+          aria-haspopup="menu" aria-expanded="false">
+          <img data-language-flag src="uk.svg" alt="" aria-hidden="true">
+          <span data-language-code>EN</span><span aria-hidden="true">▾</span>
         </button>
-        <button onclick="setLanguage('es')">
-          <img src="spain.svg" alt="Cambiar la interfaz de Speak2DB al español" class="w-6 h-6 rounded-full">
-        </button>
+        <div data-language-menu role="menu" class="language-menu hidden">
+          <button type="button" role="menuitemradio" data-language="es" onclick="selectPageLanguage(this, 'es')">
+            <span data-language-check></span><img src="spain.svg" alt="" aria-hidden="true"><span data-language-label="es">Spanish</span>
+          </button>
+          <button type="button" role="menuitemradio" data-language="en" onclick="selectPageLanguage(this, 'en')">
+            <span data-language-check></span><img src="uk.svg" alt="" aria-hidden="true"><span data-language-label="en">English</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>

@@ -37,6 +37,11 @@ handlers:
   upload: promo.html
   expiration: "5m"
 
+- url: /support/?$
+  static_files: support.html
+  upload: support.html
+  expiration: "5m"
+
 - url: /
   static_files: index.html
   upload: index.html
